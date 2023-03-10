@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
  *
  * @author Andryan
  */
-public class Login extends Koneksi{
+public class clsLogin extends clsKoneksi{
     String mEmail;
     String mPassword;
     

@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author Andryan
  */
-public class Koneksi {
+public class clsKoneksi {
     public Connection conn;
     public Statement res;
     public String sql;    

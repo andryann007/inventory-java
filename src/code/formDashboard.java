@@ -7,7 +7,7 @@ import java.awt.Font;
  * @author Andryan
  */
 public class formDashboard extends javax.swing.JFrame {
-    Login objLogin = new Login();
+    clsLogin objLogin = new clsLogin();
     
     formUser user;
     
@@ -296,6 +296,7 @@ public class formDashboard extends javax.swing.JFrame {
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
         objLogin.logoutUser();
+        dispose();
     }//GEN-LAST:event_btnLogoutMouseClicked
 
     /**

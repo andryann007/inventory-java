@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  */
 public class formLogin extends javax.swing.JFrame {
 
-    Login objLogin = new Login();
+    clsLogin objLogin = new clsLogin();
     
     public formLogin() {
         initComponents();
@@ -215,7 +215,6 @@ public class formLogin extends javax.swing.JFrame {
                 txtPassword.setText("");
                 dispose();
                 
-                dashboard.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 dashboard.setVisible(true);
                 
                 JOptionPane.showMessageDialog(null, "Berhasil login !!!");
