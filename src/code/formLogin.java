@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 public class formLogin extends javax.swing.JFrame {
 
     clsLogin objLogin = new clsLogin();
+    formDashboard dashboard = new formDashboard();
     
     public formLogin() {
         initComponents();
@@ -72,6 +73,7 @@ public class formLogin extends javax.swing.JFrame {
         labelEmail.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         labelEmail.setText("Email :");
 
+        txtEmail.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
         txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEmailKeyPressed(evt);
@@ -81,6 +83,7 @@ public class formLogin extends javax.swing.JFrame {
         labelPassword.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         labelPassword.setText("Password :");
 
+        txtPassword.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
@@ -156,7 +159,7 @@ public class formLogin extends javax.swing.JFrame {
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         getContentPane().add(secondPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 510, 450));
@@ -213,6 +216,7 @@ public class formLogin extends javax.swing.JFrame {
                 formDashboard dashboard = new formDashboard();
                 txtEmail.setText("");
                 txtPassword.setText("");
+                dashboard.txtNamaPengguna.setText("Halo, " + (res.getString(2).toUpperCase()));
                 dispose();
                 
                 dashboard.setVisible(true);

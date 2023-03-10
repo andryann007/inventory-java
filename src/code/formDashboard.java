@@ -1,22 +1,37 @@
 package code;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
 
 /**
  *
  * @author Andryan
  */
-public class formDashboard extends javax.swing.JFrame {
+public final class formDashboard extends javax.swing.JFrame {
     clsLogin objLogin = new clsLogin();
     
-    formUser user;
+    formUser user = new formUser();
+    formSupplier supplier = new formSupplier();
+    formCustomer customer = new formCustomer();
     
     public formDashboard() {
         initComponents();
+        showCurrentDate();
+        showCurrentTime();
         
-        user = new formUser();
         body.add(user);
         user.setVisible(false);
+        
+        body.add(supplier);
+        supplier.setVisible(false);
+        
+        body.add(customer);
+        customer.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -33,9 +48,8 @@ public class formDashboard extends javax.swing.JFrame {
         btnUser = new javax.swing.JLabel();
         btnBarang = new javax.swing.JLabel();
         btnSupplier = new javax.swing.JLabel();
-        btnCustomer = new javax.swing.JLabel();
         labelMasterData = new javax.swing.JLabel();
-        btnSupplier1 = new javax.swing.JLabel();
+        btnCustomer = new javax.swing.JLabel();
         panelTransaksi = new javax.swing.JPanel();
         labelTransaksi = new javax.swing.JLabel();
         btnStock = new javax.swing.JLabel();
@@ -53,12 +67,15 @@ public class formDashboard extends javax.swing.JFrame {
         home = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
-        btnExit = new javax.swing.JLabel();
+        txtDate = new javax.swing.JLabel();
+        txtTime = new javax.swing.JLabel();
+        txtNamaPengguna = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Aplikasi Inventory Toko Sukses");
+        setMaximumSize(new java.awt.Dimension(1030, 680));
         setMinimumSize(new java.awt.Dimension(1030, 680));
-        setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1030, 680));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         sidebar.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,27 +137,29 @@ public class formDashboard extends javax.swing.JFrame {
         btnSupplier.setText("Data Supplier");
         btnSupplier.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSupplier.setIconTextGap(15);
+        btnSupplier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSupplierMouseClicked(evt);
+            }
+        });
         panelMasterData.add(btnSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 240, 50));
-
-        btnCustomer.setBackground(new java.awt.Color(255, 255, 255));
-        btnCustomer.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        btnCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house-solid.png"))); // NOI18N
-        btnCustomer.setText("Data Customer");
-        btnCustomer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCustomer.setIconTextGap(15);
-        panelMasterData.add(btnCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 240, 50));
 
         labelMasterData.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelMasterData.setText("Master Data");
         panelMasterData.add(labelMasterData, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        btnSupplier1.setBackground(new java.awt.Color(255, 255, 255));
-        btnSupplier1.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        btnSupplier1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/users-solid.png"))); // NOI18N
-        btnSupplier1.setText("Data Customer");
-        btnSupplier1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSupplier1.setIconTextGap(15);
-        panelMasterData.add(btnSupplier1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 240, 50));
+        btnCustomer.setBackground(new java.awt.Color(255, 255, 255));
+        btnCustomer.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        btnCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/users-solid.png"))); // NOI18N
+        btnCustomer.setText("Data Customer");
+        btnCustomer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCustomer.setIconTextGap(15);
+        btnCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCustomerMouseClicked(evt);
+            }
+        });
+        panelMasterData.add(btnCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 240, 50));
 
         sidebar.add(panelMasterData, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 280, 230));
 
@@ -235,7 +254,7 @@ public class formDashboard extends javax.swing.JFrame {
 
         body.setBackground(new java.awt.Color(255, 255, 255));
         body.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        body.setPreferredSize(new java.awt.Dimension(750, 670));
+        body.setPreferredSize(new java.awt.Dimension(750, 650));
         body.setLayout(new javax.swing.BoxLayout(body, javax.swing.BoxLayout.LINE_AXIS));
 
         home.setBackground(new java.awt.Color(255, 255, 255));
@@ -257,29 +276,30 @@ public class formDashboard extends javax.swing.JFrame {
             .addGroup(homeLayout.createSequentialGroup()
                 .addGap(280, 280, 280)
                 .addComponent(jLabel1)
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addContainerGap(316, Short.MAX_VALUE))
         );
 
         body.add(home);
 
-        getContentPane().add(body, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 750, 670));
+        getContentPane().add(body, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 750, 630));
 
-        header.setBackground(new java.awt.Color(255, 255, 255));
+        header.setBackground(new java.awt.Color(0, 0, 0));
         header.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/circle-xmark-solid (1).png"))); // NOI18N
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExit.setPreferredSize(new java.awt.Dimension(36, 36));
-        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnExitMouseClicked(evt);
-            }
-        });
-        header.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 7, -1, -1));
+        txtDate.setFont(new java.awt.Font("Century", 1, 18)); // NOI18N
+        txtDate.setForeground(new java.awt.Color(255, 255, 255));
+        header.add(txtDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 140, 30));
 
-        getContentPane().add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 750, 60));
+        txtTime.setFont(new java.awt.Font("Century", 1, 18)); // NOI18N
+        txtTime.setForeground(new java.awt.Color(255, 255, 255));
+        header.add(txtTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 130, 30));
+
+        txtNamaPengguna.setFont(new java.awt.Font("Century", 1, 18)); // NOI18N
+        txtNamaPengguna.setForeground(new java.awt.Color(255, 255, 255));
+        header.add(txtNamaPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, 30));
+
+        getContentPane().add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 750, 50));
 
         pack();
         setLocationRelativeTo(null);
@@ -287,17 +307,29 @@ public class formDashboard extends javax.swing.JFrame {
 
     private void btnUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserMouseClicked
         home.setVisible(false);
+        supplier.setVisible(false);
+        customer.setVisible(false);
         user.setVisible(true);
     }//GEN-LAST:event_btnUserMouseClicked
-
-    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
-        dispose();
-    }//GEN-LAST:event_btnExitMouseClicked
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
         objLogin.logoutUser();
         dispose();
     }//GEN-LAST:event_btnLogoutMouseClicked
+
+    private void btnSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierMouseClicked
+        home.setVisible(false);
+        user.setVisible(false);
+        customer.setVisible(false);
+        supplier.setVisible(true);
+    }//GEN-LAST:event_btnSupplierMouseClicked
+
+    private void btnCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerMouseClicked
+        home.setVisible(false);
+        user.setVisible(false);
+        supplier.setVisible(false);
+        customer.setVisible(true);
+    }//GEN-LAST:event_btnCustomerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -333,12 +365,25 @@ public class formDashboard extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void showCurrentTime(){
+        new Timer(0, (ActionEvent evt) -> {
+            SimpleDateFormat s1 = new SimpleDateFormat("hh:mm:ss a");
+            Date d = new Date();
+            txtTime.setText(s1.format(d));
+        }).start();
+    }
+    
+    public void showCurrentDate(){
+        SimpleDateFormat s1 = new SimpleDateFormat("yyyy-MM-dd");
+        Date d = new Date();
+        txtDate.setText(s1.format(d));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel body;
     private javax.swing.JLabel btnBarang;
     private javax.swing.JLabel btnCustomer;
-    private javax.swing.JLabel btnExit;
     private javax.swing.JLabel btnHome;
     private javax.swing.JLabel btnKeluar;
     private javax.swing.JLabel btnKeluarReport1;
@@ -347,7 +392,6 @@ public class formDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel btnMasukReport1;
     private javax.swing.JLabel btnStock;
     private javax.swing.JLabel btnSupplier;
-    private javax.swing.JLabel btnSupplier1;
     private javax.swing.JLabel btnUser;
     private javax.swing.JPanel header;
     private javax.swing.JPanel home;
@@ -366,5 +410,8 @@ public class formDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel panelMasterData;
     private javax.swing.JPanel panelTransaksi;
     private javax.swing.JPanel sidebar;
+    private javax.swing.JLabel txtDate;
+    public javax.swing.JLabel txtNamaPengguna;
+    private javax.swing.JLabel txtTime;
     // End of variables declaration//GEN-END:variables
 }

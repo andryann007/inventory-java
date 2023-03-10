@@ -92,13 +92,13 @@ public final class formUser extends javax.swing.JPanel {
         tabelUser.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
         tabelUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID User", "Nama Lengkap", "Email", "Password", "Tipe Akun"
+                "ID User", "Nama Lengkap", "Email", "Password", "Alamat", "Tipe Akun"
             }
         ));
         tabelUser.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -397,7 +397,7 @@ public final class formUser extends javax.swing.JPanel {
         
         try{
             objUser.idUser = txtIdUser.getText();
-            objUser.deleteData(objUser.idUser);
+            objUser.deleteUserData(objUser.idUser);
                 try {
                     objUser.res.executeUpdate(objUser.sql);
                     objUser.conn.close();
@@ -432,7 +432,7 @@ public final class formUser extends javax.swing.JPanel {
                 objUser.alamat = txtAlamat.getText();
                 objUser.tipeAkun = cboAkun.getSelectedItem().toString();
         
-                objUser.saveData();
+                objUser.saveUserData();
                 try {
                     objUser.res.executeUpdate(objUser.sql);
                     objUser.conn.close();
@@ -462,7 +462,7 @@ public final class formUser extends javax.swing.JPanel {
             objUser.alamat = txtAlamat.getText();
             objUser.tipeAkun = cboAkun.getSelectedItem().toString();
         
-            objUser.editData();
+            objUser.editUserData();
             try {
                 objUser.res.executeUpdate(objUser.sql);
                 objUser.conn.close();
@@ -531,14 +531,14 @@ public final class formUser extends javax.swing.JPanel {
     }
     
     public void isiTabel(){
-        DefaultTableModel tabelTipeAkun = new DefaultTableModel();
+        DefaultTableModel tabelDataAkun = new DefaultTableModel();
         
-        tabelTipeAkun.addColumn("ID User");
-        tabelTipeAkun.addColumn("Nama Lengkap");
-        tabelTipeAkun.addColumn("Email");
-        tabelTipeAkun.addColumn("Password");
-        tabelTipeAkun.addColumn("Alamat");
-        tabelTipeAkun.addColumn("Tipe Akun");
+        tabelDataAkun.addColumn("ID User");
+        tabelDataAkun.addColumn("Nama Lengkap");
+        tabelDataAkun.addColumn("Email");
+        tabelDataAkun.addColumn("Password");
+        tabelDataAkun.addColumn("Alamat");
+        tabelDataAkun.addColumn("Tipe Akun");
         
         try{
             objUser.Access();
@@ -548,12 +548,12 @@ public final class formUser extends javax.swing.JPanel {
             ResultSet result = state.executeQuery(objUser.sql);
             
             while(result.next()){
-                tabelTipeAkun.addRow(new Object[] {result.getString(1),
+                tabelDataAkun.addRow(new Object[] {result.getString(1),
                     result.getString(2), result.getString(4),
                     result.getString(5), result.getString(8),
                     result.getString(7)});
             }
-            tabelUser.setModel(tabelTipeAkun);
+            tabelUser.setModel(tabelDataAkun);
             aturLebarKolom();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Terjadi kesalahan pada penampilan data !!!");

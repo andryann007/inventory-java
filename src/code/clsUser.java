@@ -18,10 +18,10 @@ public class clsUser extends clsKoneksi{
         sql = "SELECT * FROM data_user ORDER BY id_user";
     }
     
-    public void saveData(){
+    public void saveUserData(){
         try
         {
-            sql = "INSERT INTO db_inventory VALUE ('" + idUser + "', '" + namaUser + 
+            sql = "INSERT INTO data_user VALUE ('" + idUser + "', '" + namaUser + 
                     "', '" + email + "', '" + password + "', '" + tipeAkun + "', '" + alamat + "')";
         }
         catch(Exception e)
@@ -31,7 +31,7 @@ public class clsUser extends clsKoneksi{
         }
     }
     
-    public void editData(){
+    public void editUserData(){
         try
         {
             sql = "UPDATE data_user SET nama_lengkap = '"
@@ -46,7 +46,7 @@ public class clsUser extends clsKoneksi{
         }
     }
     
-    public void deleteData(String mIdUser){
+    public void deleteUserData(String mIdUser){
         try
         {
             sql = "DELETE FROM data_user WHERE id_user = '" + idUser + "'";
