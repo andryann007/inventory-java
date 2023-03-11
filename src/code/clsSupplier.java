@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
  *
  * @author Andryan
  */
-public class clsSupplier extends clsUser{
+public class clsSupplier extends clsKoneksi{
     String idSupplier;
     String namaSupplier;
     String alamat;

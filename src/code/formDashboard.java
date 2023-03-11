@@ -16,6 +16,7 @@ public final class formDashboard extends javax.swing.JFrame {
     clsLogin objLogin = new clsLogin();
     
     formUser user = new formUser();
+    formStock stock = new formStock();
     formSupplier supplier = new formSupplier();
     formCustomer customer = new formCustomer();
     
@@ -26,6 +27,9 @@ public final class formDashboard extends javax.swing.JFrame {
         
         body.add(user);
         user.setVisible(false);
+        
+        body.add(stock);
+        stock.setVisible(false);
         
         body.add(supplier);
         supplier.setVisible(false);
@@ -73,7 +77,6 @@ public final class formDashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplikasi Inventory Toko Sukses");
-        setMaximumSize(new java.awt.Dimension(1030, 680));
         setMinimumSize(new java.awt.Dimension(1030, 680));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -129,6 +132,11 @@ public final class formDashboard extends javax.swing.JFrame {
         btnBarang.setText("Data Barang");
         btnBarang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBarang.setIconTextGap(15);
+        btnBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBarangMouseClicked(evt);
+            }
+        });
         panelMasterData.add(btnBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 240, 50));
 
         btnSupplier.setBackground(new java.awt.Color(255, 255, 255));
@@ -297,7 +305,7 @@ public final class formDashboard extends javax.swing.JFrame {
 
         txtNamaPengguna.setFont(new java.awt.Font("Century", 1, 18)); // NOI18N
         txtNamaPengguna.setForeground(new java.awt.Color(255, 255, 255));
-        header.add(txtNamaPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, 30));
+        header.add(txtNamaPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 280, 30));
 
         getContentPane().add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 750, 50));
 
@@ -307,6 +315,7 @@ public final class formDashboard extends javax.swing.JFrame {
 
     private void btnUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserMouseClicked
         home.setVisible(false);
+        stock.setVisible(false);
         supplier.setVisible(false);
         customer.setVisible(false);
         user.setVisible(true);
@@ -320,6 +329,7 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierMouseClicked
         home.setVisible(false);
         user.setVisible(false);
+        stock.setVisible(false);
         customer.setVisible(false);
         supplier.setVisible(true);
     }//GEN-LAST:event_btnSupplierMouseClicked
@@ -327,9 +337,18 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerMouseClicked
         home.setVisible(false);
         user.setVisible(false);
+        stock.setVisible(false);
         supplier.setVisible(false);
         customer.setVisible(true);
     }//GEN-LAST:event_btnCustomerMouseClicked
+
+    private void btnBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBarangMouseClicked
+        home.setVisible(false);
+        user.setVisible(false);
+        supplier.setVisible(false);
+        customer.setVisible(false);
+        stock.setVisible(true);
+    }//GEN-LAST:event_btnBarangMouseClicked
 
     /**
      * @param args the command line arguments
