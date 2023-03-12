@@ -10,7 +10,7 @@ public class clsStock extends clsKoneksi{
     String idBarang;
     String namaBarang;
     String kategori;
-    String status = "Tersedia";
+    String status;
     int qty;
     float hargaSatuan;
     float totalHarga;
@@ -24,7 +24,7 @@ public class clsStock extends clsKoneksi{
         {
             sql = "INSERT INTO data_stock VALUE ('" + idBarang + "', '" + namaBarang
                     + "', '" + kategori + "', '" + qty + "', '" + hargaSatuan + "', '"
-                    + totalHarga + "', status = '" + status +"')";
+                    + totalHarga + "', '" + status + "')";
         }
         catch(Exception e)
         {
@@ -38,9 +38,9 @@ public class clsStock extends clsKoneksi{
         {
             sql = "UPDATE data_stock SET nama_barang = '"
                     + namaBarang + "', kategori = '" + kategori 
-                    + "', qty = '" + qty + "', harga = '" + hargaSatuan
-                    + "', total_harga = '" + totalHarga + "', status = '" + status
-                    + "' WHERE id_barang = '" + idBarang + "'";;
+                    + "', qty_stock = '" + qty + "', harga_satuan = '" + hargaSatuan
+                    + "', total_harga = '" + totalHarga
+                    + "', status = '" + status + "' WHERE id_barang = '" + idBarang + "'";
         }
         catch(Exception e)
         {

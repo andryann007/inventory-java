@@ -10,6 +10,7 @@ public class clsCustomer extends clsKoneksi {
     String idCustomer;
     String namaCustomer;
     String alamat;
+    String email;
     String telp;
     
     public void getCustomerData(){
@@ -20,7 +21,7 @@ public class clsCustomer extends clsKoneksi {
         try
         {
             sql = "INSERT INTO data_customer VALUE ('" + idCustomer + "', '" + namaCustomer + 
-                    "', '" + alamat + "', '" + telp + "')";
+                    "', '" + alamat + "', '" + email + "', '" + telp + "')";
         }
         catch(Exception e)
         {
@@ -33,9 +34,9 @@ public class clsCustomer extends clsKoneksi {
         try
         {
             sql = "UPDATE data_customer SET nama_customer = '"
-                    + namaCustomer + "', alamat_customer = '" + alamat 
-                    + "', telp_customer = '" + telp
-                    + "' WHERE id_customer = '" + idCustomer + "'";;
+                    + namaCustomer + "', alamat = '" + alamat 
+                    + "', email ='" + email + "', telp = '" + telp
+                    + "' WHERE id_customer = '" + idCustomer + "'";
         }
         catch(Exception e)
         {

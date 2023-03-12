@@ -46,11 +46,12 @@ public class formSupplier extends javax.swing.JPanel {
         txtNamaSupplier = new javax.swing.JTextField();
         txtAlamatSupplier = new javax.swing.JTextField();
         labelTelp = new javax.swing.JLabel();
+        txtEmailSupplier = new javax.swing.JTextField();
+        labelEmail = new javax.swing.JLabel();
         panelFooter = new javax.swing.JPanel();
         btnDelete = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
-        btnDetail = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(750, 670));
@@ -83,16 +84,16 @@ public class formSupplier extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(738, 250));
 
-        tabelSupplier.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
+        tabelSupplier.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
         tabelSupplier.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID Supplier", "Nama Supplier", "Alamat", "No. Telp"
+                "ID Supplier", "Nama Supplier", "Alamat", "Email", "No. Telp"
             }
         ));
         tabelSupplier.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,6 +169,19 @@ public class formSupplier extends javax.swing.JPanel {
         labelTelp.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
         labelTelp.setText("No. Telp");
 
+        txtEmailSupplier.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
+        txtEmailSupplier.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmailSupplierKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailSupplierKeyTyped(evt);
+            }
+        });
+
+        labelEmail.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
+        labelEmail.setText("Email :");
+
         javax.swing.GroupLayout panelBodyLayout = new javax.swing.GroupLayout(panelBody);
         panelBody.setLayout(panelBodyLayout);
         panelBodyLayout.setHorizontalGroup(
@@ -187,23 +201,29 @@ public class formSupplier extends javax.swing.JPanel {
                     .addComponent(txtIdSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTelp, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelNama, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(labelNama, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelEmail, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTelpSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNamaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNamaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmailSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBodyLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTelp)
+                .addGap(18, 18, 18)
+                .addComponent(txtTelpSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(224, 224, 224))
         );
         panelBodyLayout.setVerticalGroup(
             panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBodyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(19, 19, 19)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtNamaSupplier, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtNamaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(labelNama))
                     .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelIdSupplier)
@@ -212,9 +232,13 @@ public class formSupplier extends javax.swing.JPanel {
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAlamat)
                     .addComponent(txtAlamatSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmailSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEmail))
+                .addGap(27, 27, 27)
+                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTelpSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTelp))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         add(panelBody, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 750, 430));
@@ -254,31 +278,18 @@ public class formSupplier extends javax.swing.JPanel {
             }
         });
 
-        btnDetail.setBackground(new java.awt.Color(153, 204, 255));
-        btnDetail.setFont(new java.awt.Font("Century", 1, 18)); // NOI18N
-        btnDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/info-circle-solid.png"))); // NOI18N
-        btnDetail.setText(" DETAIL");
-        btnDetail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDetail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDetailActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelFooterLayout = new javax.swing.GroupLayout(panelFooter);
         panelFooter.setLayout(panelFooterLayout);
         panelFooterLayout.setHorizontalGroup(
             panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFooterLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
         panelFooterLayout.setVerticalGroup(
             panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,8 +298,7 @@ public class formSupplier extends javax.swing.JPanel {
                 .addGroup(panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -382,6 +392,7 @@ public class formSupplier extends javax.swing.JPanel {
                 objSupplier.idSupplier = txtIdSupplier.getText();
                 objSupplier.namaSupplier = txtNamaSupplier.getText();
                 objSupplier.alamat = txtAlamatSupplier.getText();
+                objSupplier.email = txtEmailSupplier.getText();
                 objSupplier.telp = txtTelpSupplier.getText();
         
                 objSupplier.saveSupplierData();
@@ -410,6 +421,7 @@ public class formSupplier extends javax.swing.JPanel {
             objSupplier.idSupplier = txtIdSupplier.getText();
             objSupplier.namaSupplier = txtNamaSupplier.getText();
             objSupplier.alamat = txtAlamatSupplier.getText();
+            objSupplier.email = txtEmailSupplier.getText();
             objSupplier.telp = txtTelpSupplier.getText();
         
             objSupplier.editSupplierData();
@@ -430,22 +442,28 @@ public class formSupplier extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
-    private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDetailActionPerformed
-
     private void tabelSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelSupplierMouseClicked
         int baris = tabelSupplier.getSelectedRow();
         String id = tabelSupplier.getValueAt(baris, 0).toString();
         String nama = tabelSupplier.getValueAt(baris, 1).toString();
         String alamat = tabelSupplier.getValueAt(baris, 2).toString();
-        String telp = tabelSupplier.getValueAt(baris, 3).toString();
+        String email = tabelSupplier.getValueAt(baris, 3).toString();
+        String telp = tabelSupplier.getValueAt(baris, 4).toString();
         
         txtIdSupplier.setText(id);
         txtNamaSupplier.setText(nama);
         txtAlamatSupplier.setText(alamat);
+        txtEmailSupplier.setText(email);
         txtTelpSupplier.setText(telp);
     }//GEN-LAST:event_tabelSupplierMouseClicked
+
+    private void txtEmailSupplierKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailSupplierKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailSupplierKeyPressed
+
+    private void txtEmailSupplierKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailSupplierKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailSupplierKeyTyped
 
     public void isiTabel(){
         DefaultTableModel tabelDataSupplier = new DefaultTableModel();
@@ -453,6 +471,7 @@ public class formSupplier extends javax.swing.JPanel {
         tabelDataSupplier.addColumn("ID Supplier");
         tabelDataSupplier.addColumn("Nama Supplier");
         tabelDataSupplier.addColumn("Alamat");
+        tabelDataSupplier.addColumn("Email");
         tabelDataSupplier.addColumn("No.Telp");
         
         try{
@@ -465,7 +484,7 @@ public class formSupplier extends javax.swing.JPanel {
             while(result.next()){
                 tabelDataSupplier.addRow(new Object[] {result.getString(1),
                     result.getString(2), result.getString(3),
-                    result.getString(4)});
+                    result.getString(4), result.getString(5)});
             }
             tabelSupplier.setModel(tabelDataSupplier);
         } catch (Exception e) {
@@ -479,6 +498,7 @@ public class formSupplier extends javax.swing.JPanel {
         txtIdSupplier.setText("");
         txtNamaSupplier.setText("");
         txtAlamatSupplier.setText("");
+        txtEmailSupplier.setText("");
         txtTelpSupplier.setText("");
     }
 
@@ -486,11 +506,11 @@ public class formSupplier extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnDetail;
     private javax.swing.JButton btnEdit;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAlamat;
+    private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelIdSupplier;
     private javax.swing.JLabel labelNama;
     private javax.swing.JLabel labelTelp;
@@ -500,6 +520,7 @@ public class formSupplier extends javax.swing.JPanel {
     private javax.swing.JPanel panelHeader;
     private javax.swing.JTable tabelSupplier;
     private javax.swing.JTextField txtAlamatSupplier;
+    private javax.swing.JTextField txtEmailSupplier;
     private javax.swing.JTextField txtIdSupplier;
     private javax.swing.JTextField txtNamaSupplier;
     private javax.swing.JTextField txtTelpSupplier;

@@ -41,16 +41,17 @@ public class formCustomer extends javax.swing.JPanel {
         labelIdCustomer = new javax.swing.JLabel();
         txtIdCustomer = new javax.swing.JTextField();
         labelNama = new javax.swing.JLabel();
-        txtTelpCustomer = new javax.swing.JTextField();
+        txtEmailCustomer = new javax.swing.JTextField();
         labelAlamat = new javax.swing.JLabel();
         txtNamaCustomer = new javax.swing.JTextField();
         txtAlamatCustomer = new javax.swing.JTextField();
         labelTelp = new javax.swing.JLabel();
+        labelEmail = new javax.swing.JLabel();
+        txtTelpCustomer = new javax.swing.JTextField();
         panelFooter = new javax.swing.JPanel();
         btnDelete = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
-        btnDetail = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(750, 670));
@@ -83,16 +84,16 @@ public class formCustomer extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(738, 250));
 
-        tabelCustomer.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
+        tabelCustomer.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
         tabelCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID Customer", "Nama Customer", "Alamat", "No. Telp"
+                "ID Customer", "Nama Customer", "Alamat", "Email", "No. Telp"
             }
         ));
         tabelCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,13 +133,13 @@ public class formCustomer extends javax.swing.JPanel {
         labelNama.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
         labelNama.setText("Nama Customer :");
 
-        txtTelpCustomer.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
-        txtTelpCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtEmailCustomer.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
+        txtEmailCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtTelpCustomerKeyPressed(evt);
+                txtEmailCustomerKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtTelpCustomerKeyTyped(evt);
+                txtEmailCustomerKeyTyped(evt);
             }
         });
 
@@ -168,6 +169,19 @@ public class formCustomer extends javax.swing.JPanel {
         labelTelp.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
         labelTelp.setText("No. Telp :");
 
+        labelEmail.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
+        labelEmail.setText("Email :");
+
+        txtTelpCustomer.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
+        txtTelpCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTelpCustomerKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelpCustomerKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBodyLayout = new javax.swing.GroupLayout(panelBody);
         panelBody.setLayout(panelBodyLayout);
         panelBodyLayout.setHorizontalGroup(
@@ -187,23 +201,29 @@ public class formCustomer extends javax.swing.JPanel {
                     .addComponent(txtIdCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTelp, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelNama, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(labelNama, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelEmail, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTelpCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNamaCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNamaCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmailCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBodyLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTelp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTelpCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(236, 236, 236))
         );
         panelBodyLayout.setVerticalGroup(
             panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBodyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtNamaCustomer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtNamaCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(labelNama))
                     .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelIdCustomer)
@@ -212,9 +232,13 @@ public class formCustomer extends javax.swing.JPanel {
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAlamat)
                     .addComponent(txtAlamatCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelpCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelTelp))
-                .addContainerGap(62, Short.MAX_VALUE))
+                    .addComponent(labelEmail)
+                    .addComponent(txtEmailCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTelp)
+                    .addComponent(txtTelpCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         add(panelBody, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 750, 430));
@@ -254,31 +278,18 @@ public class formCustomer extends javax.swing.JPanel {
             }
         });
 
-        btnDetail.setBackground(new java.awt.Color(153, 204, 255));
-        btnDetail.setFont(new java.awt.Font("Century", 1, 18)); // NOI18N
-        btnDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/info-circle-solid.png"))); // NOI18N
-        btnDetail.setText(" DETAIL");
-        btnDetail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDetail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDetailActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelFooterLayout = new javax.swing.GroupLayout(panelFooter);
         panelFooter.setLayout(panelFooterLayout);
         panelFooterLayout.setHorizontalGroup(
             panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFooterLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
         panelFooterLayout.setVerticalGroup(
             panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,8 +298,7 @@ public class formCustomer extends javax.swing.JPanel {
                 .addGroup(panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -313,13 +323,13 @@ public class formCustomer extends javax.swing.JPanel {
 
     }//GEN-LAST:event_txtIdCustomerKeyTyped
 
-    private void txtTelpCustomerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelpCustomerKeyPressed
+    private void txtEmailCustomerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailCustomerKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelpCustomerKeyPressed
+    }//GEN-LAST:event_txtEmailCustomerKeyPressed
 
-    private void txtTelpCustomerKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelpCustomerKeyTyped
+    private void txtEmailCustomerKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailCustomerKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelpCustomerKeyTyped
+    }//GEN-LAST:event_txtEmailCustomerKeyTyped
 
     private void txtNamaCustomerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaCustomerKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER)
@@ -382,6 +392,7 @@ public class formCustomer extends javax.swing.JPanel {
                 objCustomer.idCustomer = txtIdCustomer.getText();
                 objCustomer.namaCustomer = txtNamaCustomer.getText();
                 objCustomer.alamat = txtAlamatCustomer.getText();
+                objCustomer.email = txtEmailCustomer.getText();
                 objCustomer.telp = txtTelpCustomer.getText();
         
                 objCustomer.saveCustomerData();
@@ -410,6 +421,7 @@ public class formCustomer extends javax.swing.JPanel {
             objCustomer.idCustomer = txtIdCustomer.getText();
             objCustomer.namaCustomer = txtNamaCustomer.getText();
             objCustomer.alamat = txtAlamatCustomer.getText();
+            objCustomer.email = txtEmailCustomer.getText();
             objCustomer.telp = txtTelpCustomer.getText();
         
             objCustomer.editCustomerData();
@@ -430,22 +442,28 @@ public class formCustomer extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
-    private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDetailActionPerformed
-
     private void tabelCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelCustomerMouseClicked
         int baris = tabelCustomer.getSelectedRow();
         String id = tabelCustomer.getValueAt(baris, 0).toString();
         String nama = tabelCustomer.getValueAt(baris, 1).toString();
         String alamat = tabelCustomer.getValueAt(baris, 2).toString();
-        String telp = tabelCustomer.getValueAt(baris, 3).toString();
+        String email = tabelCustomer.getValueAt(baris, 3).toString();
+        String telp = tabelCustomer.getValueAt(baris, 4).toString();
         
         txtIdCustomer.setText(id);
         txtNamaCustomer.setText(nama);
         txtAlamatCustomer.setText(alamat);
+        txtEmailCustomer.setText(email);
         txtTelpCustomer.setText(telp);
     }//GEN-LAST:event_tabelCustomerMouseClicked
+
+    private void txtTelpCustomerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelpCustomerKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelpCustomerKeyPressed
+
+    private void txtTelpCustomerKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelpCustomerKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelpCustomerKeyTyped
 
     public void isiTabel(){
         DefaultTableModel tabelDataCustomer = new DefaultTableModel();
@@ -453,6 +471,7 @@ public class formCustomer extends javax.swing.JPanel {
         tabelDataCustomer.addColumn("ID Customer");
         tabelDataCustomer.addColumn("Nama Customer");
         tabelDataCustomer.addColumn("Alamat");
+        tabelDataCustomer.addColumn("Email");
         tabelDataCustomer.addColumn("No.Telp");
         
         try{
@@ -465,7 +484,7 @@ public class formCustomer extends javax.swing.JPanel {
             while(result.next()){
                 tabelDataCustomer.addRow(new Object[] {result.getString(1),
                     result.getString(2), result.getString(3),
-                    result.getString(4)});
+                    result.getString(4), result.getString(5)});
             }
             tabelCustomer.setModel(tabelDataCustomer);
         } catch (Exception e) {
@@ -479,6 +498,7 @@ public class formCustomer extends javax.swing.JPanel {
         txtIdCustomer.setText("");
         txtNamaCustomer.setText("");
         txtAlamatCustomer.setText("");
+        txtEmailCustomer.setText("");
         txtTelpCustomer.setText("");
     }
 
@@ -486,11 +506,11 @@ public class formCustomer extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnDetail;
     private javax.swing.JButton btnEdit;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAlamat;
+    private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelIdCustomer;
     private javax.swing.JLabel labelNama;
     private javax.swing.JLabel labelTelp;
@@ -500,6 +520,7 @@ public class formCustomer extends javax.swing.JPanel {
     private javax.swing.JPanel panelHeader;
     private javax.swing.JTable tabelCustomer;
     private javax.swing.JTextField txtAlamatCustomer;
+    private javax.swing.JTextField txtEmailCustomer;
     private javax.swing.JTextField txtIdCustomer;
     private javax.swing.JTextField txtNamaCustomer;
     private javax.swing.JTextField txtTelpCustomer;

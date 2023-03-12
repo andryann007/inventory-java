@@ -23,6 +23,7 @@ public final class formStock extends javax.swing.JPanel {
         initComponents();
         isiTabel();
         isiComboKategori();
+        isiComboStatus();
     }
 
     /**
@@ -47,16 +48,15 @@ public final class formStock extends javax.swing.JPanel {
         txtNamaBarang = new javax.swing.JTextField();
         txtHargaSatuan = new javax.swing.JTextField();
         labelQTY = new javax.swing.JLabel();
-        txtTotalHarga = new javax.swing.JTextField();
-        labelTotalHarga = new javax.swing.JLabel();
+        labelStatus = new javax.swing.JLabel();
         cboKategori = new javax.swing.JComboBox<>();
         labelHarga = new javax.swing.JLabel();
         txtQTY = new javax.swing.JTextField();
+        cboStatus = new javax.swing.JComboBox<>();
         panelFooter = new javax.swing.JPanel();
         btnDelete = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
-        btnDetail = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(750, 670));
@@ -89,7 +89,7 @@ public final class formStock extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(738, 250));
 
-        tabelBarang.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
+        tabelBarang.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
         tabelBarang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -164,18 +164,8 @@ public final class formStock extends javax.swing.JPanel {
         labelQTY.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
         labelQTY.setText("QTY Stock :");
 
-        txtTotalHarga.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
-        txtTotalHarga.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtTotalHargaKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtTotalHargaKeyTyped(evt);
-            }
-        });
-
-        labelTotalHarga.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
-        labelTotalHarga.setText("Total Harga :");
+        labelStatus.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
+        labelStatus.setText("Status  Barang :");
 
         cboKategori.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
         cboKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -189,6 +179,14 @@ public final class formStock extends javax.swing.JPanel {
         labelHarga.setText("Harga / Pcs :");
 
         txtQTY.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
+
+        cboStatus.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
+        cboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboStatusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBodyLayout = new javax.swing.GroupLayout(panelBody);
         panelBody.setLayout(panelBodyLayout);
@@ -213,16 +211,17 @@ public final class formStock extends javax.swing.JPanel {
                         .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtHargaSatuan)
                             .addComponent(cboKategori, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelQTY, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelTotalHarga, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelNama, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(labelStatus, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelNama, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelQTY, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
-                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNamaBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(txtTotalHarga, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(txtQTY))
+                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtNamaBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                        .addComponent(txtQTY))
+                    .addComponent(cboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41))
         );
         panelBodyLayout.setVerticalGroup(
@@ -232,27 +231,27 @@ public final class formStock extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtNamaBarang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelNama))
+                    .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelNama)
+                        .addComponent(txtNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelIdBarang)
                         .addComponent(txtIdBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelKategori)
-                    .addComponent(labelQTY)
                     .addComponent(cboKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtQTY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(labelStatus)
+                    .addComponent(cboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelHarga)
                         .addComponent(txtHargaSatuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelTotalHarga)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addComponent(labelQTY)
+                        .addComponent(txtQTY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         add(panelBody, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 750, 430));
@@ -292,31 +291,18 @@ public final class formStock extends javax.swing.JPanel {
             }
         });
 
-        btnDetail.setBackground(new java.awt.Color(153, 204, 255));
-        btnDetail.setFont(new java.awt.Font("Century", 1, 18)); // NOI18N
-        btnDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/info-circle-solid.png"))); // NOI18N
-        btnDetail.setText(" DETAIL");
-        btnDetail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDetail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDetailActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelFooterLayout = new javax.swing.GroupLayout(panelFooter);
         panelFooter.setLayout(panelFooterLayout);
         panelFooterLayout.setHorizontalGroup(
             panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFooterLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         panelFooterLayout.setVerticalGroup(
             panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,8 +311,7 @@ public final class formStock extends javax.swing.JPanel {
                 .addGroup(panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -377,14 +362,6 @@ public final class formStock extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHargaSatuanKeyTyped
 
-    private void txtTotalHargaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalHargaKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalHargaKeyPressed
-
-    private void txtTotalHargaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalHargaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalHargaKeyTyped
-
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         objStock.Access();
         
@@ -414,9 +391,8 @@ public final class formStock extends javax.swing.JPanel {
         if(txtIdBarang.getText().equals(""))
         {
             JOptionPane.showMessageDialog( null, "ID Stock Tidak Boleh Kosong!!!");
-        } else if (!objStock.idBarang.equals(txtIdBarang.getText())){
-            JOptionPane.showMessageDialog( null, "ID Stock Sudan Ada!!!");
-        } else {
+        }
+        else {
             try{
                 objStock.idBarang = txtIdBarang.getText();
                 objStock.namaBarang = txtNamaBarang.getText();
@@ -488,10 +464,6 @@ public final class formStock extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnEditActionPerformed
 
-    private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDetailActionPerformed
-
     private void cboKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboKategoriActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboKategoriActionPerformed
@@ -500,7 +472,6 @@ public final class formStock extends javax.swing.JPanel {
         int baris = tabelBarang.getSelectedRow();
         String id = tabelBarang.getValueAt(baris, 0).toString();
         String nama = tabelBarang.getValueAt(baris, 1).toString();
-        String kategori = tabelBarang.getValueAt(baris, 2).toString();
         String qty = tabelBarang.getValueAt(baris, 3).toString();
         String hargaSatuan = tabelBarang.getValueAt(baris, 4).toString();
         String totalHarga = tabelBarang.getValueAt(baris, 5).toString();
@@ -509,8 +480,11 @@ public final class formStock extends javax.swing.JPanel {
         txtNamaBarang.setText(nama);
         txtQTY.setText(qty);
         txtHargaSatuan.setText(hargaSatuan);
-        txtTotalHarga.setText(totalHarga);
     }//GEN-LAST:event_tabelBarangMouseClicked
+
+    private void cboStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboStatusActionPerformed
 
     public void isiComboKategori(){
         cboKategori.removeAllItems();
@@ -521,6 +495,12 @@ public final class formStock extends javax.swing.JPanel {
         cboKategori.addItem("Bumbu Dapur");
         cboKategori.addItem("Perlengkapan Mandi & Mencuci");
         cboKategori.addItem("Perlengkapan Rumah Tangga");
+    }
+    
+    public void isiComboStatus(){
+        cboStatus.removeAllItems();
+        cboStatus.addItem("Tersedia");
+        cboStatus.addItem("Habis");
     }
     
     public void isiTabel(){
@@ -561,31 +541,35 @@ public final class formStock extends javax.swing.JPanel {
         txtNamaBarang.setText("");
         txtQTY.setText("");
         txtHargaSatuan.setText("");
-        txtTotalHarga.setText("");
         isiComboKategori();
+        isiComboStatus();
     }
     
     public void aturLebarKolom(){
         tabelBarang.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         
         column = tabelBarang.getColumnModel().getColumn(0);
-        column.setPreferredWidth(50);
+        column.setPreferredWidth(80);
         column = tabelBarang.getColumnModel().getColumn(1);
         column.setPreferredWidth(100);
         column = tabelBarang.getColumnModel().getColumn(2);
-        column.setPreferredWidth(150);
+        column.setPreferredWidth(80);
         column = tabelBarang.getColumnModel().getColumn(3);
-        column.setPreferredWidth(100);
+        column.setPreferredWidth(80);
         column = tabelBarang.getColumnModel().getColumn(4);
-        column.setPreferredWidth(250);
+        column.setPreferredWidth(150);
+        column = tabelBarang.getColumnModel().getColumn(5);
+        column.setPreferredWidth(150);
+        column = tabelBarang.getColumnModel().getColumn(6);
+        column.setPreferredWidth(80);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnDetail;
     private javax.swing.JButton btnEdit;
     private javax.swing.JComboBox<String> cboKategori;
+    private javax.swing.JComboBox<String> cboStatus;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelHarga;
@@ -593,8 +577,8 @@ public final class formStock extends javax.swing.JPanel {
     private javax.swing.JLabel labelKategori;
     private javax.swing.JLabel labelNama;
     private javax.swing.JLabel labelQTY;
+    private javax.swing.JLabel labelStatus;
     private javax.swing.JLabel labelTitle;
-    private javax.swing.JLabel labelTotalHarga;
     private javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelFooter;
     private javax.swing.JPanel panelHeader;
@@ -603,6 +587,5 @@ public final class formStock extends javax.swing.JPanel {
     private javax.swing.JTextField txtIdBarang;
     private javax.swing.JTextField txtNamaBarang;
     private javax.swing.JTextField txtQTY;
-    private javax.swing.JTextField txtTotalHarga;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,7 +20,7 @@ public class clsKoneksi {
     try
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_inventory","root","");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/database_inventory","root","");
         res = conn.createStatement();
     }
     catch(ClassNotFoundException | SQLException e)

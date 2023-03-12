@@ -3,9 +3,12 @@ package code;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 
 /**
@@ -19,6 +22,9 @@ public final class formDashboard extends javax.swing.JFrame {
     formStock stock = new formStock();
     formSupplier supplier = new formSupplier();
     formCustomer customer = new formCustomer();
+    
+    formMasuk masuk = new formMasuk();
+    formKeluar keluar = new formKeluar();
     
     public formDashboard() {
         initComponents();
@@ -36,6 +42,12 @@ public final class formDashboard extends javax.swing.JFrame {
         
         body.add(customer);
         customer.setVisible(false);
+        
+        body.add(masuk);
+        masuk.setVisible(false);
+        
+        body.add(keluar);
+        keluar.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -56,17 +68,18 @@ public final class formDashboard extends javax.swing.JFrame {
         btnCustomer = new javax.swing.JLabel();
         panelTransaksi = new javax.swing.JPanel();
         labelTransaksi = new javax.swing.JLabel();
-        btnStock = new javax.swing.JLabel();
         btnMasuk = new javax.swing.JLabel();
         btnKeluar = new javax.swing.JLabel();
-        panelLogout = new javax.swing.JPanel();
+        panelProfile = new javax.swing.JPanel();
         labelLaporan = new javax.swing.JLabel();
+        btnMyProfile = new javax.swing.JLabel();
         btnLogout = new javax.swing.JLabel();
         panelLaporan = new javax.swing.JPanel();
-        labelLaporan1 = new javax.swing.JLabel();
         btnMasukReport1 = new javax.swing.JLabel();
         btnKeluarReport1 = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
+        labelLaporan1 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
         body = new javax.swing.JPanel();
         home = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -92,7 +105,7 @@ public final class formDashboard extends javax.swing.JFrame {
         sidebar.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 49, 280, 10));
 
         jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
-        sidebar.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 280, 10));
+        sidebar.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 280, 10));
 
         panelHome.setBackground(new java.awt.Color(255, 255, 255));
         panelHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -179,22 +192,18 @@ public final class formDashboard extends javax.swing.JFrame {
         labelTransaksi.setText("Transaksi");
         panelTransaksi.add(labelTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        btnStock.setBackground(new java.awt.Color(255, 255, 255));
-        btnStock.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        btnStock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/boxes-stacked-solid.png"))); // NOI18N
-        btnStock.setText("Data Stock Barang");
-        btnStock.setAlignmentX(1.0F);
-        btnStock.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnStock.setIconTextGap(15);
-        panelTransaksi.add(btnStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 210, 50));
-
         btnMasuk.setBackground(new java.awt.Color(255, 255, 255));
         btnMasuk.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
         btnMasuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow-left-solid.png"))); // NOI18N
         btnMasuk.setText("Data Barang Masuk");
         btnMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMasuk.setIconTextGap(15);
-        panelTransaksi.add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 210, 50));
+        btnMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMasukMouseClicked(evt);
+            }
+        });
+        panelTransaksi.add(btnMasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 240, 50));
 
         btnKeluar.setBackground(new java.awt.Color(255, 255, 255));
         btnKeluar.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
@@ -202,17 +211,35 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setText("Data Barang Keluar");
         btnKeluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnKeluar.setIconTextGap(15);
-        panelTransaksi.add(btnKeluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 210, 50));
+        btnKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnKeluarMouseClicked(evt);
+            }
+        });
+        panelTransaksi.add(btnKeluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 240, 50));
 
-        sidebar.add(panelTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 280, 180));
+        sidebar.add(panelTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 280, 140));
 
-        panelLogout.setBackground(new java.awt.Color(255, 255, 255));
-        panelLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelLogout.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelProfile.setBackground(new java.awt.Color(255, 255, 255));
+        panelProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelProfile.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelLaporan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        labelLaporan.setText("Logout");
-        panelLogout.add(labelLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+        labelLaporan.setText("Profile");
+        panelProfile.add(labelLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+
+        btnMyProfile.setBackground(new java.awt.Color(255, 255, 255));
+        btnMyProfile.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        btnMyProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user-solid.png"))); // NOI18N
+        btnMyProfile.setText("My Profile");
+        btnMyProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMyProfile.setIconTextGap(15);
+        btnMyProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMyProfileMouseClicked(evt);
+            }
+        });
+        panelProfile.add(btnMyProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 240, 50));
 
         btnLogout.setBackground(new java.awt.Color(255, 255, 255));
         btnLogout.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
@@ -225,17 +252,11 @@ public final class formDashboard extends javax.swing.JFrame {
                 btnLogoutMouseClicked(evt);
             }
         });
-        panelLogout.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 240, 50));
+        panelProfile.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 240, 50));
 
-        sidebar.add(panelLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 600, 280, 80));
+        sidebar.add(panelProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 280, 120));
 
         panelLaporan.setBackground(new java.awt.Color(255, 255, 255));
-        panelLaporan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelLaporan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        labelLaporan1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        labelLaporan1.setText("Laporan");
-        panelLaporan.add(labelLaporan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         btnMasukReport1.setBackground(new java.awt.Color(255, 255, 255));
         btnMasukReport1.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
@@ -243,7 +264,6 @@ public final class formDashboard extends javax.swing.JFrame {
         btnMasukReport1.setText("Laporan Barang Masuk");
         btnMasukReport1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMasukReport1.setIconTextGap(15);
-        panelLaporan.add(btnMasukReport1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 240, 50));
 
         btnKeluarReport1.setBackground(new java.awt.Color(255, 255, 255));
         btnKeluarReport1.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
@@ -251,12 +271,42 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluarReport1.setText("Laporan Barang Keluar");
         btnKeluarReport1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnKeluarReport1.setIconTextGap(15);
-        panelLaporan.add(btnKeluarReport1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 240, 50));
 
-        jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
-        panelLaporan.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 280, 10));
+        labelLaporan1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelLaporan1.setText("Laporan");
 
-        sidebar.add(panelLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 280, 254));
+        javax.swing.GroupLayout panelLaporanLayout = new javax.swing.GroupLayout(panelLaporan);
+        panelLaporan.setLayout(panelLaporanLayout);
+        panelLaporanLayout.setHorizontalGroup(
+            panelLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLaporanLayout.createSequentialGroup()
+                .addGap(0, 10, Short.MAX_VALUE)
+                .addGroup(panelLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelLaporan1)
+                    .addGroup(panelLaporanLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(panelLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMasukReport1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnKeluarReport1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+            .addComponent(jSeparator3)
+        );
+        panelLaporanLayout.setVerticalGroup(
+            panelLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLaporanLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelLaporan1)
+                .addGap(4, 4, 4)
+                .addComponent(btnMasukReport1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnKeluarReport1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        sidebar.add(panelLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 280, 140));
+
+        jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
+        sidebar.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 280, 10));
 
         getContentPane().add(sidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 680));
 
@@ -315,10 +365,14 @@ public final class formDashboard extends javax.swing.JFrame {
 
     private void btnUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserMouseClicked
         home.setVisible(false);
+        
         stock.setVisible(false);
         supplier.setVisible(false);
         customer.setVisible(false);
         user.setVisible(true);
+        
+        masuk.setVisible(false);
+        keluar.setVisible(false);
     }//GEN-LAST:event_btnUserMouseClicked
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
@@ -328,27 +382,67 @@ public final class formDashboard extends javax.swing.JFrame {
 
     private void btnSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierMouseClicked
         home.setVisible(false);
+        
         user.setVisible(false);
         stock.setVisible(false);
-        customer.setVisible(false);
         supplier.setVisible(true);
+        customer.setVisible(false);
+        
+        masuk.setVisible(false);
+        keluar.setVisible(false);
     }//GEN-LAST:event_btnSupplierMouseClicked
 
     private void btnCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerMouseClicked
         home.setVisible(false);
+        
         user.setVisible(false);
         stock.setVisible(false);
         supplier.setVisible(false);
         customer.setVisible(true);
+        
+        masuk.setVisible(false);
+        keluar.setVisible(false);
     }//GEN-LAST:event_btnCustomerMouseClicked
 
     private void btnBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBarangMouseClicked
         home.setVisible(false);
+        
+        user.setVisible(false);
+        stock.setVisible(true);
+        supplier.setVisible(false);
+        customer.setVisible(false);
+        
+        masuk.setVisible(false);
+        keluar.setVisible(false);
+    }//GEN-LAST:event_btnBarangMouseClicked
+
+    private void btnMyProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMyProfileMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMyProfileMouseClicked
+
+    private void btnMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseClicked
+        home.setVisible(false);
+        
         user.setVisible(false);
         supplier.setVisible(false);
         customer.setVisible(false);
-        stock.setVisible(true);
-    }//GEN-LAST:event_btnBarangMouseClicked
+        stock.setVisible(false);
+        
+        masuk.setVisible(true);
+        keluar.setVisible(false);
+    }//GEN-LAST:event_btnMasukMouseClicked
+
+    private void btnKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKeluarMouseClicked
+        home.setVisible(false);
+        
+        user.setVisible(false);
+        stock.setVisible(false);
+        customer.setVisible(false);
+        supplier.setVisible(false);
+        
+        masuk.setVisible(false);
+        keluar.setVisible(true);
+    }//GEN-LAST:event_btnKeluarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -380,7 +474,10 @@ public final class formDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new formDashboard().setVisible(true);
+                try {
+                    new formDashboard().setVisible(true);
+                } catch (Exception e){
+                }
             }
         });
     }
@@ -409,7 +506,7 @@ public final class formDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel btnLogout;
     private javax.swing.JLabel btnMasuk;
     private javax.swing.JLabel btnMasukReport1;
-    private javax.swing.JLabel btnStock;
+    private javax.swing.JLabel btnMyProfile;
     private javax.swing.JLabel btnSupplier;
     private javax.swing.JLabel btnUser;
     private javax.swing.JPanel header;
@@ -417,16 +514,17 @@ public final class formDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JLabel labelLaporan;
     private javax.swing.JLabel labelLaporan1;
     private javax.swing.JLabel labelMasterData;
     private javax.swing.JLabel labelTransaksi;
     private javax.swing.JPanel panelHome;
     private javax.swing.JPanel panelLaporan;
-    private javax.swing.JPanel panelLogout;
     private javax.swing.JPanel panelMasterData;
+    private javax.swing.JPanel panelProfile;
     private javax.swing.JPanel panelTransaksi;
     private javax.swing.JPanel sidebar;
     private javax.swing.JLabel txtDate;

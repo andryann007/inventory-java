@@ -11,8 +11,9 @@ public class clsUser extends clsKoneksi{
     String namaUser;
     String email;
     String password;
-    String tipeAkun;
     String alamat;
+    String telp;
+    String tipeAkun;
     
     public void getUserData(){
         sql = "SELECT * FROM data_user ORDER BY id_user";
@@ -22,7 +23,8 @@ public class clsUser extends clsKoneksi{
         try
         {
             sql = "INSERT INTO data_user VALUE ('" + idUser + "', '" + namaUser + 
-                    "', '" + email + "', '" + password + "', '" + tipeAkun + "', '" + alamat + "')";
+                    "', '" + email + "', '" + password + "', '" + alamat + "', '" + telp 
+                    + "', '" + tipeAkun + "')";
         }
         catch(Exception e)
         {
@@ -36,8 +38,8 @@ public class clsUser extends clsKoneksi{
         {
             sql = "UPDATE data_user SET nama_lengkap = '"
                     + namaUser + "', email = '" + email + "', password = '" + password
-                    + "', tipe_akun = '" + tipeAkun + "', alamat = '" + alamat
-                    + "' WHERE id_user = '" + idUser + "'";
+                    + "', alamat = '" + alamat + "', telp = '" + telp
+                    + "', tipe_akun = '" + tipeAkun + "' WHERE id_user = '" + idUser + "'";
         }
         catch(Exception e)
         {

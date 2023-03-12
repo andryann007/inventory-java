@@ -42,18 +42,18 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="281" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="257" max="-2" attributes="0"/>
                   <Component id="labelTitle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="291" max="32767" attributes="0"/>
+                  <EmptySpace pref="253" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
                   <Component id="labelTitle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -64,7 +64,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Data Customer"/>
+            <Property name="text" type="java.lang.String" value="Data Barang Keluar"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -72,7 +72,7 @@
     <Container class="javax.swing.JPanel" name="panelBody">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="100" width="750" height="430"/>
+          <AbsoluteConstraints x="0" y="100" width="750" height="440"/>
         </Constraint>
       </Constraints>
 
@@ -85,34 +85,46 @@
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="labelAlamat" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelIdCustomer" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="labelBarang" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelHarga" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtHargaSatuan" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="cboBarang" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="labelIdKeluar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="txtIdKeluar" min="-2" pref="200" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="labelCustomer" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelQTY" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelKeluar" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtAlamatCustomer" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="txtIdCustomer" min="-2" pref="200" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="54" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="labelNama" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelEmail" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtNamaCustomer" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="txtEmailCustomer" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtQTYKeluar" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Component id="dateKeluar" max="32767" attributes="0"/>
+                      <Component id="cboCustomer" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="labelTelp" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtTelpCustomer" min="-2" pref="200" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="236" max="-2" attributes="0"/>
+                  <Component id="labelKeterangan" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="txtKeterangan" min="-2" pref="400" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -121,30 +133,39 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelIdKeluar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtIdKeluar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelKeluar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="dateKeluar" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="txtNamaCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelNama" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cboBarang" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelBarang" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="labelIdCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtIdCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cboCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelAlamat" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAlamatCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtEmailCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtHargaSatuan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelHarga" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelQTY" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtQTYKeluar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelTelp" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtTelpCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtKeterangan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelKeterangan" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -184,22 +205,40 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tabelCustomer">
+                <Component class="javax.swing.JTable" name="tabelBarang">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Century" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="4">
-                        <Column editable="true" title="ID Customer" type="java.lang.Object"/>
-                        <Column editable="true" title="Nama Customer" type="java.lang.Object"/>
-                        <Column editable="true" title="Alamat" type="java.lang.Object"/>
-                        <Column editable="true" title="Email" type="java.lang.Object"/>
-                        <Column editable="true" title="No. Telp" type="java.lang.Object"/>
+                      <Table columnCount="8" rowCount="4">
+                        <Column editable="true" title="ID Masuk" type="java.lang.Object"/>
+                        <Column editable="true" title="Tanggal Masuk" type="java.lang.Object"/>
+                        <Column editable="true" title="Nama Barang" type="java.lang.Object"/>
+                        <Column editable="true" title="Nama Supplier" type="java.lang.Object"/>
+                        <Column editable="true" title="Harga Satuan" type="java.lang.Object"/>
+                        <Column editable="true" title="QTY Masuk" type="java.lang.Object"/>
+                        <Column editable="true" title="Total Harga" type="java.lang.Object"/>
+                        <Column editable="true" title="Keterangan" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -232,33 +271,41 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelCustomerMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelBarangMouseClicked"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="labelIdCustomer">
+        <Component class="javax.swing.JLabel" name="labelIdKeluar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="ID Customer :"/>
+            <Property name="text" type="java.lang.String" value="ID Keluar :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtIdCustomer">
+        <Component class="javax.swing.JTextField" name="txtIdKeluar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century" size="12" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtIdCustomerKeyPressed"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtIdCustomerKeyTyped"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtIdKeluarKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtIdKeluarKeyTyped"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelNama">
+        <Component class="javax.swing.JLabel" name="labelBarang">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Century" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Nama Barang :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelCustomer">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century" size="12" style="1"/>
@@ -266,73 +313,112 @@
             <Property name="text" type="java.lang.String" value="Nama Customer :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtEmailCustomer">
+        <Component class="javax.swing.JTextField" name="txtHargaSatuan">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century" size="12" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEmailCustomerKeyPressed"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEmailCustomerKeyTyped"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtHargaSatuanKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtHargaSatuanKeyTyped"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelAlamat">
+        <Component class="javax.swing.JLabel" name="labelKeluar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Alamat :"/>
+            <Property name="text" type="java.lang.String" value="Tanggal Keluar :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNamaCustomer">
+        <Component class="javax.swing.JTextField" name="txtQTYKeluar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century" size="12" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNamaCustomerKeyPressed"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNamaCustomerKeyTyped"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtQTYKeluarKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtQTYKeluarKeyTyped"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtAlamatCustomer">
+        <Component class="javax.swing.JComboBox" name="cboBarang">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century" size="12" style="0"/>
             </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
           </Properties>
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAlamatCustomerKeyPressed"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAlamatCustomerKeyTyped"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboBarangActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelTelp">
+        <Component class="javax.swing.JLabel" name="labelHarga">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="No. Telp :"/>
+            <Property name="text" type="java.lang.String" value="Harga / Pcs :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelEmail">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Email :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtTelpCustomer">
+        <Component class="javax.swing.JTextField" name="txtKeterangan">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century" size="12" style="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTelpCustomerKeyPressed"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTelpCustomerKeyTyped"/>
-          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelKeterangan">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Century" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Keterangan :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelQTY">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Century" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="QTY Keluar  :"/>
+          </Properties>
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="dateKeluar">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Century" size="12" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cboCustomer">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Century" size="12" style="0"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
