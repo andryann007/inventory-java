@@ -45,10 +45,6 @@ public final class formMasuk extends javax.swing.JPanel {
 
         panelHeader = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtTestBarang = new javax.swing.JLabel();
-        txtTestSupplier = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -81,43 +77,21 @@ public final class formMasuk extends javax.swing.JPanel {
         labelTitle.setFont(new java.awt.Font("Century", 1, 24)); // NOI18N
         labelTitle.setText("Data Barang Masuk");
 
-        jLabel1.setText("ID Barang :");
-
-        jLabel2.setText("ID Supplier :");
-
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
-                .addGap(257, 257, 257)
+                .addContainerGap(258, Short.MAX_VALUE)
                 .addComponent(labelTitle)
-                .addGap(48, 48, 48)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTestBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTestSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(255, 255, 255))
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtTestBarang))
-                .addGap(18, 18, 18)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtTestSupplier))
-                .addGap(23, 23, 23))
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addComponent(labelTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(36, 36, 36))
         );
 
         add(panelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, -1));
@@ -652,8 +626,6 @@ public final class formMasuk extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cboBarang;
     private javax.swing.JComboBox<String> cboSupplier;
     private com.toedter.calendar.JDateChooser dateMasuk;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelBarang;
@@ -672,8 +644,6 @@ public final class formMasuk extends javax.swing.JPanel {
     private javax.swing.JTextField txtIdMasuk;
     private javax.swing.JTextField txtKeterangan;
     private javax.swing.JTextField txtQTYMasuk;
-    private javax.swing.JLabel txtTestBarang;
-    private javax.swing.JLabel txtTestSupplier;
     // End of variables declaration//GEN-END:variables
 
     private HashMap<String, String> isiBarang() {
