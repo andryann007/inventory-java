@@ -5,8 +5,8 @@ package code;
  * @author Andryan
  */
 public class clsComboCustomer {
-    private static String key;
-    private static String value;
+    private String key;
+    private String value;
     
     public clsComboCustomer(String key, String value){
         this.key = key;
@@ -22,7 +22,15 @@ public class clsComboCustomer {
         return key;
     }
     
+    public void setKey(String key){
+        this.key = key;
+    }
+    
     public String getValue(){
         return value;
+    }
+    
+    public void setValue(String value){
+        this.value = value;
     }
 }

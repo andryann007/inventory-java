@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -22,6 +23,8 @@ import javax.swing.JOptionPane;
 public final class formMasuk extends javax.swing.JPanel {
 
     clsMasuk objMasuk = new clsMasuk();
+    clsKoneksi objKoneksi = new clsKoneksi();
+    
     private TableColumn column;
     
     public formMasuk() {
@@ -42,6 +45,10 @@ public final class formMasuk extends javax.swing.JPanel {
 
         panelHeader = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtTestBarang = new javax.swing.JLabel();
+        txtTestSupplier = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -74,21 +81,43 @@ public final class formMasuk extends javax.swing.JPanel {
         labelTitle.setFont(new java.awt.Font("Century", 1, 24)); // NOI18N
         labelTitle.setText("Data Barang Masuk");
 
+        jLabel1.setText("ID Barang :");
+
+        jLabel2.setText("ID Supplier :");
+
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHeaderLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
                 .addGap(257, 257, 257)
                 .addComponent(labelTitle)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTestBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTestSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtTestBarang))
+                .addGap(18, 18, 18)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtTestSupplier))
+                .addGap(23, 23, 23))
+            .addGroup(panelHeaderLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
                 .addComponent(labelTitle)
-                .addGap(32, 32, 32))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(panelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, -1));
@@ -194,6 +223,11 @@ public final class formMasuk extends javax.swing.JPanel {
 
         cboSupplier.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
         cboSupplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboSupplierActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBodyLayout = new javax.swing.GroupLayout(panelBody);
         panelBody.setLayout(panelBodyLayout);
@@ -249,17 +283,14 @@ public final class formMasuk extends javax.swing.JPanel {
                         .addComponent(txtIdMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(labelMasuk))
                     .addComponent(dateMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBodyLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cboBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelBarang)))
-                    .addGroup(panelBodyLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cboSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelSupplier))))
+                    .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cboBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelBarang))
+                    .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cboSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelSupplier)))
                 .addGap(23, 23, 23)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtHargaSatuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -376,6 +407,7 @@ public final class formMasuk extends javax.swing.JPanel {
         
         try{
             objMasuk.idMasuk = txtIdMasuk.getText();
+            objMasuk.deleteStockData();
             objMasuk.deleteIncomingData(objMasuk.idBarang);
                 try {
                     objMasuk.res.executeUpdate(objMasuk.sql);
@@ -428,6 +460,7 @@ public final class formMasuk extends javax.swing.JPanel {
                 objMasuk.keterangan = txtKeterangan.getText();
         
                 objMasuk.saveIncomingData();
+                objMasuk.saveStockData();
                 try {
                     objMasuk.res.executeUpdate(objMasuk.sql);
                     objMasuk.conn.close();
@@ -475,6 +508,7 @@ public final class formMasuk extends javax.swing.JPanel {
             objMasuk.keterangan = txtKeterangan.getText();
         
             objMasuk.editIncomingData();
+            objMasuk.editStockData();
             try {
                 objMasuk.res.executeUpdate(objMasuk.sql);
                 objMasuk.conn.close();
@@ -493,7 +527,7 @@ public final class formMasuk extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void cboBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboBarangActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_cboBarangActionPerformed
 
     private void tabelBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelBarangMouseClicked
@@ -516,12 +550,16 @@ public final class formMasuk extends javax.swing.JPanel {
             Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tabelBarangMouseClicked
+
+    private void cboSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSupplierActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboSupplierActionPerformed
     
     public void isiComboSupplier() {
         try{
             cboSupplier.removeAllItems();
             objMasuk.Access();
-            String sql = "SELECT * FROM data_supplier";
+            String sql = "SELECT `id_supplier`, `nama_supplier` FROM data_supplier";
             Statement state = objMasuk.conn.createStatement();
             ResultSet result = state.executeQuery(sql);
             
@@ -529,12 +567,12 @@ public final class formMasuk extends javax.swing.JPanel {
         
             while(result.next())
             {
-                model.addElement(new clsComboSupplier(result.getString("nama_supplier"), result.getString("id_supplier")));
+                model.addElement(new clsComboSupplier(result.getString(2), result.getString(1)));
             }
             cboSupplier.setModel(model);
         }
-        catch(Exception e)
-        {
+        catch(SQLException e){
+            System.out.println(e);
         }
     }
     
@@ -542,7 +580,7 @@ public final class formMasuk extends javax.swing.JPanel {
         try{
             cboBarang.removeAllItems();
             objMasuk.Access();
-            String sql = "SELECT * FROM data_stock";
+            String sql = "SELECT `id_barang`, `nama_barang` FROM data_stock";
             Statement state = objMasuk.conn.createStatement();
             ResultSet result = state.executeQuery(sql);
             
@@ -550,12 +588,12 @@ public final class formMasuk extends javax.swing.JPanel {
         
             while(result.next())
             {
-                model.addElement(new clsComboBarang(result.getString("nama_barang"), result.getString("id_barang")));
+                model.addElement(new clsComboBarang(result.getString(2), result.getString(1)));
             }
             cboBarang.setModel(model);
         }
-        catch(Exception e){
-            
+        catch(SQLException e){
+            System.out.println(e);
         }
     }
     
@@ -614,6 +652,8 @@ public final class formMasuk extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cboBarang;
     private javax.swing.JComboBox<String> cboSupplier;
     private com.toedter.calendar.JDateChooser dateMasuk;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelBarang;
@@ -632,5 +672,11 @@ public final class formMasuk extends javax.swing.JPanel {
     private javax.swing.JTextField txtIdMasuk;
     private javax.swing.JTextField txtKeterangan;
     private javax.swing.JTextField txtQTYMasuk;
+    private javax.swing.JLabel txtTestBarang;
+    private javax.swing.JLabel txtTestSupplier;
     // End of variables declaration//GEN-END:variables
+
+    private HashMap<String, String> isiBarang() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
