@@ -508,6 +508,8 @@ public final class formMasuk extends javax.swing.JPanel {
         int baris = tabelBarang.getSelectedRow();
         String id = tabelBarang.getValueAt(baris, 0).toString();
         String tglMasuk = tabelBarang.getValueAt(baris, 1).toString();
+        String namaBarang = tabelBarang.getValueAt(baris, 2).toString();
+        String namaSupplier = tabelBarang.getValueAt(baris, 3).toString();
         String harga = tabelBarang.getValueAt(baris, 4).toString();
         String qty = tabelBarang.getValueAt(baris, 5).toString();
         String keterangan = tabelBarang.getValueAt(baris, 7).toString();
@@ -516,6 +518,8 @@ public final class formMasuk extends javax.swing.JPanel {
         txtHargaSatuan.setText(harga);
         txtQTYMasuk.setText(qty);
         txtKeterangan.setText(keterangan);
+        cboBarang.setSelectedItem(namaBarang);
+        cboSupplier.setSelectedItem(namaSupplier);
         
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         try {

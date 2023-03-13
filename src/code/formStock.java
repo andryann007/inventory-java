@@ -407,6 +407,8 @@ public final class formStock extends javax.swing.JPanel {
                 objStock.totalHarga = totalHarga;
                 
                 objStock.kategori = cboKategori.getSelectedItem().toString();
+                
+                objStock.status = cboStatus.getSelectedItem().toString();
         
                 objStock.saveStockData();
                 try {
@@ -444,6 +446,8 @@ public final class formStock extends javax.swing.JPanel {
             objStock.totalHarga = totalHarga;
   
             objStock.kategori = cboKategori.getSelectedItem().toString();
+            
+            objStock.status = cboStatus.getSelectedItem().toString();
         
             objStock.editStockData();
             try {
@@ -474,12 +478,15 @@ public final class formStock extends javax.swing.JPanel {
         String nama = tabelBarang.getValueAt(baris, 1).toString();
         String qty = tabelBarang.getValueAt(baris, 3).toString();
         String hargaSatuan = tabelBarang.getValueAt(baris, 4).toString();
-        String totalHarga = tabelBarang.getValueAt(baris, 5).toString();
+        String kategori = tabelBarang.getValueAt(baris, 2).toString();
+        String status = tabelBarang.getValueAt(baris, 6).toString();
         
         txtIdBarang.setText(id);
         txtNamaBarang.setText(nama);
         txtQTY.setText(qty);
         txtHargaSatuan.setText(hargaSatuan);
+        cboKategori.setSelectedItem(kategori);
+        cboStatus.setSelectedItem(status);
     }//GEN-LAST:event_tabelBarangMouseClicked
 
     private void cboStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboStatusActionPerformed
