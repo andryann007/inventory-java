@@ -1,7 +1,5 @@
 package code;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,8 +18,6 @@ public class clsMasuk extends clsKoneksi{
     
     public String sql_stock;
     public String sql_masuk;
-    int qty_stock;
-    int qty_masuk_lama;
     
     public void getIncomingData(){
         sql = "SELECT * FROM data_barang_masuk ORDER BY tgl_masuk";
@@ -36,28 +32,7 @@ public class clsMasuk extends clsKoneksi{
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Terjadi kesalahan saat menyimpan data");
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    public void saveStockData(){
-        
-        try
-        {   
-            Statement state = conn.createStatement();
-            sql_stock = "SELECT qty_stock FROM data_stock WHERE id_barang = '" + idBarang + "'";
-            ResultSet result = state.executeQuery(sql_stock);
-            
-            String mQtyStock = result.getString("qty_stock");
-            qty_stock = Integer.parseInt(mQtyStock);
-            qty_stock = qty_stock + qty;
-            
-            sql = "UPDATE data_stock SET qty_stock = '" + qty_stock + "' WHERE id_barang = '" + idBarang + "'";
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Gagal Update Stock Barang");
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
     }
     
@@ -77,32 +52,6 @@ public class clsMasuk extends clsKoneksi{
         }
     }
     
-    public void editStockData(){
-        
-        try
-        {
-            Statement state = conn.createStatement();
-            sql_stock = "SELECT qty_stock FROM data_stock WHERE id_barang = '" + idBarang + "'";
-            ResultSet result = state.executeQuery(sql_stock);
-            
-            String mQtyStock = result.getString("qty_stock");
-            qty_stock = Integer.parseInt(mQtyStock);
-            
-            sql_masuk = "SELECT qty_masuk FROM `data_barang_masuk` WHERE id_barang = '" + idBarang + "'";
-            ResultSet result2 = state.executeQuery(sql_masuk);
-            
-            String mQtyMasuk = result.getString("qty_masuk");
-            qty_masuk_lama = Integer.parseInt(mQtyMasuk);
-            
-            qty = (qty_stock - qty_masuk_lama) + qty;
-            sql = "UPDATE `data_stock` SET qty_stock = '" + qty + "' WHERE id_barang = '" + idBarang + "'";
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Gagal Update Stock Barang");
-            System.out.println(e.getMessage());
-        }
-    }
-    
     public void deleteIncomingData(String mIdMasuk){
         try
         {
@@ -111,18 +60,6 @@ public class clsMasuk extends clsKoneksi{
         catch(Exception e)
         {
             JOptionPane.showMessageDialog(null,"Terjadi kesalahan saat menghapus data");
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    public void deleteStockData(){
-        
-        try
-        {
-            sql = "UPDATE `data_stock` s,`data_barang_masuk` m SET qty_stock = qty_stock - '" + qty + "' WHERE s.id_barang = m.id_barang";
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Gagal Update Stock Barang");
             System.out.println(e.getMessage());
         }
     }

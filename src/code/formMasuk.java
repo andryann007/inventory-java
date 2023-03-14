@@ -3,14 +3,11 @@ package code;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -23,9 +20,6 @@ import javax.swing.JOptionPane;
 public final class formMasuk extends javax.swing.JPanel {
 
     clsMasuk objMasuk = new clsMasuk();
-    clsKoneksi objKoneksi = new clsKoneksi();
-    
-    private TableColumn column;
     
     public formMasuk() {
         initComponents();
@@ -48,7 +42,7 @@ public final class formMasuk extends javax.swing.JPanel {
         panelBody = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelBarang = new javax.swing.JTable();
+        tabelBarangMasuk = new javax.swing.JTable();
         labelIdBarang = new javax.swing.JLabel();
         txtIdMasuk = new javax.swing.JTextField();
         labelBarang = new javax.swing.JLabel();
@@ -99,8 +93,8 @@ public final class formMasuk extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(738, 250));
 
-        tabelBarang.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        tabelBarang.setModel(new javax.swing.table.DefaultTableModel(
+        tabelBarangMasuk.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        tabelBarangMasuk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -110,13 +104,23 @@ public final class formMasuk extends javax.swing.JPanel {
             new String [] {
                 "ID Masuk", "Tanggal Masuk", "Nama Barang", "Nama Supplier", "Harga Satuan", "QTY Masuk", "Total Harga", "Keterangan"
             }
-        ));
-        tabelBarang.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelBarangMouseClicked(evt);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tabelBarang);
+        tabelBarangMasuk.setColumnSelectionAllowed(true);
+        tabelBarangMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelBarangMasukMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelBarangMasuk);
+        tabelBarangMasuk.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -380,23 +384,61 @@ public final class formMasuk extends javax.swing.JPanel {
         objMasuk.Access();
         
         try{
+            Statement state = objMasuk.conn.createStatement();
+            objMasuk.conn.setAutoCommit(false);
+                
             objMasuk.idMasuk = txtIdMasuk.getText();
-            objMasuk.deleteStockData();
-            objMasuk.deleteIncomingData(objMasuk.idBarang);
-                try {
-                    objMasuk.res.executeUpdate(objMasuk.sql);
-                    objMasuk.conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
+            
+            Object keyBarang = cboBarang.getSelectedItem();
+            String valueBarang = ((clsComboBarang)keyBarang).getValue();
+            objMasuk.idBarang = valueBarang;
+            
+            String SQL = "SELECT qty_stock, qty_masuk FROM `data_stock` s, `data_barang_masuk` m "
+                    + "WHERE s.id_barang = '" + objMasuk.idBarang + "'"
+                    + "AND id_masuk = '" + objMasuk.idMasuk + "'";
+            ResultSet result = state.executeQuery(SQL);
+            
+            if(result.next()){
+                String SQL2 = "DELETE FROM data_barang_masuk WHERE id_masuk = '" + objMasuk.idMasuk + "'";
+                state.addBatch(SQL2);
+                
+                String mQtyStock = result.getString("qty_stock");
+                int qty_stock_lama = Integer.parseInt(mQtyStock);
+                 
+                String mQtyIncoming = result.getString("qty_masuk");
+                int qty_masuk = Integer.parseInt(mQtyIncoming);
+                
+                if(qty_stock_lama > qty_masuk){
+                    int qty_stock_baru = qty_stock_lama - qty_masuk;
+                    
+                    if(qty_stock_baru > 0){
+                        String SQL3 = "UPDATE data_stock SET qty_stock = '" + qty_stock_baru + "' WHERE id_barang = '" + objMasuk.idBarang +"'";
+                        state.addBatch(SQL3);
+                        
+                        try {
+                            int[] count = state.executeBatch();
+                            objMasuk.conn.commit();
+                            objMasuk.conn.close();
+                        }
+                        catch (SQLException ex) {
+                            Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
+                            JOptionPane.showMessageDialog(null, ex.getMessage());
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error, qty_stock harus lebih besar dari qty_masuk !!!");
                 }
-                cleanData();
-                isiTabel();
+            }
+            cleanData();
+            isiTabel();
         
-                JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
         }
         catch(HeadlessException e){
             JOptionPane.showMessageDialog(null, "Proses penghapusan data gagal");
             System.out.println(e.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -409,6 +451,9 @@ public final class formMasuk extends javax.swing.JPanel {
         }
         else {
             try{
+                Statement state = objMasuk.conn.createStatement();
+                objMasuk.conn.setAutoCommit(false);
+                
                 objMasuk.idMasuk = txtIdMasuk.getText();
             
                 SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -432,23 +477,42 @@ public final class formMasuk extends javax.swing.JPanel {
                 objMasuk.totalHarga = totalHarga;
             
                 objMasuk.keterangan = txtKeterangan.getText();
-        
-                objMasuk.saveIncomingData();
-                objMasuk.saveStockData();
-                try {
-                    objMasuk.res.executeUpdate(objMasuk.sql);
-                    objMasuk.conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
+                
+                String SQL = "SELECT qty_stock, qty_masuk FROM `data_stock` s, `data_barang_masuk` m "
+                        + "WHERE s.id_barang = '" + objMasuk.idBarang + "'";
+                ResultSet result = state.executeQuery(SQL);
+                
+                if(result.next()){
+                    String SQL2 = "INSERT INTO data_barang_masuk VALUE ('" + objMasuk.idMasuk + "', '" + objMasuk.idBarang
+                                + "', '" + objMasuk.idSupplier + "', '" + objMasuk.tglMasuk + "', '" + objMasuk.qty + "', '"
+                                + objMasuk.hargaSatuan + "', '" + objMasuk.totalHarga + "', '" + objMasuk.keterangan + "')";
+                    state.addBatch(SQL2);
+                
+                    String mQtyStock = result.getString("qty_stock");
+                    int qty_stock = Integer.parseInt(mQtyStock);
+                    qty_stock = qty_stock + objMasuk.qty; 
+                    
+                    String SQL3 = "UPDATE data_stock SET qty_stock = '" + qty_stock + "' WHERE id_barang = '" + objMasuk.idBarang + "'";
+                    state.addBatch(SQL3);
+                    
+                    try {
+                        int[] count = state.executeBatch();
+                        objMasuk.conn.commit();
+                        objMasuk.conn.close();
+                    }
+                    catch (SQLException ex) {
+                        Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
+                    }
+                    cleanData();
+                    isiTabel();
                 }
-                cleanData();
-                isiTabel();
-        
                 JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
             } 
             catch(HeadlessException | NumberFormatException e){
-                JOptionPane.showMessageDialog(null, "Proses penyimpanan data gagal");
-                System.out.println(e.getMessage());
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            } catch (SQLException ex) {
+                Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnAddActionPerformed
@@ -457,6 +521,9 @@ public final class formMasuk extends javax.swing.JPanel {
         objMasuk.Access();
         
         try{
+            Statement state = objMasuk.conn.createStatement();
+            objMasuk.conn.setAutoCommit(false);
+            
             objMasuk.idMasuk = txtIdMasuk.getText();
             
             SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -480,23 +547,49 @@ public final class formMasuk extends javax.swing.JPanel {
             objMasuk.totalHarga = totalHarga;
             
             objMasuk.keterangan = txtKeterangan.getText();
-        
-            objMasuk.editIncomingData();
-            objMasuk.editStockData();
-            try {
-                objMasuk.res.executeUpdate(objMasuk.sql);
-                objMasuk.conn.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
+            
+            String SQL = "SELECT qty_stock, qty_masuk FROM `data_stock` s, `data_barang_masuk` m "
+                    + "WHERE s.id_barang = '" + objMasuk.idBarang + "' "
+                    + "AND id_masuk = '" + objMasuk.idMasuk + "'";
+            ResultSet result = state.executeQuery(SQL);
+            
+            if(result.next()){
+                String mQtyStock = result.getString("qty_stock");
+                int qty_stock = Integer.parseInt(mQtyStock);
+                    
+                String mQtyIncomingLama = result.getString("qty_masuk");
+                int qty_masuk_lama = Integer.parseInt(mQtyIncomingLama);
+                    
+                int qty_stock_baru = qty_stock - qty_masuk_lama + objMasuk.qty;
+                    
+                String SQL2 = "UPDATE data_stock SET qty_stock = '" + qty_stock_baru + "' WHERE id_barang = '" + objMasuk.idBarang + "'";
+                state.addBatch(SQL2);
+                
+                String SQL3 = "UPDATE data_barang_masuk SET id_barang = '"
+                    + objMasuk.idBarang + "', id_supplier = '" + objMasuk.idSupplier 
+                    + "', tgl_masuk = '" + objMasuk.tglMasuk + "', qty_masuk = '" + objMasuk.qty
+                    + "', harga_satuan = '" + objMasuk.hargaSatuan + "', total_harga = '" + objMasuk.totalHarga
+                    + "', keterangan = '" + objMasuk.keterangan + "' WHERE id_masuk = '" + objMasuk.idMasuk + "'";
+                state.addBatch(SQL3);
+                
+                try {
+                    int[] count = state.executeBatch();
+                    objMasuk.conn.commit();
+                    objMasuk.conn.close();
+                }
+                catch (SQLException ex) {
+                    Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+                cleanData();
+                isiTabel();
             }
-        
-            cleanData();
-            isiTabel();
-        
             JOptionPane.showMessageDialog(null, "Data berhasil diupdate");
         } catch(HeadlessException | NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Proses pengeditan gagal");
             System.out.println(e.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -504,15 +597,15 @@ public final class formMasuk extends javax.swing.JPanel {
        
     }//GEN-LAST:event_cboBarangActionPerformed
 
-    private void tabelBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelBarangMouseClicked
-        int baris = tabelBarang.getSelectedRow();
-        String id = tabelBarang.getValueAt(baris, 0).toString();
-        String tglMasuk = tabelBarang.getValueAt(baris, 1).toString();
-        String namaBarang = tabelBarang.getValueAt(baris, 2).toString();
-        String namaSupplier = tabelBarang.getValueAt(baris, 3).toString();
-        String harga = tabelBarang.getValueAt(baris, 4).toString();
-        String qty = tabelBarang.getValueAt(baris, 5).toString();
-        String keterangan = tabelBarang.getValueAt(baris, 7).toString();
+    private void tabelBarangMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelBarangMasukMouseClicked
+        int baris = tabelBarangMasuk.getSelectedRow();
+        String id = tabelBarangMasuk.getValueAt(baris, 0).toString();
+        String tglMasuk = tabelBarangMasuk.getValueAt(baris, 1).toString();
+        String namaBarang = tabelBarangMasuk.getValueAt(baris, 2).toString();
+        String namaSupplier = tabelBarangMasuk.getValueAt(baris, 3).toString();
+        String harga = tabelBarangMasuk.getValueAt(baris, 4).toString();
+        String qty = tabelBarangMasuk.getValueAt(baris, 5).toString();
+        String keterangan = tabelBarangMasuk.getValueAt(baris, 7).toString();
         
         txtIdMasuk.setText(id);
         txtHargaSatuan.setText(harga);
@@ -527,7 +620,7 @@ public final class formMasuk extends javax.swing.JPanel {
         } catch (ParseException ex) {
             Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_tabelBarangMouseClicked
+    }//GEN-LAST:event_tabelBarangMasukMouseClicked
 
     private void cboSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSupplierActionPerformed
         // TODO add your handling code here:
@@ -592,7 +685,7 @@ public final class formMasuk extends javax.swing.JPanel {
             objMasuk.getIncomingData();
             
             String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"
-                    + " m.harga_satuan, qty_masuk, m.total_harga, keterangan  FROM `data_barang_masuk` m,"
+                    + " m.harga_satuan, qty_masuk, m.total_harga, keterangan FROM `data_barang_masuk` m,"
                     + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang";
             Statement state = objMasuk.conn.createStatement();
             ResultSet result = state.executeQuery(sql);
@@ -604,7 +697,7 @@ public final class formMasuk extends javax.swing.JPanel {
                     result.getString(6), result.getString(7),
                     result.getString(8)});
             }
-            tabelBarang.setModel(tabelDataAkun);
+            tabelBarangMasuk.setModel(tabelDataAkun);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Terjadi kesalahan pada penampilan data !!!");
             System.out.println(e.getMessage());
@@ -619,10 +712,8 @@ public final class formMasuk extends javax.swing.JPanel {
         txtKeterangan.setText("");
         isiComboBarang();
         isiComboSupplier();
-    }
-    
+    }    
    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -643,14 +734,11 @@ public final class formMasuk extends javax.swing.JPanel {
     private javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelFooter;
     private javax.swing.JPanel panelHeader;
-    private javax.swing.JTable tabelBarang;
+    private javax.swing.JTable tabelBarangMasuk;
     private javax.swing.JTextField txtHargaSatuan;
     private javax.swing.JTextField txtIdMasuk;
     private javax.swing.JTextField txtKeterangan;
     private javax.swing.JTextField txtQTYMasuk;
     // End of variables declaration//GEN-END:variables
 
-    private HashMap<String, String> isiBarang() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

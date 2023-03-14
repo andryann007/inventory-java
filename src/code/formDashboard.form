@@ -184,7 +184,7 @@
                   <Font name="Century" size="14" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/box-solid.png"/>
+                  <Image iconType="3" name="/images/product.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Data Barang"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -309,7 +309,7 @@
                   <Font name="Century" size="14" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/arrow-left-solid.png"/>
+                  <Image iconType="3" name="/images/right-arrow.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Data Barang Masuk"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -335,7 +335,7 @@
                   <Font name="Century" size="14" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/arrow-right-solid.png"/>
+                  <Image iconType="3" name="/images/left-arrow.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Data Barang Keluar"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -395,7 +395,7 @@
                   <Font name="Century" size="14" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/user-solid.png"/>
+                  <Image iconType="3" name="/images/user.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="My Profile"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -496,7 +496,7 @@
                   <Font name="Century" size="14" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/file-solid.png"/>
+                  <Image iconType="3" name="/images/clipboard.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Laporan Barang Masuk"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -514,7 +514,7 @@
                   <Font name="Century" size="14" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/file-solid.png"/>
+                  <Image iconType="3" name="/images/clipboard.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Laporan Barang Keluar"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">

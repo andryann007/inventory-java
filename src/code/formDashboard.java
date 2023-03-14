@@ -141,7 +141,7 @@ public final class formDashboard extends javax.swing.JFrame {
 
         btnBarang.setBackground(new java.awt.Color(255, 255, 255));
         btnBarang.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        btnBarang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/box-solid.png"))); // NOI18N
+        btnBarang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/product.png"))); // NOI18N
         btnBarang.setText("Data Barang");
         btnBarang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBarang.setIconTextGap(15);
@@ -194,7 +194,7 @@ public final class formDashboard extends javax.swing.JFrame {
 
         btnMasuk.setBackground(new java.awt.Color(255, 255, 255));
         btnMasuk.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        btnMasuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow-left-solid.png"))); // NOI18N
+        btnMasuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right-arrow.png"))); // NOI18N
         btnMasuk.setText("Data Barang Masuk");
         btnMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMasuk.setIconTextGap(15);
@@ -207,7 +207,7 @@ public final class formDashboard extends javax.swing.JFrame {
 
         btnKeluar.setBackground(new java.awt.Color(255, 255, 255));
         btnKeluar.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        btnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow-right-solid.png"))); // NOI18N
+        btnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/left-arrow.png"))); // NOI18N
         btnKeluar.setText("Data Barang Keluar");
         btnKeluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnKeluar.setIconTextGap(15);
@@ -230,7 +230,7 @@ public final class formDashboard extends javax.swing.JFrame {
 
         btnMyProfile.setBackground(new java.awt.Color(255, 255, 255));
         btnMyProfile.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        btnMyProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user-solid.png"))); // NOI18N
+        btnMyProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
         btnMyProfile.setText("My Profile");
         btnMyProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMyProfile.setIconTextGap(15);
@@ -260,14 +260,14 @@ public final class formDashboard extends javax.swing.JFrame {
 
         btnMasukReport1.setBackground(new java.awt.Color(255, 255, 255));
         btnMasukReport1.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        btnMasukReport1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/file-solid.png"))); // NOI18N
+        btnMasukReport1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clipboard.png"))); // NOI18N
         btnMasukReport1.setText("Laporan Barang Masuk");
         btnMasukReport1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMasukReport1.setIconTextGap(15);
 
         btnKeluarReport1.setBackground(new java.awt.Color(255, 255, 255));
         btnKeluarReport1.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        btnKeluarReport1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/file-solid.png"))); // NOI18N
+        btnKeluarReport1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clipboard.png"))); // NOI18N
         btnKeluarReport1.setText("Laporan Barang Keluar");
         btnKeluarReport1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnKeluarReport1.setIconTextGap(15);
@@ -414,6 +414,8 @@ public final class formDashboard extends javax.swing.JFrame {
         
         masuk.setVisible(false);
         keluar.setVisible(false);
+        
+        stock.isiTabel();
     }//GEN-LAST:event_btnBarangMouseClicked
 
     private void btnMyProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMyProfileMouseClicked

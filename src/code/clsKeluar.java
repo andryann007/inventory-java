@@ -17,7 +17,7 @@ public class clsKeluar extends clsKoneksi{
     float totalHarga;
     
     public void getOutcomingData(){
-        sql = "SELECT * FROM data_barang_masuk ORDER BY tgl_keluar";
+        sql = "SELECT * FROM data_barang_keluar ORDER BY tgl_keluar";
     }
     
     public void saveOutcomingData(){

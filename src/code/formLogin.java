@@ -96,7 +96,7 @@ public class formLogin extends javax.swing.JFrame {
         });
 
         btnLogin.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
-        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/right-to-bracket-solid.png"))); // NOI18N
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/check.png"))); // NOI18N
         btnLogin.setText("Login");
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -108,7 +108,7 @@ public class formLogin extends javax.swing.JFrame {
         });
 
         btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/circle-xmark-solid (1).png"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/circle-xmark-solid.png"))); // NOI18N
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit.setPreferredSize(new java.awt.Dimension(36, 36));
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
