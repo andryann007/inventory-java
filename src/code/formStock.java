@@ -572,7 +572,7 @@ public final class formStock extends javax.swing.JPanel {
                     result.getString(6), result.getString(7)});
             }
             tabelBarang.setModel(tabelDataStock);
-            aturLebarKolom();
+            ;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Terjadi kesalahan pada penampilan data !!!");
             System.out.println(e.getMessage());
@@ -594,27 +594,8 @@ public final class formStock extends javax.swing.JPanel {
         tabelDataStock = (DefaultTableModel) tabelBarang.getModel();
         TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(tabelDataStock);
         tabelBarang.setRowSorter(trs);
-        trs.setRowFilter(RowFilter.regexFilter(query));
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + query));
    }
-    
-    public void aturLebarKolom(){
-        tabelBarang.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        
-        column = tabelBarang.getColumnModel().getColumn(0);
-        column.setPreferredWidth(80);
-        column = tabelBarang.getColumnModel().getColumn(1);
-        column.setPreferredWidth(100);
-        column = tabelBarang.getColumnModel().getColumn(2);
-        column.setPreferredWidth(80);
-        column = tabelBarang.getColumnModel().getColumn(3);
-        column.setPreferredWidth(80);
-        column = tabelBarang.getColumnModel().getColumn(4);
-        column.setPreferredWidth(150);
-        column = tabelBarang.getColumnModel().getColumn(5);
-        column.setPreferredWidth(150);
-        column = tabelBarang.getColumnModel().getColumn(6);
-        column.setPreferredWidth(80);
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

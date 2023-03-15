@@ -544,7 +544,7 @@ public class formCustomer extends javax.swing.JPanel {
         tabelDataCustomer = (DefaultTableModel) tabelCustomer.getModel();
         TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(tabelDataCustomer);
         tabelCustomer.setRowSorter(trs);
-        trs.setRowFilter(RowFilter.regexFilter(query));
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + query));
    }
 
 

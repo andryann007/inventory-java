@@ -760,7 +760,7 @@ public final class formMasuk extends javax.swing.JPanel {
         tabelDataMasuk = (DefaultTableModel) tabelBarangMasuk.getModel();
         TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(tabelDataMasuk);
         tabelBarangMasuk.setRowSorter(trs);
-        trs.setRowFilter(RowFilter.regexFilter(query));
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + query));
    }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

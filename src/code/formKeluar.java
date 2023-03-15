@@ -771,7 +771,7 @@ public final class formKeluar extends javax.swing.JPanel {
         tabelDataKeluar = (DefaultTableModel) tabelBarangKeluar.getModel();
         TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(tabelDataKeluar);
         tabelBarangKeluar.setRowSorter(trs);
-        trs.setRowFilter(RowFilter.regexFilter(query));
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + query));
    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

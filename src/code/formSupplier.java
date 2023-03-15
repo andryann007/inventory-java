@@ -545,7 +545,7 @@ public class formSupplier extends javax.swing.JPanel {
         tabelDataSupplier = (DefaultTableModel) tabelSupplier.getModel();
         TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(tabelDataSupplier);
         tabelSupplier.setRowSorter(trs);
-        trs.setRowFilter(RowFilter.regexFilter(query));
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + query));
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

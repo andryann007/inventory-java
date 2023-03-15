@@ -615,7 +615,7 @@ public final class formUser extends javax.swing.JPanel {
                     result.getString(6), result.getString(7)});
             }
             tabelUser.setModel(tabelDataAkun);
-            aturLebarKolom();
+            ;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Terjadi kesalahan pada penampilan data !!!");
             System.out.println(e.getMessage());
@@ -638,27 +638,8 @@ public final class formUser extends javax.swing.JPanel {
         tabelDataAkun = (DefaultTableModel) tabelUser.getModel();
         TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(tabelDataAkun);
         tabelUser.setRowSorter(trs);
-        trs.setRowFilter(RowFilter.regexFilter(query));
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + query));
    }
-    
-    public void aturLebarKolom(){
-        tabelUser.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        
-        column = tabelUser.getColumnModel().getColumn(0);
-        column.setPreferredWidth(80);
-        column = tabelUser.getColumnModel().getColumn(1);
-        column.setPreferredWidth(100);
-        column = tabelUser.getColumnModel().getColumn(2);
-        column.setPreferredWidth(100);
-        column = tabelUser.getColumnModel().getColumn(3);
-        column.setPreferredWidth(100);
-        column = tabelUser.getColumnModel().getColumn(4);
-        column.setPreferredWidth(100);
-        column = tabelUser.getColumnModel().getColumn(5);
-        column.setPreferredWidth(150);
-        column = tabelUser.getColumnModel().getColumn(6);
-        column.setPreferredWidth(80);
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
