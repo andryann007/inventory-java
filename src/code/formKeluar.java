@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -40,6 +42,8 @@ public final class formKeluar extends javax.swing.JPanel {
 
         panelHeader = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
+        labelSearch = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -72,6 +76,20 @@ public final class formKeluar extends javax.swing.JPanel {
         labelTitle.setFont(new java.awt.Font("Century", 1, 24)); // NOI18N
         labelTitle.setText("Data Barang Keluar");
 
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
+        labelSearch.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
+        labelSearch.setText("Search Data :");
+
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
@@ -80,13 +98,23 @@ public final class formKeluar extends javax.swing.JPanel {
                 .addGap(257, 257, 257)
                 .addComponent(labelTitle)
                 .addContainerGap(253, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelSearch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
                 .addComponent(labelTitle)
-                .addGap(32, 32, 32))
+                .addGap(18, 18, 18)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelSearch))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         add(panelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, -1));
@@ -594,7 +622,26 @@ public final class formKeluar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void cboBarangKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboBarangKeluarActionPerformed
-        // TODO add your handling code here:
+        isiComboBarang();
+        
+        Object keyBarang = cboBarangKeluar.getSelectedItem();
+        String valueBarang = ((clsComboBarang)keyBarang).getValue();
+        objKeluar.idBarang = valueBarang;
+        
+        try {
+            Statement state = objKeluar.conn.createStatement();
+            
+            String SQL = "SELECT id_barang, harga_satuan FROM data_stock WHERE id_barang = '" + objKeluar.idBarang + "'";
+            
+            ResultSet result = state.executeQuery(SQL);
+            
+            while(result.next()){
+                txtHargaSatuanKeluar.setText(result.getString(2));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cboBarangKeluarActionPerformed
 
     private void tabelBarangKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelBarangKeluarMouseClicked
@@ -621,6 +668,15 @@ public final class formKeluar extends javax.swing.JPanel {
             Logger.getLogger(formKeluar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tabelBarangKeluarMouseClicked
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        String searchQuery = txtSearch.getText();
+        searchQuery(searchQuery);
+    }//GEN-LAST:event_txtSearchKeyReleased
     
     public void isiComboCustomer() {
         try{
@@ -710,7 +766,13 @@ public final class formKeluar extends javax.swing.JPanel {
         isiComboCustomer();
     }
     
-   
+    public void searchQuery(String query){
+        DefaultTableModel tabelDataKeluar;
+        tabelDataKeluar = (DefaultTableModel) tabelBarangKeluar.getModel();
+        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(tabelDataKeluar);
+        tabelBarangKeluar.setRowSorter(trs);
+        trs.setRowFilter(RowFilter.regexFilter(query));
+   }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -728,6 +790,7 @@ public final class formKeluar extends javax.swing.JPanel {
     private javax.swing.JLabel labelKeluar;
     private javax.swing.JLabel labelKeterangan;
     private javax.swing.JLabel labelQTY;
+    private javax.swing.JLabel labelSearch;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JPanel panelBody;
     private javax.swing.JPanel panelFooter;
@@ -737,5 +800,6 @@ public final class formKeluar extends javax.swing.JPanel {
     private javax.swing.JTextField txtIdKeluar;
     private javax.swing.JTextField txtKeteranganKeluar;
     private javax.swing.JTextField txtQTYKeluar;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

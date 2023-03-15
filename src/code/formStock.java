@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -37,6 +39,8 @@ public final class formStock extends javax.swing.JPanel {
 
         panelHeader = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
+        labelSearch = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
         panelBody = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -67,21 +71,45 @@ public final class formStock extends javax.swing.JPanel {
         labelTitle.setFont(new java.awt.Font("Century", 1, 24)); // NOI18N
         labelTitle.setText("Data Stock Barang");
 
+        labelSearch.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
+        labelSearch.setText("Search Data :");
+
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelSearch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addGap(257, 257, 257)
+                .addGap(256, 256, 256)
                 .addComponent(labelTitle)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(labelTitle)
-                .addGap(32, 32, 32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSearch)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
         );
 
         add(panelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, -1));
@@ -112,7 +140,7 @@ public final class formStock extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -493,6 +521,15 @@ public final class formStock extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboStatusActionPerformed
 
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        String searchQuery = txtSearch.getText();
+        searchQuery(searchQuery);
+    }//GEN-LAST:event_txtSearchKeyReleased
+
     public void isiComboKategori(){
         cboKategori.removeAllItems();
         cboKategori.addItem("Sembako");
@@ -552,6 +589,14 @@ public final class formStock extends javax.swing.JPanel {
         isiComboStatus();
     }
     
+    public void searchQuery(String query){
+        DefaultTableModel tabelDataStock;
+        tabelDataStock = (DefaultTableModel) tabelBarang.getModel();
+        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(tabelDataStock);
+        tabelBarang.setRowSorter(trs);
+        trs.setRowFilter(RowFilter.regexFilter(query));
+   }
+    
     public void aturLebarKolom(){
         tabelBarang.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         
@@ -584,6 +629,7 @@ public final class formStock extends javax.swing.JPanel {
     private javax.swing.JLabel labelKategori;
     private javax.swing.JLabel labelNama;
     private javax.swing.JLabel labelQTY;
+    private javax.swing.JLabel labelSearch;
     private javax.swing.JLabel labelStatus;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JPanel panelBody;
@@ -594,5 +640,6 @@ public final class formStock extends javax.swing.JPanel {
     private javax.swing.JTextField txtIdBarang;
     private javax.swing.JTextField txtNamaBarang;
     private javax.swing.JTextField txtQTY;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

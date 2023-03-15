@@ -12,6 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -37,8 +40,11 @@ public final class formMasuk extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         panelHeader = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
+        labelSearch = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
         panelBody = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -62,6 +68,8 @@ public final class formMasuk extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
 
+        jTextField1.setText("jTextField1");
+
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(750, 670));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -71,21 +79,45 @@ public final class formMasuk extends javax.swing.JPanel {
         labelTitle.setFont(new java.awt.Font("Century", 1, 24)); // NOI18N
         labelTitle.setText("Data Barang Masuk");
 
+        labelSearch.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
+        labelSearch.setText("Search Data :");
+
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
-                .addContainerGap(258, Short.MAX_VALUE)
+            .addGroup(panelHeaderLayout.createSequentialGroup()
+                .addGap(257, 257, 257)
                 .addComponent(labelTitle)
-                .addGap(255, 255, 255))
+                .addContainerGap(256, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelSearch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+            .addGroup(panelHeaderLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addComponent(labelTitle)
-                .addGap(36, 36, 36))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSearch)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
 
         add(panelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, -1));
@@ -625,6 +657,15 @@ public final class formMasuk extends javax.swing.JPanel {
     private void cboSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSupplierActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboSupplierActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        String searchQuery = txtSearch.getText();
+        searchQuery(searchQuery);
+    }//GEN-LAST:event_txtSearchKeyReleased
     
     public void isiComboSupplier() {
         try{
@@ -712,7 +753,15 @@ public final class formMasuk extends javax.swing.JPanel {
         txtKeterangan.setText("");
         isiComboBarang();
         isiComboSupplier();
-    }    
+    }
+    
+   public void searchQuery(String query){
+        DefaultTableModel tabelDataMasuk;
+        tabelDataMasuk = (DefaultTableModel) tabelBarangMasuk.getModel();
+        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(tabelDataMasuk);
+        tabelBarangMasuk.setRowSorter(trs);
+        trs.setRowFilter(RowFilter.regexFilter(query));
+   }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -723,12 +772,14 @@ public final class formMasuk extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser dateMasuk;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelBarang;
     private javax.swing.JLabel labelHarga;
     private javax.swing.JLabel labelIdBarang;
     private javax.swing.JLabel labelKeterangan;
     private javax.swing.JLabel labelMasuk;
     private javax.swing.JLabel labelQTY;
+    private javax.swing.JLabel labelSearch;
     private javax.swing.JLabel labelSupplier;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JPanel panelBody;
@@ -739,6 +790,9 @@ public final class formMasuk extends javax.swing.JPanel {
     private javax.swing.JTextField txtIdMasuk;
     private javax.swing.JTextField txtKeterangan;
     private javax.swing.JTextField txtQTYMasuk;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+   
 
 }

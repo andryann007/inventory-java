@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -36,6 +38,8 @@ public final class formUser extends javax.swing.JPanel {
 
         panelHeader = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
+        labelSearch = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -68,21 +72,45 @@ public final class formUser extends javax.swing.JPanel {
         labelTitle.setFont(new java.awt.Font("Century", 1, 24)); // NOI18N
         labelTitle.setText("Data User");
 
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
+        labelSearch.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
+        labelSearch.setText("Search Data :");
+
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelHeaderLayout.createSequentialGroup()
+                .addContainerGap(489, Short.MAX_VALUE)
+                .addComponent(labelSearch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(panelHeaderLayout.createSequentialGroup()
                 .addGap(293, 293, 293)
                 .addComponent(labelTitle)
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+            .addGroup(panelHeaderLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addComponent(labelTitle)
-                .addGap(33, 33, 33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSearch)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
 
         add(panelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, -1));
@@ -546,6 +574,15 @@ public final class formUser extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelpKeyTyped
 
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        String searchQuery = txtSearch.getText();
+        searchQuery(searchQuery);
+    }//GEN-LAST:event_txtSearchKeyReleased
+
     public void isiComboTipe(){
         cboAkun.removeAllItems();
         cboAkun.addItem("Owner");
@@ -596,6 +633,14 @@ public final class formUser extends javax.swing.JPanel {
         isiComboTipe();
     }
     
+    public void searchQuery(String query){
+        DefaultTableModel tabelDataAkun;
+        tabelDataAkun = (DefaultTableModel) tabelUser.getModel();
+        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(tabelDataAkun);
+        tabelUser.setRowSorter(trs);
+        trs.setRowFilter(RowFilter.regexFilter(query));
+   }
+    
     public void aturLebarKolom(){
         tabelUser.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         
@@ -627,6 +672,7 @@ public final class formUser extends javax.swing.JPanel {
     private javax.swing.JLabel labelIdUser;
     private javax.swing.JLabel labelNama;
     private javax.swing.JLabel labelPassword;
+    private javax.swing.JLabel labelSearch;
     private javax.swing.JLabel labelTelp;
     private javax.swing.JLabel labelTipe;
     private javax.swing.JLabel labelTitle;
@@ -639,6 +685,7 @@ public final class formUser extends javax.swing.JPanel {
     private javax.swing.JTextField txtIdUser;
     private javax.swing.JTextField txtNama;
     private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTelp;
     // End of variables declaration//GEN-END:variables
 }
