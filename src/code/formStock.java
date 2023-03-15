@@ -89,7 +89,7 @@ public final class formStock extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(738, 250));
 
-        tabelBarang.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        tabelBarang.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
         tabelBarang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -511,15 +511,15 @@ public final class formStock extends javax.swing.JPanel {
     }
     
     public void isiTabel(){
-        DefaultTableModel tabelDataAkun = new DefaultTableModel();
+        DefaultTableModel tabelDataStock = new DefaultTableModel();
         
-        tabelDataAkun.addColumn("ID Barang");
-        tabelDataAkun.addColumn("Nama Barang");
-        tabelDataAkun.addColumn("Kategori");
-        tabelDataAkun.addColumn("QTY");
-        tabelDataAkun.addColumn("Harga Satuan");
-        tabelDataAkun.addColumn("Total Harga");
-        tabelDataAkun.addColumn("Status");
+        tabelDataStock.addColumn("ID Barang");
+        tabelDataStock.addColumn("Nama Barang");
+        tabelDataStock.addColumn("Kategori");
+        tabelDataStock.addColumn("QTY");
+        tabelDataStock.addColumn("Harga Satuan");
+        tabelDataStock.addColumn("Total Harga");
+        tabelDataStock.addColumn("Status");
         
         try{
             objStock.Access();
@@ -529,12 +529,12 @@ public final class formStock extends javax.swing.JPanel {
             ResultSet result = state.executeQuery(objStock.sql);
             
             while(result.next()){
-                tabelDataAkun.addRow(new Object[] {result.getString(1),
+                tabelDataStock.addRow(new Object[] {result.getString(1),
                     result.getString(2), result.getString(3),
                     result.getString(4), result.getString(5),
                     result.getString(6), result.getString(7)});
             }
-            tabelBarang.setModel(tabelDataAkun);
+            tabelBarang.setModel(tabelDataStock);
             aturLebarKolom();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Terjadi kesalahan pada penampilan data !!!");

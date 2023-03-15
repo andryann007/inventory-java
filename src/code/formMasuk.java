@@ -93,7 +93,7 @@ public final class formMasuk extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(738, 250));
 
-        tabelBarangMasuk.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        tabelBarangMasuk.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
         tabelBarangMasuk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -425,14 +425,13 @@ public final class formMasuk extends javax.swing.JPanel {
                             JOptionPane.showMessageDialog(null, ex.getMessage());
                         }
                     }
+                    JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
                 } else {
                     JOptionPane.showMessageDialog(null, "Error, qty_stock harus lebih besar dari qty_masuk !!!");
                 }
             }
             cleanData();
             isiTabel();
-        
-            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
         }
         catch(HeadlessException e){
             JOptionPane.showMessageDialog(null, "Proses penghapusan data gagal");
@@ -483,7 +482,8 @@ public final class formMasuk extends javax.swing.JPanel {
                 ResultSet result = state.executeQuery(SQL);
                 
                 if(result.next()){
-                    String SQL2 = "INSERT INTO data_barang_masuk VALUE ('" + objMasuk.idMasuk + "', '" + objMasuk.idBarang
+                    String SQL2 = "INSERT INTO data_barang_masuk(id_masuk, id_barang, id_supplier, tgl_masuk, qty_masuk,"
+                                + "harga_satuan, total_harga, keterangan) VALUE ('" + objMasuk.idMasuk + "', '" + objMasuk.idBarang
                                 + "', '" + objMasuk.idSupplier + "', '" + objMasuk.tglMasuk + "', '" + objMasuk.qty + "', '"
                                 + objMasuk.hargaSatuan + "', '" + objMasuk.totalHarga + "', '" + objMasuk.keterangan + "')";
                     state.addBatch(SQL2);
@@ -669,16 +669,16 @@ public final class formMasuk extends javax.swing.JPanel {
     }
     
     public void isiTabel(){
-        DefaultTableModel tabelDataAkun = new DefaultTableModel();
+        DefaultTableModel tabelDataMasuk = new DefaultTableModel();
         
-        tabelDataAkun.addColumn("ID Masuk");
-        tabelDataAkun.addColumn("Tanggal Masuk");
-        tabelDataAkun.addColumn("Nama Barang");
-        tabelDataAkun.addColumn("Nama Supplier");
-        tabelDataAkun.addColumn("Harga Satuan");
-        tabelDataAkun.addColumn("QTY Masuk");
-        tabelDataAkun.addColumn("Total Harga");
-        tabelDataAkun.addColumn("Keterangan");
+        tabelDataMasuk.addColumn("ID Masuk");
+        tabelDataMasuk.addColumn("Tanggal Masuk");
+        tabelDataMasuk.addColumn("Nama Barang");
+        tabelDataMasuk.addColumn("Nama Supplier");
+        tabelDataMasuk.addColumn("Harga Satuan");
+        tabelDataMasuk.addColumn("QTY Masuk");
+        tabelDataMasuk.addColumn("Total Harga");
+        tabelDataMasuk.addColumn("Keterangan");
         
         try{
             objMasuk.Access();
@@ -691,13 +691,13 @@ public final class formMasuk extends javax.swing.JPanel {
             ResultSet result = state.executeQuery(sql);
             
             while(result.next()){
-                tabelDataAkun.addRow(new Object[] {result.getString(1),
+                tabelDataMasuk.addRow(new Object[] {result.getString(1),
                     result.getString(4), result.getString(2),
                     result.getString(3), result.getString(5),
                     result.getString(6), result.getString(7),
                     result.getString(8)});
             }
-            tabelBarangMasuk.setModel(tabelDataAkun);
+            tabelBarangMasuk.setModel(tabelDataMasuk);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Terjadi kesalahan pada penampilan data !!!");
             System.out.println(e.getMessage());

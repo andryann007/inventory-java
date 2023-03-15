@@ -90,7 +90,7 @@ public final class formUser extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(738, 250));
 
-        tabelUser.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        tabelUser.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
         tabelUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},

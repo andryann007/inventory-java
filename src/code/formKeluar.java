@@ -42,7 +42,7 @@ public final class formKeluar extends javax.swing.JPanel {
         labelTitle = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tabelBarangKeluar = new javax.swing.JTable();
         labelIdKeluar = new javax.swing.JLabel();
         txtIdKeluar = new javax.swing.JTextField();
@@ -94,7 +94,6 @@ public final class formKeluar extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(738, 250));
 
-        tabelBarangKeluar.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
         tabelBarangKeluar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -103,36 +102,27 @@ public final class formKeluar extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID Keluar", "Tanggal Keluar", "Nama Barang", "Nama Customer", "Harga Satuan", "QTY Keluar", "Total Harga", "Keterangan"
+                "ID Keluar", "Tgl Keluar", "Nama Barang", "Nama Customer", "Harga Satuan", "QTY Keluar", "Total Harga", "Keterangan"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         tabelBarangKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelBarangKeluarMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabelBarangKeluar);
+        jScrollPane2.setViewportView(tabelBarangKeluar);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(191, 191, 191))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
         labelIdKeluar.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
@@ -418,15 +408,14 @@ public final class formKeluar extends javax.swing.JPanel {
                             Logger.getLogger(formKeluar.class.getName()).log(Level.SEVERE, null, ex);
                             JOptionPane.showMessageDialog(null, ex.getMessage());
                         }
+                    JOptionPane.showMessageDialog(null, "Data " + objKeluar.idKeluar + " berhasil dihapus");
                     }
-                } else {
+                } else if(qty_stock_lama < qty_keluar) {
                     JOptionPane.showMessageDialog(null, "Error, qty_stock harus lebih besar dari qty_keluar !!!");
                 }
             }
             cleanData();
             isiTabel();
-        
-            JOptionPane.showMessageDialog(null, "Data " + objKeluar.idKeluar + " berhasil dihapus");
         }
         catch(HeadlessException e){
             JOptionPane.showMessageDialog(null, "Proses penghapusan data gagal");
@@ -477,36 +466,47 @@ public final class formKeluar extends javax.swing.JPanel {
                 ResultSet result = state.executeQuery(SQL);
                 
                 if(result.next()){
-                    String SQL2 = "INSERT INTO data_barang_keluar VALUE ('" + objKeluar.idKeluar + "', '" + objKeluar.idBarang
+                    String mQtyStock = result.getString("qty_stock");
+                    int qty_stock_lama = Integer.parseInt(mQtyStock);
+                    
+                    String mQtyOutcomingLama = result.getString("qty_keluar");
+                    int qty_keluar_lama = Integer.parseInt(mQtyOutcomingLama);
+                
+                    if(qty_stock_lama > qty_keluar_lama){
+                        int qty_stock_baru = qty_stock_lama - objKeluar.qty;
+                    
+                        if(qty_stock_baru > 0){
+                            String SQL2 = "INSERT INTO data_barang_keluar(id_keluar, id_barang, id_customer, tgl_keluar, qty_keluar,"
+                                + "harga_satuan, total_harga, keterangan) VALUE ('" + objKeluar.idKeluar + "', '" + objKeluar.idBarang
                                 + "', '" + objKeluar.idCustomer + "', '" + objKeluar.tglKeluar + "', '" + objKeluar.qty + "', '"
                                 + objKeluar.hargaSatuan + "', '" + objKeluar.totalHarga + "', '" + objKeluar.keterangan + "')";
-                    state.addBatch(SQL2);
-                
-                    String mQtyStock = result.getString("qty_stock");
-                    int qty_stock = Integer.parseInt(mQtyStock);
-                    qty_stock = qty_stock - objKeluar.qty; 
+                            state.addBatch(SQL2);
                     
-                    String SQL3 = "UPDATE data_stock SET qty_stock = '" + qty_stock + "' WHERE id_barang = '" + objKeluar.idBarang + "'";
-                    state.addBatch(SQL3);
-                    
-                    try {
-                        int[] count = state.executeBatch();
-                        objKeluar.conn.commit();
-                        objKeluar.conn.close();
+                            String SQL3 = "UPDATE data_stock SET qty_stock = '" + qty_stock_baru + "' WHERE id_barang = '" + objKeluar.idBarang + "'";
+                            state.addBatch(SQL3);
+                        
+                        try {
+                            int[] count = state.executeBatch();
+                            objKeluar.conn.commit();
+                            objKeluar.conn.close();
+                        }
+                        catch (SQLException ex) {
+                            Logger.getLogger(formKeluar.class.getName()).log(Level.SEVERE, null, ex);
+                            JOptionPane.showMessageDialog(null, ex.getMessage());
+                        }
+                    JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
                     }
-                    catch (SQLException ex) {
-                        Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
-                        JOptionPane.showMessageDialog(null, ex.getMessage());
-                    }
+                } else if(qty_stock_lama < qty_keluar_lama) {
+                    JOptionPane.showMessageDialog(null, "Error, qty_keluar harus lebih kecil dari qty_stock !!!");
+                }
                     cleanData();
                     isiTabel();
                 }
-                JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
             } 
             catch(HeadlessException | NumberFormatException e){
                 JOptionPane.showMessageDialog(null, e.getMessage());
             } catch (SQLException ex) {
-                Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(formKeluar.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnAddActionPerformed
@@ -549,36 +549,42 @@ public final class formKeluar extends javax.swing.JPanel {
             
             if(result.next()){
                 String mQtyStock = result.getString("qty_stock");
-                int qty_stock = Integer.parseInt(mQtyStock);
+                int qty_stock_lama = Integer.parseInt(mQtyStock);
                     
                 String mQtyOutcomingLama = result.getString("qty_keluar");
                 int qty_keluar_lama = Integer.parseInt(mQtyOutcomingLama);
-                    
-                int qty_stock_baru = qty_stock + qty_keluar_lama - objKeluar.qty;
-                    
-                String SQL2 = "UPDATE data_stock SET qty_stock = '" + qty_stock_baru + "' WHERE id_barang = '" + objKeluar.idBarang + "'";
-                state.addBatch(SQL2);
                 
-                String SQL3 = "UPDATE data_barang_keluar SET id_barang = '"
-                    + objKeluar.idBarang + "', id_customer = '" + objKeluar.idCustomer 
-                    + "', tgl_keluar = '" + objKeluar.tglKeluar + "', qty_keluar = '" + objKeluar.qty
-                    + "', harga_satuan = '" + objKeluar.hargaSatuan + "', total_harga = '" + objKeluar.totalHarga
-                    + "', keterangan = '" + objKeluar.keterangan + "' WHERE id_keluar = '" + objKeluar.idKeluar + "'";
-                state.addBatch(SQL3);
+                if(qty_stock_lama > qty_keluar_lama){
+                    int qty_stock_baru = qty_stock_lama + qty_keluar_lama - objKeluar.qty;
+                    
+                    if(qty_stock_baru > 0){
+                        String SQL2 = "UPDATE data_stock SET qty_stock = '" + qty_stock_baru + "' WHERE id_barang = '" + objKeluar.idBarang + "'";
+                        state.addBatch(SQL2);
                 
-                try {
-                    int[] count = state.executeBatch();
-                    objKeluar.conn.commit();
-                    objKeluar.conn.close();
-                }
-                catch (SQLException ex) {
-                    Logger.getLogger(formKeluar.class.getName()).log(Level.SEVERE, null, ex);
-                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                        String SQL3 = "UPDATE data_barang_keluar SET id_barang = '"
+                            + objKeluar.idBarang + "', id_customer = '" + objKeluar.idCustomer 
+                            + "', tgl_keluar = '" + objKeluar.tglKeluar + "', qty_keluar = '" + objKeluar.qty
+                            + "', harga_satuan = '" + objKeluar.hargaSatuan + "', total_harga = '" + objKeluar.totalHarga
+                            + "', keterangan = '" + objKeluar.keterangan + "' WHERE id_keluar = '" + objKeluar.idKeluar + "'";
+                        state.addBatch(SQL3);
+                        
+                        try {
+                            int[] count = state.executeBatch();
+                            objKeluar.conn.commit();
+                            objKeluar.conn.close();
+                        }
+                        catch (SQLException ex) {
+                            Logger.getLogger(formKeluar.class.getName()).log(Level.SEVERE, null, ex);
+                            JOptionPane.showMessageDialog(null, ex.getMessage());
+                        }
+                    }
+                    JOptionPane.showMessageDialog(null, "Data berhasil diupdate");
+                } else if (qty_stock_lama < qty_keluar_lama){
+                    JOptionPane.showMessageDialog(null, "Error, qty_keluar harus lebih kecil dari qty_stock !!!");
                 }
                 cleanData();
                 isiTabel();
             }
-            JOptionPane.showMessageDialog(null, "Data berhasil diupdate");
         } catch(HeadlessException | NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Proses pengeditan gagal");
             System.out.println(e.getMessage());
@@ -659,16 +665,16 @@ public final class formKeluar extends javax.swing.JPanel {
     }
     
     public void isiTabel(){
-        DefaultTableModel tabelDataAkun = new DefaultTableModel();
+        DefaultTableModel tabelDataKeluar = new DefaultTableModel();
         
-        tabelDataAkun.addColumn("ID Keluar");
-        tabelDataAkun.addColumn("Tanggal Keluar");
-        tabelDataAkun.addColumn("Nama Barang");
-        tabelDataAkun.addColumn("Nama Customer");
-        tabelDataAkun.addColumn("Harga Satuan");
-        tabelDataAkun.addColumn("QTY Keluar");
-        tabelDataAkun.addColumn("Total Harga");
-        tabelDataAkun.addColumn("Keterangan");
+        tabelDataKeluar.addColumn("ID Keluar");
+        tabelDataKeluar.addColumn("Tanggal Keluar");
+        tabelDataKeluar.addColumn("Nama Barang");
+        tabelDataKeluar.addColumn("Nama Customer");
+        tabelDataKeluar.addColumn("Harga Satuan");
+        tabelDataKeluar.addColumn("QTY Keluar");
+        tabelDataKeluar.addColumn("Total Harga");
+        tabelDataKeluar.addColumn("Keterangan");
         
         try{
             objKeluar.Access();
@@ -681,13 +687,13 @@ public final class formKeluar extends javax.swing.JPanel {
             ResultSet result = state.executeQuery(sql);
             
             while(result.next()){
-                tabelDataAkun.addRow(new Object[] {result.getString(1),
+                tabelDataKeluar.addRow(new Object[] {result.getString(1),
                     result.getString(4), result.getString(2),
                     result.getString(3), result.getString(5),
                     result.getString(6), result.getString(7),
                     result.getString(8)});
             }
-            tabelBarangKeluar.setModel(tabelDataAkun);
+            tabelBarangKeluar.setModel(tabelDataKeluar);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Terjadi kesalahan pada penampilan data !!!");
             System.out.println(e.getMessage());
@@ -714,7 +720,7 @@ public final class formKeluar extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cboCustomer;
     private com.toedter.calendar.JDateChooser dateKeluar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelBarang;
     private javax.swing.JLabel labelCustomer;
     private javax.swing.JLabel labelHarga;
