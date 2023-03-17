@@ -19,7 +19,7 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
     public formLaporanMasuk() {
         initComponents();
         isiComboJenisTransaksi();
-        isiTabel(2);
+        isiTabel(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -33,7 +33,6 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
         cboJenisTransaksi = new javax.swing.JComboBox<>();
         labelSearch1 = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelBarangMasuk = new javax.swing.JTable();
 
@@ -74,7 +73,7 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(labelSearch1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cboJenisTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -82,7 +81,7 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
                 .addComponent(labelSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addContainerGap())
             .addGroup(panelHeaderLayout.createSequentialGroup()
                 .addGap(231, 231, 231)
                 .addComponent(labelTitle)
@@ -94,22 +93,18 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(labelTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSearch)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelSearch1)
-                        .addComponent(cboJenisTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelSearch)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cboJenisTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14))
         );
 
         add(panelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(738, 250));
 
         tabelBarangMasuk.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
         tabelBarangMasuk.setModel(new javax.swing.table.DefaultTableModel(
@@ -140,35 +135,21 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tabelBarangMasuk);
         tabelBarangMasuk.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout panelBodyLayout = new javax.swing.GroupLayout(panelBody);
         panelBody.setLayout(panelBodyLayout);
         panelBodyLayout.setHorizontalGroup(
             panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBodyLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         panelBodyLayout.setVerticalGroup(
             panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBodyLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                .addGap(19, 19, 19))
         );
 
         add(panelBody, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 750, -1));
@@ -220,11 +201,9 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
             
             switch (cboJenisTransaksi.getSelectedIndex()) {
                 case 0 ->{
-                        String jenis_transaksi = "pembelian";
                         String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"
                                 + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
-                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang"
-                                + " AND m.jenis_transaksi = '" + jenis_transaksi + "'";
+                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang";
                         Statement state = objMasuk.conn.createStatement();
                         ResultSet result = state.executeQuery(sql);
                         while(result.next()){
@@ -233,11 +212,11 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
                                 result.getString(3), result.getString(5),
                                 result.getString(6), result.getString(7),
                                 result.getString(8), result.getString(9)});
-                        }       
+                        }      
                         tabelBarangMasuk.setModel(tabelDataMasuk);
                     }
                 case 1 ->{
-                        String jenis_transaksi = "retur_pembelian";
+                        String jenis_transaksi = "pembelian";
                         String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"
                                 + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
                                 + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang"
@@ -254,9 +233,11 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
                     }
                 
                 case 2 ->{
+                        String jenis_transaksi = "retur_pembelian";
                         String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"
                                 + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
-                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang";
+                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang"
+                                + " AND m.jenis_transaksi = '" + jenis_transaksi + "'";
                         Statement state = objMasuk.conn.createStatement();
                         ResultSet result = state.executeQuery(sql);
                         while(result.next()){
@@ -265,8 +246,7 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
                                 result.getString(3), result.getString(5),
                                 result.getString(6), result.getString(7),
                                 result.getString(8), result.getString(9)});
-                        }      
-                        tabelBarangMasuk.setModel(tabelDataMasuk);
+                        }       tabelBarangMasuk.setModel(tabelDataMasuk);
                     }
                 default ->                     {
                         String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"
@@ -293,14 +273,13 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
     
     public void isiComboJenisTransaksi(){
         cboJenisTransaksi.removeAllItems();
+        cboJenisTransaksi.addItem("Semua Transaksi");
         cboJenisTransaksi.addItem("Pembelian");
         cboJenisTransaksi.addItem("Retur Pembelian");
-        cboJenisTransaksi.addItem("Semua Transaksi");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cboJenisTransaksi;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelSearch;
     private javax.swing.JLabel labelSearch1;

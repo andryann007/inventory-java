@@ -12,14 +12,14 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Andryan
  */
-public class formLaporanKeluar extends javax.swing.JPanel {
+public final class formLaporanKeluar extends javax.swing.JPanel {
 
     clsKeluar objKeluar = new clsKeluar();
     
     public formLaporanKeluar() {
         initComponents();
         isiComboJenisTransaksi();
-        isiTabel(2);
+        isiTabel(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -33,7 +33,6 @@ public class formLaporanKeluar extends javax.swing.JPanel {
         cboJenisTransaksi = new javax.swing.JComboBox<>();
         labelSearch1 = new javax.swing.JLabel();
         panelBody = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelBarangKeluar = new javax.swing.JTable();
 
@@ -67,26 +66,26 @@ public class formLaporanKeluar extends javax.swing.JPanel {
         });
 
         labelSearch1.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
-        labelSearch1.setText("Pilih Data :");
+        labelSearch1.setText("Jenis Transaksi :");
 
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addComponent(labelSearch1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cboJenisTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap())
             .addGroup(panelHeaderLayout.createSequentialGroup()
                 .addGap(231, 231, 231)
                 .addComponent(labelTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,10 +93,9 @@ public class formLaporanKeluar extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(labelTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelSearch1)
-                        .addComponent(cboJenisTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSearch1)
+                    .addComponent(cboJenisTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelSearch)
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -107,9 +105,6 @@ public class formLaporanKeluar extends javax.swing.JPanel {
         add(panelHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, -1));
 
         panelBody.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(738, 250));
 
         tabelBarangKeluar.setFont(new java.awt.Font("Century", 0, 12)); // NOI18N
         tabelBarangKeluar.setModel(new javax.swing.table.DefaultTableModel(
@@ -140,36 +135,24 @@ public class formLaporanKeluar extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tabelBarangKeluar);
         tabelBarangKeluar.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 22, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout panelBodyLayout = new javax.swing.GroupLayout(panelBody);
         panelBody.setLayout(panelBodyLayout);
         panelBodyLayout.setHorizontalGroup(
             panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBodyLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         panelBodyLayout.setVerticalGroup(
             panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBodyLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        add(panelBody, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 750, 430));
+        add(panelBody, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 750, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -200,9 +183,9 @@ public class formLaporanKeluar extends javax.swing.JPanel {
     
     public void isiComboJenisTransaksi(){
         cboJenisTransaksi.removeAllItems();
+        cboJenisTransaksi.addItem("Semua Transaksi");
         cboJenisTransaksi.addItem("Penjualan");
         cboJenisTransaksi.addItem("Retur Penjualan");
-        cboJenisTransaksi.addItem("Semua Transaksi");
     }
    
     public void isiTabel(int index){
@@ -224,12 +207,10 @@ public class formLaporanKeluar extends javax.swing.JPanel {
             
             switch (cboJenisTransaksi.getSelectedIndex()) {
                 case 0 ->{
-                    String jenis_transaksi = "penjualan";
                     String sql = "SELECT id_keluar, nama_barang, nama_customer, tgl_keluar,"
-                            + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
+                        + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
                             + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
-                            + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang"
-                            + " AND jenis_transaksi = '" + jenis_transaksi + "'";
+                            + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang";
                     Statement state = objKeluar.conn.createStatement();
                     ResultSet result = state.executeQuery(sql);
             
@@ -243,7 +224,7 @@ public class formLaporanKeluar extends javax.swing.JPanel {
                     tabelBarangKeluar.setModel(tabelDataKeluar);
                 }
                 case 1 ->{
-                    String jenis_transaksi = "retur_penjualan";
+                    String jenis_transaksi = "penjualan";
                     String sql = "SELECT id_keluar, nama_barang, nama_customer, tgl_keluar,"
                             + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
                             + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
@@ -263,10 +244,12 @@ public class formLaporanKeluar extends javax.swing.JPanel {
                 }
                 
                 case 2 ->{
+                    String jenis_transaksi = "retur_penjualan";
                     String sql = "SELECT id_keluar, nama_barang, nama_customer, tgl_keluar,"
-                        + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
+                            + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
                             + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
-                            + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang";
+                            + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang"
+                            + " AND jenis_transaksi = '" + jenis_transaksi + "'";
                     Statement state = objKeluar.conn.createStatement();
                     ResultSet result = state.executeQuery(sql);
             
@@ -305,7 +288,6 @@ public class formLaporanKeluar extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cboJenisTransaksi;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelSearch;
     private javax.swing.JLabel labelSearch1;

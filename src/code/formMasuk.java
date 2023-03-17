@@ -30,7 +30,7 @@ public final class formMasuk extends javax.swing.JPanel {
     
     public formMasuk() {
         initComponents();
-        isiTabel(2);
+        isiTabel(0);
         isiComboBarang();
         isiComboSupplier();
         isiComboJenisTransaksi();
@@ -506,7 +506,7 @@ public final class formMasuk extends javax.swing.JPanel {
                 }
             }
             cleanData();
-            isiTabel(2);
+            isiTabel(0);
         }
         catch(HeadlessException e){
             JOptionPane.showMessageDialog(null, "Proses penghapusan data gagal");
@@ -615,7 +615,7 @@ public final class formMasuk extends javax.swing.JPanel {
                         }
                     }
                     cleanData();
-                    isiTabel(2);
+                    isiTabel(0);
                 }
                 sukses.setMessage("Data Berhasil di Simpan !!!");
                 sukses.setVisible(true);
@@ -733,7 +733,7 @@ public final class formMasuk extends javax.swing.JPanel {
                     }
                 }
                 cleanData();
-                isiTabel(2);
+                isiTabel(0);
             }
             sukses.setMessage("Data Berhasil di Edit !!!");
             sukses.setVisible(true);
@@ -853,9 +853,9 @@ public final class formMasuk extends javax.swing.JPanel {
     
     public void isiComboPilihTransaksi(){
         cboSelectTransaksi.removeAllItems();
+        cboSelectTransaksi.addItem("Semua Transaksi");
         cboSelectTransaksi.addItem("Pembelian");
         cboSelectTransaksi.addItem("Retur Pembelian");
-        cboSelectTransaksi.addItem("Semua Transaksi");
     }
     
     public void isiTabel(int index){
@@ -877,11 +877,9 @@ public final class formMasuk extends javax.swing.JPanel {
             
             switch (cboSelectTransaksi.getSelectedIndex()) {
                 case 0 ->{
-                        String jenis_transaksi = "pembelian";
                         String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"
                                 + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
-                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang"
-                                + " AND m.jenis_transaksi = '" + jenis_transaksi + "'";
+                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang";
                         Statement state = objMasuk.conn.createStatement();
                         ResultSet result = state.executeQuery(sql);
                         while(result.next()){
@@ -890,11 +888,11 @@ public final class formMasuk extends javax.swing.JPanel {
                                 result.getString(3), result.getString(5),
                                 result.getString(6), result.getString(7),
                                 result.getString(8), result.getString(9)});
-                        }       
+                        }      
                         tabelBarangMasuk.setModel(tabelDataMasuk);
                     }
                 case 1 ->{
-                        String jenis_transaksi = "retur_pembelian";
+                        String jenis_transaksi = "pembelian";
                         String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"
                                 + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
                                 + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang"
@@ -911,9 +909,11 @@ public final class formMasuk extends javax.swing.JPanel {
                     }
                 
                 case 2 ->{
+                        String jenis_transaksi = "retur_pembelian";
                         String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"
                                 + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
-                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang";
+                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang"
+                                + " AND m.jenis_transaksi = '" + jenis_transaksi + "'";
                         Statement state = objMasuk.conn.createStatement();
                         ResultSet result = state.executeQuery(sql);
                         while(result.next()){
@@ -922,8 +922,7 @@ public final class formMasuk extends javax.swing.JPanel {
                                 result.getString(3), result.getString(5),
                                 result.getString(6), result.getString(7),
                                 result.getString(8), result.getString(9)});
-                        }      
-                        tabelBarangMasuk.setModel(tabelDataMasuk);
+                        }       tabelBarangMasuk.setModel(tabelDataMasuk);
                     }
                 default ->                     {
                         String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"

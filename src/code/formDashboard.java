@@ -485,7 +485,7 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
-        stock.isiTabel();
+        stock.isiTabel(0);
         
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);

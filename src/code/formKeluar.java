@@ -25,7 +25,7 @@ public final class formKeluar extends javax.swing.JPanel {
     
     public formKeluar() {
         initComponents();
-        isiTabel(2);
+        isiTabel(0);
         isiComboBarang();
         isiComboCustomer();
         isiComboJenisTransaksi();
@@ -130,12 +130,13 @@ public final class formKeluar extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(labelTitle)
                 .addGap(18, 18, 18)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelSearch)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelSearch1)
-                        .addComponent(cboSelectTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cboSelectTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelSearch)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -319,12 +320,13 @@ public final class formKeluar extends javax.swing.JPanel {
                     .addComponent(labelQTY)
                     .addComponent(txtQTYKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtKeteranganKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelKeterangan)
+                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cboJenisTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelKeterangan1)))
+                        .addComponent(labelKeterangan1))
+                    .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtKeteranganKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelKeterangan)))
                 .addGap(20, 20, 20))
         );
 
@@ -477,7 +479,7 @@ public final class formKeluar extends javax.swing.JPanel {
                 }
             }
             cleanData();
-            isiTabel(2);
+            isiTabel(0);
         }
         catch(HeadlessException e){
             JOptionPane.showMessageDialog(null, "Proses penghapusan data gagal");
@@ -611,7 +613,7 @@ public final class formKeluar extends javax.swing.JPanel {
                     }
                     
                     cleanData();
-                    isiTabel(2);
+                    isiTabel(0);
                 }
             } 
             catch(HeadlessException | NumberFormatException e){
@@ -735,7 +737,7 @@ public final class formKeluar extends javax.swing.JPanel {
                 }
                 
                 cleanData();
-                isiTabel(2);
+                isiTabel(0);
             }
         } catch(HeadlessException | NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Proses pengeditan gagal");
@@ -746,26 +748,7 @@ public final class formKeluar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void cboBarangKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboBarangKeluarActionPerformed
-        isiComboBarang();
-        
-        Object keyBarang = cboBarangKeluar.getSelectedItem();
-        String valueBarang = ((clsComboBarang)keyBarang).getValue();
-        objKeluar.idBarang = valueBarang;
-        
-        try {
-            Statement state = objKeluar.conn.createStatement();
-            
-            String SQL = "SELECT id_barang, harga_satuan FROM data_stock WHERE id_barang = '" + objKeluar.idBarang + "'";
-            
-            ResultSet result = state.executeQuery(SQL);
-            
-            while(result.next()){
-                txtHargaSatuanKeluar.setText(result.getString(2));
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(formMasuk.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }//GEN-LAST:event_cboBarangKeluarActionPerformed
 
     private void tabelBarangKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelBarangKeluarMouseClicked
@@ -875,12 +858,10 @@ public final class formKeluar extends javax.swing.JPanel {
             
             switch (cboSelectTransaksi.getSelectedIndex()) {
                 case 0 ->{
-                    String jenis_transaksi = "penjualan";
                     String sql = "SELECT id_keluar, nama_barang, nama_customer, tgl_keluar,"
-                            + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
+                        + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
                             + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
-                            + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang"
-                            + " AND jenis_transaksi = '" + jenis_transaksi + "'";
+                            + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang";
                     Statement state = objKeluar.conn.createStatement();
                     ResultSet result = state.executeQuery(sql);
             
@@ -894,7 +875,7 @@ public final class formKeluar extends javax.swing.JPanel {
                     tabelBarangKeluar.setModel(tabelDataKeluar);
                 }
                 case 1 ->{
-                    String jenis_transaksi = "retur_penjualan";
+                    String jenis_transaksi = "penjualan";
                     String sql = "SELECT id_keluar, nama_barang, nama_customer, tgl_keluar,"
                             + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
                             + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
@@ -914,10 +895,12 @@ public final class formKeluar extends javax.swing.JPanel {
                 }
                 
                 case 2 ->{
+                    String jenis_transaksi = "retur_penjualan";
                     String sql = "SELECT id_keluar, nama_barang, nama_customer, tgl_keluar,"
-                        + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
+                            + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
                             + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
-                            + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang";
+                            + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang"
+                            + " AND jenis_transaksi = '" + jenis_transaksi + "'";
                     Statement state = objKeluar.conn.createStatement();
                     ResultSet result = state.executeQuery(sql);
             
@@ -963,9 +946,9 @@ public final class formKeluar extends javax.swing.JPanel {
     
     public void isiComboPilihTransaksi(){
         cboSelectTransaksi.removeAllItems();
+        cboSelectTransaksi.addItem("Semua Transaksi");
         cboSelectTransaksi.addItem("Penjualan");
         cboSelectTransaksi.addItem("Retur Penjualan");
-        cboSelectTransaksi.addItem("Semua Transaksi");
     }
     
     public void cleanData()
