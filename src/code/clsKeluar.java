@@ -12,6 +12,7 @@ public class clsKeluar extends clsKoneksi{
     String idBarang;
     String idCustomer;
     String keterangan;
+    String jenisTransaksi;
     int qty;
     float hargaSatuan;
     float totalHarga;
@@ -23,9 +24,12 @@ public class clsKeluar extends clsKoneksi{
     public void saveOutcomingData(){
         try
         {
-            sql = "INSERT INTO data_barang_keluar VALUE ('" + idKeluar + "', '" + idBarang
+            sql = "INSERT INTO data_barang_keluar (id_keluar, id_barang, id_customer, "
+                    + "tgl_keluar, qty_keluar, harga_satuan, total_harga, keterangan, "
+                    + "jenis_transaksi) VALUE ('" + idKeluar + "', '" + idBarang
                     + "', '" + idCustomer + "', '" + tglKeluar + "', '" + qty + "', '"
-                    + hargaSatuan + "', '" + totalHarga +"', '" + keterangan + "')";
+                    + hargaSatuan + "', '" + totalHarga +"', '" + keterangan + "', '"
+                    + jenisTransaksi +  "')";
         }
         catch(Exception e)
         {
@@ -41,7 +45,8 @@ public class clsKeluar extends clsKoneksi{
                     + idBarang + "', id_customer = '" + idCustomer 
                     + "', tgl_keluar = '" + tglKeluar + "', qty_keluar = '" + qty
                     + "', harga_satuan = '" + hargaSatuan + "', total_harga = '" + totalHarga
-                    + "', keterangan = '" + keterangan + "' WHERE id_keluar = '" + idKeluar + "'";
+                    + "', keterangan = '" + keterangan + "', jenis_transaksi = '" + jenisTransaksi 
+                    + "' WHERE id_keluar = '" + idKeluar + "'";
         }
         catch(Exception e)
         {

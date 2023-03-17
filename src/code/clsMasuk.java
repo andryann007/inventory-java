@@ -12,6 +12,7 @@ public class clsMasuk extends clsKoneksi{
     String idBarang;
     String idSupplier;
     String keterangan;
+    String jenisTransaksi;
     int qty;
     float hargaSatuan;
     float totalHarga;
@@ -26,9 +27,12 @@ public class clsMasuk extends clsKoneksi{
     public void saveIncomingData(){
         try
         {
-            sql = "INSERT INTO data_barang_masuk VALUE ('" + idMasuk + "', '" + idBarang
+            sql = "INSERT INTO data_barang_masuk (id_masuk, id_barang, id_supplier, "
+                    + "tgl_masuk, qty_masuk, harga_satuan, total_harga, keterangan, "
+                    + "jenis_transaksi) VALUE ('" + idMasuk + "', '" + idBarang
                     + "', '" + idSupplier + "', '" + tglMasuk + "', '" + qty + "', '"
-                    + hargaSatuan + "', '" + totalHarga +"', '" + keterangan + "')";
+                    + hargaSatuan + "', '" + totalHarga +"', '" + keterangan + "', '"
+                    + jenisTransaksi + "')";
         }
         catch(Exception e)
         {
@@ -43,7 +47,8 @@ public class clsMasuk extends clsKoneksi{
                     + idBarang + "', id_supplier = '" + idSupplier 
                     + "', tgl_masuk = '" + tglMasuk + "', qty_masuk = '" + qty
                     + "', harga_satuan = '" + hargaSatuan + "', total_harga = '" + totalHarga
-                    + "', keterangan = '" + keterangan + "' WHERE id_masuk = '" + idMasuk + "'";
+                    + "', keterangan = '" + keterangan + "', jenis_transaksi = '" + jenisTransaksi
+                    + "' WHERE id_masuk = '" + idMasuk + "'";
         }
         catch(Exception e)
         {

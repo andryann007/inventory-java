@@ -121,6 +121,9 @@
                 </Property>
                 <Property name="iconTextGap" type="int" value="15"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnHomeMouseClicked"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="40" y="0" width="240" height="50"/>
@@ -462,8 +465,8 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnMasukReport1" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
-                                  <Component id="btnKeluarReport1" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="btnMasukReport" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                  <Component id="btnKeluarReport" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -477,9 +480,9 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="labelLaporan1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                      <Component id="btnMasukReport1" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="btnMasukReport" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="btnKeluarReport1" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="btnKeluarReport" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
@@ -487,7 +490,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="btnMasukReport1">
+            <Component class="javax.swing.JLabel" name="btnMasukReport">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -504,8 +507,11 @@
                 </Property>
                 <Property name="iconTextGap" type="int" value="15"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnMasukReportMouseClicked"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="btnKeluarReport1">
+            <Component class="javax.swing.JLabel" name="btnKeluarReport">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -522,6 +528,9 @@
                 </Property>
                 <Property name="iconTextGap" type="int" value="15"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnKeluarReportMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="labelLaporan1">
               <Properties>

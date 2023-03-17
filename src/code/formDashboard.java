@@ -21,6 +21,9 @@ public final class formDashboard extends javax.swing.JFrame {
     formMasuk masuk = new formMasuk();
     formKeluar keluar = new formKeluar();
     
+    formLaporanMasuk laporanMasuk = new formLaporanMasuk();
+    formLaporanKeluar laporanKeluar = new formLaporanKeluar();
+    
     public formDashboard() {
         initComponents();
         showCurrentDate();
@@ -43,6 +46,12 @@ public final class formDashboard extends javax.swing.JFrame {
         
         body.add(keluar);
         keluar.setVisible(false);
+        
+        body.add(laporanMasuk);
+        laporanMasuk.setVisible(false);
+        
+        body.add(laporanKeluar);
+        laporanKeluar.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -70,8 +79,8 @@ public final class formDashboard extends javax.swing.JFrame {
         btnMyProfile = new javax.swing.JLabel();
         btnLogout = new javax.swing.JLabel();
         panelLaporan = new javax.swing.JPanel();
-        btnMasukReport1 = new javax.swing.JLabel();
-        btnKeluarReport1 = new javax.swing.JLabel();
+        btnMasukReport = new javax.swing.JLabel();
+        btnKeluarReport = new javax.swing.JLabel();
         labelLaporan1 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
@@ -112,6 +121,11 @@ public final class formDashboard extends javax.swing.JFrame {
         btnHome.setText("Home / Dashboard");
         btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHome.setIconTextGap(15);
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
         panelHome.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 240, 50));
 
         sidebar.add(panelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
@@ -253,19 +267,29 @@ public final class formDashboard extends javax.swing.JFrame {
 
         panelLaporan.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnMasukReport1.setBackground(new java.awt.Color(255, 255, 255));
-        btnMasukReport1.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        btnMasukReport1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clipboard.png"))); // NOI18N
-        btnMasukReport1.setText("Laporan Barang Masuk");
-        btnMasukReport1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnMasukReport1.setIconTextGap(15);
+        btnMasukReport.setBackground(new java.awt.Color(255, 255, 255));
+        btnMasukReport.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        btnMasukReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clipboard.png"))); // NOI18N
+        btnMasukReport.setText("Laporan Barang Masuk");
+        btnMasukReport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMasukReport.setIconTextGap(15);
+        btnMasukReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMasukReportMouseClicked(evt);
+            }
+        });
 
-        btnKeluarReport1.setBackground(new java.awt.Color(255, 255, 255));
-        btnKeluarReport1.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        btnKeluarReport1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clipboard.png"))); // NOI18N
-        btnKeluarReport1.setText("Laporan Barang Keluar");
-        btnKeluarReport1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnKeluarReport1.setIconTextGap(15);
+        btnKeluarReport.setBackground(new java.awt.Color(255, 255, 255));
+        btnKeluarReport.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        btnKeluarReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clipboard.png"))); // NOI18N
+        btnKeluarReport.setText("Laporan Barang Keluar");
+        btnKeluarReport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnKeluarReport.setIconTextGap(15);
+        btnKeluarReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnKeluarReportMouseClicked(evt);
+            }
+        });
 
         labelLaporan1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelLaporan1.setText("Laporan");
@@ -281,8 +305,8 @@ public final class formDashboard extends javax.swing.JFrame {
                     .addGroup(panelLaporanLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(panelLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnMasukReport1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnKeluarReport1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(btnMasukReport, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnKeluarReport, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))))
             .addComponent(jSeparator3)
         );
         panelLaporanLayout.setVerticalGroup(
@@ -291,9 +315,9 @@ public final class formDashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelLaporan1)
                 .addGap(4, 4, 4)
-                .addComponent(btnMasukReport1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMasukReport, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(btnKeluarReport1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnKeluarReport, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -368,6 +392,22 @@ public final class formDashboard extends javax.swing.JFrame {
         
         masuk.setVisible(false);
         keluar.setVisible(false);
+        
+        laporanMasuk.setVisible(false);
+        laporanKeluar.setVisible(false);
+        
+        Font fontRegular = new Font("Century", Font.PLAIN, 14);
+        Font fontBold = new Font("Century", Font.BOLD, 14);
+        
+        btnUser.setFont(fontBold);
+        btnHome.setFont(fontRegular);
+        btnBarang.setFont(fontRegular);
+        btnCustomer.setFont(fontRegular);
+        btnSupplier.setFont(fontRegular);
+        btnMasuk.setFont(fontRegular);
+        btnKeluar.setFont(fontRegular);
+        btnMasukReport.setFont(fontRegular);
+        btnKeluarReport.setFont(fontRegular);
     }//GEN-LAST:event_btnUserMouseClicked
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
@@ -385,6 +425,22 @@ public final class formDashboard extends javax.swing.JFrame {
         
         masuk.setVisible(false);
         keluar.setVisible(false);
+        
+        laporanMasuk.setVisible(false);
+        laporanKeluar.setVisible(false);
+        
+        Font fontRegular = new Font("Century", Font.PLAIN, 14);
+        Font fontBold = new Font("Century", Font.BOLD, 14);
+        
+        btnUser.setFont(fontRegular);
+        btnHome.setFont(fontRegular);
+        btnBarang.setFont(fontRegular);
+        btnCustomer.setFont(fontRegular);
+        btnSupplier.setFont(fontBold);
+        btnMasuk.setFont(fontRegular);
+        btnKeluar.setFont(fontRegular);
+        btnMasukReport.setFont(fontRegular);
+        btnKeluarReport.setFont(fontRegular);
     }//GEN-LAST:event_btnSupplierMouseClicked
 
     private void btnCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerMouseClicked
@@ -397,6 +453,22 @@ public final class formDashboard extends javax.swing.JFrame {
         
         masuk.setVisible(false);
         keluar.setVisible(false);
+        
+        laporanMasuk.setVisible(false);
+        laporanKeluar.setVisible(false);
+        
+        Font fontRegular = new Font("Century", Font.PLAIN, 14);
+        Font fontBold = new Font("Century", Font.BOLD, 14);
+        
+        btnUser.setFont(fontRegular);
+        btnHome.setFont(fontRegular);
+        btnBarang.setFont(fontRegular);
+        btnCustomer.setFont(fontBold);
+        btnSupplier.setFont(fontRegular);
+        btnMasuk.setFont(fontRegular);
+        btnKeluar.setFont(fontRegular);
+        btnMasukReport.setFont(fontRegular);
+        btnKeluarReport.setFont(fontRegular);
     }//GEN-LAST:event_btnCustomerMouseClicked
 
     private void btnBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBarangMouseClicked
@@ -410,7 +482,23 @@ public final class formDashboard extends javax.swing.JFrame {
         masuk.setVisible(false);
         keluar.setVisible(false);
         
+        laporanMasuk.setVisible(false);
+        laporanKeluar.setVisible(false);
+        
         stock.isiTabel();
+        
+        Font fontRegular = new Font("Century", Font.PLAIN, 14);
+        Font fontBold = new Font("Century", Font.BOLD, 14);
+        
+        btnUser.setFont(fontRegular);
+        btnHome.setFont(fontRegular);
+        btnBarang.setFont(fontBold);
+        btnCustomer.setFont(fontRegular);
+        btnSupplier.setFont(fontRegular);
+        btnMasuk.setFont(fontRegular);
+        btnKeluar.setFont(fontRegular);
+        btnMasukReport.setFont(fontRegular);
+        btnKeluarReport.setFont(fontRegular);
     }//GEN-LAST:event_btnBarangMouseClicked
 
     private void btnMyProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMyProfileMouseClicked
@@ -427,6 +515,22 @@ public final class formDashboard extends javax.swing.JFrame {
         
         masuk.setVisible(true);
         keluar.setVisible(false);
+        
+        laporanMasuk.setVisible(false);
+        laporanKeluar.setVisible(false);
+        
+        Font fontRegular = new Font("Century", Font.PLAIN, 14);
+        Font fontBold = new Font("Century", Font.BOLD, 14);
+        
+        btnUser.setFont(fontRegular);
+        btnHome.setFont(fontRegular);
+        btnBarang.setFont(fontRegular);
+        btnCustomer.setFont(fontRegular);
+        btnSupplier.setFont(fontRegular);
+        btnMasuk.setFont(fontBold);
+        btnKeluar.setFont(fontRegular);
+        btnMasukReport.setFont(fontRegular);
+        btnKeluarReport.setFont(fontRegular);
     }//GEN-LAST:event_btnMasukMouseClicked
 
     private void btnKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKeluarMouseClicked
@@ -439,42 +543,113 @@ public final class formDashboard extends javax.swing.JFrame {
         
         masuk.setVisible(false);
         keluar.setVisible(true);
+        
+        laporanMasuk.setVisible(false);
+        laporanKeluar.setVisible(false);
+        
+        Font fontRegular = new Font("Century", Font.PLAIN, 14);
+        Font fontBold = new Font("Century", Font.BOLD, 14);
+        
+        btnUser.setFont(fontRegular);
+        btnHome.setFont(fontRegular);
+        btnBarang.setFont(fontRegular);
+        btnCustomer.setFont(fontRegular);
+        btnSupplier.setFont(fontRegular);
+        btnMasuk.setFont(fontRegular);
+        btnKeluar.setFont(fontBold);
+        btnMasukReport.setFont(fontRegular);
+        btnKeluarReport.setFont(fontRegular);
     }//GEN-LAST:event_btnKeluarMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnMasukReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukReportMouseClicked
+        home.setVisible(false);
+        
+        user.setVisible(false);
+        stock.setVisible(false);
+        customer.setVisible(false);
+        supplier.setVisible(false);
+        
+        masuk.setVisible(false);
+        keluar.setVisible(false);
+        
+        laporanMasuk.setVisible(true);
+        laporanKeluar.setVisible(false);
+        
+        Font fontRegular = new Font("Century", Font.PLAIN, 14);
+        Font fontBold = new Font("Century", Font.BOLD, 14);
+        
+        btnUser.setFont(fontRegular);
+        btnHome.setFont(fontRegular);
+        btnBarang.setFont(fontRegular);
+        btnCustomer.setFont(fontRegular);
+        btnSupplier.setFont(fontRegular);
+        btnMasuk.setFont(fontRegular);
+        btnKeluar.setFont(fontRegular);
+        btnMasukReport.setFont(fontBold);
+        btnKeluarReport.setFont(fontRegular);
+    }//GEN-LAST:event_btnMasukReportMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new formDashboard().setVisible(true);
-                } catch (Exception e){
-                }
+    private void btnKeluarReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKeluarReportMouseClicked
+        home.setVisible(false);
+        
+        user.setVisible(false);
+        stock.setVisible(false);
+        customer.setVisible(false);
+        supplier.setVisible(false);
+        
+        masuk.setVisible(false);
+        keluar.setVisible(false);
+        
+        laporanMasuk.setVisible(false);
+        laporanKeluar.setVisible(true);
+        
+        Font fontRegular = new Font("Century", Font.PLAIN, 14);
+        Font fontBold = new Font("Century", Font.BOLD, 14);
+        
+        btnUser.setFont(fontRegular);
+        btnHome.setFont(fontRegular);
+        btnBarang.setFont(fontRegular);
+        btnCustomer.setFont(fontRegular);
+        btnSupplier.setFont(fontRegular);
+        btnMasuk.setFont(fontRegular);
+        btnKeluar.setFont(fontRegular);
+        btnMasukReport.setFont(fontRegular);
+        btnKeluarReport.setFont(fontBold);
+    }//GEN-LAST:event_btnKeluarReportMouseClicked
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        home.setVisible(true);
+        
+        user.setVisible(false);
+        stock.setVisible(false);
+        customer.setVisible(false);
+        supplier.setVisible(false);
+        
+        masuk.setVisible(false);
+        keluar.setVisible(false);
+        
+        laporanMasuk.setVisible(false);
+        laporanKeluar.setVisible(false);
+        
+        Font fontRegular = new Font("Century", Font.PLAIN, 14);
+        Font fontBold = new Font("Century", Font.BOLD, 14);
+        
+        btnUser.setFont(fontRegular);
+        btnHome.setFont(fontBold);
+        btnBarang.setFont(fontRegular);
+        btnCustomer.setFont(fontRegular);
+        btnSupplier.setFont(fontRegular);
+        btnMasuk.setFont(fontRegular);
+        btnKeluar.setFont(fontRegular);
+        btnMasukReport.setFont(fontRegular);
+        btnKeluarReport.setFont(fontRegular);
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new formDashboard().setVisible(true);
+            } catch (Exception e){
             }
         });
     }
@@ -499,10 +674,10 @@ public final class formDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel btnCustomer;
     private javax.swing.JLabel btnHome;
     private javax.swing.JLabel btnKeluar;
-    private javax.swing.JLabel btnKeluarReport1;
+    private javax.swing.JLabel btnKeluarReport;
     private javax.swing.JLabel btnLogout;
     private javax.swing.JLabel btnMasuk;
-    private javax.swing.JLabel btnMasukReport1;
+    private javax.swing.JLabel btnMasukReport;
     private javax.swing.JLabel btnMyProfile;
     private javax.swing.JLabel btnSupplier;
     private javax.swing.JLabel btnUser;
