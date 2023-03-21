@@ -1,6 +1,5 @@
 package code;
 
-import java.awt.BorderLayout;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
@@ -12,11 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
-import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 /**
