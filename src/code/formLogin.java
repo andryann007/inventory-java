@@ -214,9 +214,17 @@ public class formLogin extends javax.swing.JFrame {
             if(i>0)
             {
                 formDashboard dashboard = new formDashboard();
+                formProfile profile = new formProfile();
                 txtEmail.setText("");
                 txtPassword.setText("");
-                dashboard.txtNamaPengguna.setText("Halo, " + (res.getString(2).toUpperCase()));
+                dashboard.txtNamaPengguna.setText("Halo, " + (res.getString(2)));
+                
+                profile.txtNamaLengkapUser.setText(res.getString(2));
+//                profile.txtEmailUser.setText(res.getString(3));
+//                profile.txtPasswordUser.setText(res.getString(4));
+//                profile.txtTelpUser.setText(res.getString(5));
+//                profile.txtAlamatUser.setText(res.getString(6));
+//                profile.txtHakAksesUser.setText(res.getString(7));
                 dispose();
                 
                 dashboard.setVisible(true);

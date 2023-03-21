@@ -28,6 +28,8 @@ public final class formDashboard extends javax.swing.JFrame {
     formLaporanMasuk laporanMasuk = new formLaporanMasuk();
     formLaporanKeluar laporanKeluar = new formLaporanKeluar();
     
+    formProfile profil = new formProfile();
+    
     clsUser objUser = new clsUser();
     clsStock objStock = new clsStock();
     clsSupplier objSupplier = new clsSupplier();
@@ -65,6 +67,9 @@ public final class formDashboard extends javax.swing.JFrame {
         
         body.add(laporanKeluar);
         laporanKeluar.setVisible(false);
+        
+        body.add(profil);
+        profil.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -383,6 +388,7 @@ public final class formDashboard extends javax.swing.JFrame {
 
         btnToUser.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
         btnToUser.setText("More Info");
+        btnToUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnToUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnToUserMouseClicked(evt);
@@ -440,6 +446,7 @@ public final class formDashboard extends javax.swing.JFrame {
 
         btnToBarang.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
         btnToBarang.setText("More Info");
+        btnToBarang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnToBarang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnToBarangMouseClicked(evt);
@@ -482,6 +489,7 @@ public final class formDashboard extends javax.swing.JFrame {
 
         btnToSupplier.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
         btnToSupplier.setText("More Info");
+        btnToSupplier.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnToSupplier.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnToSupplierMouseClicked(evt);
@@ -539,6 +547,7 @@ public final class formDashboard extends javax.swing.JFrame {
 
         btnToCustomer.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
         btnToCustomer.setText("More Info");
+        btnToCustomer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnToCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnToCustomerMouseClicked(evt);
@@ -589,6 +598,7 @@ public final class formDashboard extends javax.swing.JFrame {
 
         btnToMasuk.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
         btnToMasuk.setText("More Info");
+        btnToMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnToMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnToMasukMouseClicked(evt);
@@ -636,6 +646,7 @@ public final class formDashboard extends javax.swing.JFrame {
 
         btnToKeluar.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
         btnToKeluar.setText("More Info");
+        btnToKeluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnToKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnToKeluarMouseClicked(evt);
@@ -775,6 +786,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -787,6 +800,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnUserMouseClicked
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
@@ -808,6 +822,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -820,6 +836,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnSupplierMouseClicked
 
     private void btnCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerMouseClicked
@@ -836,6 +853,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -848,6 +867,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnCustomerMouseClicked
 
     private void btnBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBarangMouseClicked
@@ -864,6 +884,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         stock.isiTabel(0);
         
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
@@ -878,10 +900,38 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnBarangMouseClicked
 
     private void btnMyProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMyProfileMouseClicked
-        // TODO add your handling code here:
+        home.setVisible(false);
+        
+        stock.setVisible(false);
+        supplier.setVisible(false);
+        customer.setVisible(false);
+        user.setVisible(false);
+        
+        masuk.setVisible(false);
+        keluar.setVisible(false);
+        
+        laporanMasuk.setVisible(false);
+        laporanKeluar.setVisible(false);
+        
+        profil.setVisible(true);
+        
+        Font fontRegular = new Font("Century", Font.PLAIN, 14);
+        Font fontBold = new Font("Century", Font.BOLD, 14);
+        
+        btnUser.setFont(fontRegular);
+        btnHome.setFont(fontRegular);
+        btnBarang.setFont(fontRegular);
+        btnCustomer.setFont(fontRegular);
+        btnSupplier.setFont(fontRegular);
+        btnMasuk.setFont(fontRegular);
+        btnKeluar.setFont(fontRegular);
+        btnMasukReport.setFont(fontRegular);
+        btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontBold);
     }//GEN-LAST:event_btnMyProfileMouseClicked
 
     private void btnMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseClicked
@@ -898,6 +948,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -910,6 +962,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnMasukMouseClicked
 
     private void btnKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKeluarMouseClicked
@@ -926,6 +979,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -938,6 +993,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontBold);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnKeluarMouseClicked
 
     private void btnMasukReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukReportMouseClicked
@@ -954,6 +1010,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(true);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -966,6 +1024,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontBold);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnMasukReportMouseClicked
 
     private void btnKeluarReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKeluarReportMouseClicked
@@ -982,6 +1041,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(true);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -994,6 +1055,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontBold);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnKeluarReportMouseClicked
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
@@ -1010,6 +1072,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -1022,6 +1086,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnHomeMouseClicked
 
     private void btnToUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToUserMouseClicked
@@ -1038,6 +1103,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -1050,6 +1117,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnToUserMouseClicked
 
     private void btnToBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToBarangMouseClicked
@@ -1066,6 +1134,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         stock.isiTabel(0);
         
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
@@ -1080,6 +1150,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnToBarangMouseClicked
 
     private void btnToSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToSupplierMouseClicked
@@ -1096,6 +1167,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -1108,6 +1181,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnToSupplierMouseClicked
 
     private void btnToCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToCustomerMouseClicked
@@ -1124,6 +1198,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -1136,6 +1212,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnToCustomerMouseClicked
 
     private void btnToMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToMasukMouseClicked
@@ -1152,6 +1229,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -1164,6 +1243,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontRegular);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnToMasukMouseClicked
 
     private void btnToKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToKeluarMouseClicked
@@ -1180,6 +1260,8 @@ public final class formDashboard extends javax.swing.JFrame {
         laporanMasuk.setVisible(false);
         laporanKeluar.setVisible(false);
         
+        profil.setVisible(false);
+        
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
@@ -1192,6 +1274,7 @@ public final class formDashboard extends javax.swing.JFrame {
         btnKeluar.setFont(fontBold);
         btnMasukReport.setFont(fontRegular);
         btnKeluarReport.setFont(fontRegular);
+        btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnToKeluarMouseClicked
 
     public static void main(String args[]) {
@@ -1220,49 +1303,57 @@ public final class formDashboard extends javax.swing.JFrame {
     public void isiData(){
         try{
             objUser.Access();
-            objUser.getUserData();
-            String sqlUser = "SELECT COUNT(id_user) FROM data_user";
+            String sqlUser = "SELECT COUNT(id_user) AS qty_user FROM data_user";
             Statement stateUser = objUser.conn.createStatement();
             ResultSet resultUser = stateUser.executeQuery(sqlUser);
-            txtJumlahUser.setText(resultUser.getString(1));
+            while(resultUser.next()){
+                txtJumlahUser.setText(resultUser.getString("qty_user"));
+            }
             
             objStock.Access();
-            objStock.getStockData();
-            String sqlStock = "SELECT COUNT(id_barang) FROM data_stock";
+            String sqlStock = "SELECT COUNT(id_barang) AS qty_barang FROM data_stock";
             Statement stateStock = objStock.conn.createStatement();
             ResultSet resultStock = stateStock.executeQuery(sqlStock);
-            txtJumlahBarang.setText(resultStock.getString(1));
+            while(resultStock.next()){
+                txtJumlahBarang.setText(resultStock.getString("qty_barang"));
+            }
             
             objSupplier.Access();
-            objSupplier.getSupplierData();
-            String sqlSupplier = "SELECT COUNT(id_supplier) FROM data_supplier";
+            String sqlSupplier = "SELECT COUNT(id_supplier) AS qty_supplier FROM data_supplier";
             Statement stateSupplier = objSupplier.conn.createStatement();
             ResultSet resultSupplier = stateSupplier.executeQuery(sqlSupplier);
-            txtJumlahSupplier.setText(resultSupplier.getString(1));
+            while(resultSupplier.next()){
+                txtJumlahSupplier.setText(resultSupplier.getString("qty_supplier"));
+            }
             
             objCustomer.Access();
-            objCustomer.getCustomerData();
-            String sqlCustomer = "SELECT COUNT(id_customer) FROM data_customer";
+            String sqlCustomer = "SELECT COUNT(id_customer) AS qty_customer FROM data_customer";
             Statement stateCustomer = objCustomer.conn.createStatement();
             ResultSet resultCustomer = stateCustomer.executeQuery(sqlCustomer);
-            txtJumlahCustomer.setText(resultCustomer.getString(1));
+            while(resultCustomer.next()){
+                txtJumlahCustomer.setText(resultCustomer.getString("qty_customer"));
+            }
             
             objMasuk.Access();
-            objMasuk.getIncomingData();
-            String sqlMasuk = "SELECT COUNT(id_masuk) FROM data_barang_masuk";
+            String sqlMasuk = "SELECT COUNT(id_masuk) AS qty_data_masuk FROM data_barang_masuk";
             Statement stateMasuk = objMasuk.conn.createStatement();
             ResultSet resultMasuk = stateMasuk.executeQuery(sqlMasuk);
-            txtJumlahMasuk.setText(resultMasuk.getString(1));
+            while(resultMasuk.next()){
+                txtJumlahMasuk.setText(resultMasuk.getString("qty_data_masuk"));
+            }
+            
             
             objKeluar.Access();
-            objKeluar.getOutcomingData();
-            String sqlKeluar = "SELECT COUNT(id_keluar) FROM data_barang_keluar";
+            String sqlKeluar = "SELECT COUNT(id_keluar) AS qty_data_keluar FROM data_barang_keluar";
             Statement stateKeluar = objKeluar.conn.createStatement();
             ResultSet resultKeluar = stateKeluar.executeQuery(sqlKeluar);
-            txtJumlahKeluar.setText(resultKeluar.getString(1));
+            while(resultKeluar.next()){
+                txtJumlahKeluar.setText(resultKeluar.getString("qty_data_keluar"));
+            }
+            
         }
         catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Proses Penampilan Data Gagal");
+            JOptionPane.showMessageDialog(null, "Proses Penampilan Data Dashboard Gagal");
         }
         
     }
