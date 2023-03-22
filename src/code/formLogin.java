@@ -1,9 +1,10 @@
 package code;
 
+import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,8 +13,13 @@ import javax.swing.JOptionPane;
  */
 public class formLogin extends javax.swing.JFrame {
 
+    formDashboardOwner dashboardOwner = new formDashboardOwner();
+    formDashboardAdmin dashboardAdmin = new formDashboardAdmin();
+    formDashboardUser dashboardUser = new formDashboardUser();
+    
+    formProfile profile = new formProfile();
+                    
     clsLogin objLogin = new clsLogin();
-    formDashboard dashboard = new formDashboard();
     
     public formLogin() {
         initComponents();
@@ -127,16 +133,15 @@ public class formLogin extends javax.swing.JFrame {
                     .addGroup(secondPanelLayout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addComponent(labelLogin))
-                    .addGroup(secondPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(secondPanelLayout.createSequentialGroup()
-                            .addGroup(secondPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(labelPassword)
-                                .addComponent(labelEmail))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(secondPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtEmail)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(secondPanelLayout.createSequentialGroup()
+                        .addGroup(secondPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelPassword)
+                            .addComponent(labelEmail))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(secondPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtEmail)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(115, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, secondPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -206,82 +211,70 @@ public class formLogin extends javax.swing.JFrame {
             objLogin.mPassword = txtPassword.getText();
             objLogin.confirmUser();
             objLogin.sql = "select * from data_user where email = '" + txtEmail.getText() + "' and password = '" + txtPassword.getText() + "'";
-            Statement stat = objLogin.conn.createStatement();
-            ResultSet res = stat.executeQuery(objLogin.sql);
-            res.last();
-          
-            int i = res.getRow();
-            if(i>0)
-            {
-                formDashboard dashboard = new formDashboard();
-                formProfile profile = new formProfile();
-                txtEmail.setText("");
-                txtPassword.setText("");
-                dashboard.txtNamaPengguna.setText("Halo, " + (res.getString(2)));
+            try (Statement stat = objLogin.conn.createStatement()) {
+                ResultSet res = stat.executeQuery(objLogin.sql);
+                res.last();
                 
-                profile.txtNamaLengkapUser.setText(res.getString(2));
-//                profile.txtEmailUser.setText(res.getString(3));
-//                profile.txtPasswordUser.setText(res.getString(4));
-//                profile.txtTelpUser.setText(res.getString(5));
-//                profile.txtAlamatUser.setText(res.getString(6));
-//                profile.txtHakAksesUser.setText(res.getString(7));
-                dispose();
+                int i = res.getRow();
+                if(i>0)
+                {
+                    if(res.getString("tipe_akun").equalsIgnoreCase("Owner")){
+                        txtEmail.setText("");
+                        txtPassword.setText("");
+                        dashboardOwner.txtNamaPengguna.setText("Halo, " + (res.getString("nama_lengkap")));
+                        
+                        dashboardOwner.setVisible(true);
+                        dashboardAdmin.setVisible(false);
+                        dashboardUser.setVisible(false);
+                    } else if(res.getString("tipe_akun").equalsIgnoreCase("Admin")){
+                        txtEmail.setText("");
+                        txtPassword.setText("");
+                        dashboardAdmin.txtNamaPengguna.setText("Halo, " + (res.getString("nama_lengkap")));
+                        
+                        dashboardOwner.setVisible(false);
+                        dashboardAdmin.setVisible(true);
+                        dashboardUser.setVisible(false);
+                    } else if(res.getString("tipe_akun").equalsIgnoreCase("User")){
+                        txtEmail.setText("");
+                        txtPassword.setText("");
+                        dashboardUser.txtNamaPengguna.setText("Halo, " + (res.getString("nama_lengkap")));
+                        
+                        dashboardOwner.setVisible(false);
+                        dashboardAdmin.setVisible(false);
+                        dashboardUser.setVisible(true);
+                    }
+                    this.dispose();
                 
-                dashboard.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Berhasil login !!!");
+                    
+                    profile.txtNamaLengkapUser.setText(res.getString("nama_lengkap"));
+                    profile.txtEmailUser.setText(res.getString("email"));
+                    profile.txtPasswordUser.setText(res.getString("password"));
+                    profile.txtTelpUser.setText(res.getString("telp"));
+                    profile.txtAlamatUser.setText(res.getString("alamat"));
+                    profile.txtHakAksesUser.setText(res.getString("tipe_akun"));
+                }
                 
-                JOptionPane.showMessageDialog(null, "Berhasil login !!!");
+                else if(i==0)
+                {
+                    JOptionPane.showMessageDialog(null, "Terjadi Kesalahan !!!");
+                    System.out.println();
+                }
             }
-          
-            else if(i==0)
-            {
-                JOptionPane.showMessageDialog(null, "Terjadi Kesalahan !!!");
-                System.out.println();
-            }
-            stat.close();
-            //dispose();
         }
-        catch(Exception e)
+        catch(HeadlessException | SQLException e)
         {
-            JOptionPane.showMessageDialog(null, "Tidak bisa login, Coba Lagi Nanti !!!");
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_btnExitMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(formLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(formLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(formLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(formLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new formLogin().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new formLogin().setVisible(true);
         });
     }
 
@@ -294,7 +287,7 @@ public class formLogin extends javax.swing.JFrame {
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel secondPanel;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JPasswordField txtPassword;
+    public javax.swing.JTextField txtEmail;
+    public javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }

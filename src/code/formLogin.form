@@ -104,20 +104,18 @@
                           <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="labelLogin" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="btnLogin" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="labelPassword" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelEmail" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtEmail" max="32767" attributes="0"/>
-                                  <Component id="txtPassword" min="-2" pref="200" max="-2" attributes="0"/>
-                              </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="labelPassword" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelEmail" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtEmail" max="32767" attributes="0"/>
+                              <Component id="txtPassword" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Component id="btnLogin" alignment="1" min="-2" pref="110" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="115" max="32767" attributes="0"/>
               </Group>
@@ -177,6 +175,9 @@
           <Events>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEmailKeyPressed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="labelPassword">
           <Properties>
@@ -196,6 +197,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPasswordActionPerformed"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPasswordKeyPressed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="btnLogin">
           <Properties>

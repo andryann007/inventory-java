@@ -1,4 +1,11 @@
 package code;
+
+import java.awt.HeadlessException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Andryan
@@ -8,7 +15,6 @@ public final class formProfile extends javax.swing.JPanel {
     public formProfile() {
         initComponents();
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -28,7 +34,6 @@ public final class formProfile extends javax.swing.JPanel {
         txtTelpUser = new javax.swing.JLabel();
         labelAlamatUser = new javax.swing.JLabel();
         txtAlamatUser = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         panelFooter = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -97,20 +102,15 @@ public final class formProfile extends javax.swing.JPanel {
 
         txtAlamatUser.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user-solid_md.png"))); // NOI18N
-
         javax.swing.GroupLayout panelBodyLayout = new javax.swing.GroupLayout(panelBody);
         panelBody.setLayout(panelBodyLayout);
         panelBodyLayout.setHorizontalGroup(
             panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBodyLayout.createSequentialGroup()
                 .addGap(68, 68, 68)
-                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBodyLayout.createSequentialGroup()
-                        .addComponent(labelHakAksesUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtHakAksesUser))
-                    .addComponent(jLabel2))
+                .addComponent(labelHakAksesUser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtHakAksesUser)
                 .addGap(26, 26, 26)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBodyLayout.createSequentialGroup()
@@ -140,33 +140,27 @@ public final class formProfile extends javax.swing.JPanel {
         panelBodyLayout.setVerticalGroup(
             panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBodyLayout.createSequentialGroup()
-                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBodyLayout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelNamaLengkapUser)
-                            .addComponent(txtNamaLengkapUser))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelEmailUser)
-                            .addComponent(txtEmailUser))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelPasswordUser)
-                            .addComponent(txtPasswordUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelTelpUser)
-                            .addComponent(txtTelpUser))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelAlamatUser)
-                            .addComponent(txtAlamatUser))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBodyLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)))
+                .addGap(101, 101, 101)
+                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNamaLengkapUser)
+                    .addComponent(txtNamaLengkapUser))
+                .addGap(18, 18, 18)
+                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelEmailUser)
+                    .addComponent(txtEmailUser))
+                .addGap(18, 18, 18)
+                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPasswordUser)
+                    .addComponent(txtPasswordUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTelpUser)
+                    .addComponent(txtTelpUser))
+                .addGap(18, 18, 18)
+                .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAlamatUser)
+                    .addComponent(txtAlamatUser))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelHakAksesUser)
                     .addComponent(txtHakAksesUser))
@@ -196,7 +190,6 @@ public final class formProfile extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPasswordUserActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelAlamatUser;
     private javax.swing.JLabel labelEmailUser;
     private javax.swing.JLabel labelHakAksesUser;

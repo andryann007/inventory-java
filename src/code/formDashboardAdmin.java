@@ -14,10 +14,9 @@ import javax.swing.Timer;
  *
  * @author Andryan
  */
-public final class formDashboard extends javax.swing.JFrame {
+public final class formDashboardAdmin extends javax.swing.JFrame {
     clsLogin objLogin = new clsLogin();
     
-    formUser user = new formUser();
     formStock stock = new formStock();
     formSupplier supplier = new formSupplier();
     formCustomer customer = new formCustomer();
@@ -30,7 +29,6 @@ public final class formDashboard extends javax.swing.JFrame {
     
     formProfile profil = new formProfile();
     
-    clsUser objUser = new clsUser();
     clsStock objStock = new clsStock();
     clsSupplier objSupplier = new clsSupplier();
     clsCustomer objCustomer = new clsCustomer();
@@ -38,14 +36,11 @@ public final class formDashboard extends javax.swing.JFrame {
     clsMasuk objMasuk = new clsMasuk();
     clsKeluar objKeluar = new clsKeluar();
     
-    public formDashboard() {
+    public formDashboardAdmin() {
         initComponents();
         showCurrentDate();
         showCurrentTime();
         isiData();
-        
-        body.add(user);
-        user.setVisible(false);
         
         body.add(stock);
         stock.setVisible(false);
@@ -83,7 +78,6 @@ public final class formDashboard extends javax.swing.JFrame {
         panelHome = new javax.swing.JPanel();
         btnHome = new javax.swing.JLabel();
         panelMasterData = new javax.swing.JPanel();
-        btnUser = new javax.swing.JLabel();
         btnBarang = new javax.swing.JLabel();
         btnSupplier = new javax.swing.JLabel();
         labelMasterData = new javax.swing.JLabel();
@@ -104,11 +98,6 @@ public final class formDashboard extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         body = new javax.swing.JPanel();
         home = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        btnToUser = new javax.swing.JButton();
-        txtJumlahUser = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        labelUser = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         labelBarang = new javax.swing.JLabel();
         txtJumlahBarang = new javax.swing.JLabel();
@@ -153,13 +142,13 @@ public final class formDashboard extends javax.swing.JFrame {
         sidebar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        sidebar.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 280, 10));
+        sidebar.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 280, 10));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         sidebar.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 49, 280, 10));
 
         jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
-        sidebar.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 280, 10));
+        sidebar.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 280, 10));
 
         panelHome.setBackground(new java.awt.Color(255, 255, 255));
         panelHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -184,20 +173,6 @@ public final class formDashboard extends javax.swing.JFrame {
         panelMasterData.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelMasterData.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnUser.setBackground(new java.awt.Color(255, 255, 255));
-        btnUser.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
-        btnUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/id-card-solid.png"))); // NOI18N
-        btnUser.setText("Data User");
-        btnUser.setAlignmentX(1.0F);
-        btnUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnUser.setIconTextGap(15);
-        btnUser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnUserMouseClicked(evt);
-            }
-        });
-        panelMasterData.add(btnUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 240, 50));
-
         btnBarang.setBackground(new java.awt.Color(255, 255, 255));
         btnBarang.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
         btnBarang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/product.png"))); // NOI18N
@@ -209,7 +184,7 @@ public final class formDashboard extends javax.swing.JFrame {
                 btnBarangMouseClicked(evt);
             }
         });
-        panelMasterData.add(btnBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 240, 50));
+        panelMasterData.add(btnBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 240, 50));
 
         btnSupplier.setBackground(new java.awt.Color(255, 255, 255));
         btnSupplier.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
@@ -222,7 +197,7 @@ public final class formDashboard extends javax.swing.JFrame {
                 btnSupplierMouseClicked(evt);
             }
         });
-        panelMasterData.add(btnSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 240, 50));
+        panelMasterData.add(btnSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 240, 50));
 
         labelMasterData.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelMasterData.setText("Master Data");
@@ -239,9 +214,9 @@ public final class formDashboard extends javax.swing.JFrame {
                 btnCustomerMouseClicked(evt);
             }
         });
-        panelMasterData.add(btnCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 240, 50));
+        panelMasterData.add(btnCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 240, 50));
 
-        sidebar.add(panelMasterData, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 280, 230));
+        sidebar.add(panelMasterData, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 280, 180));
 
         panelTransaksi.setBackground(new java.awt.Color(255, 255, 255));
         panelTransaksi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -277,7 +252,7 @@ public final class formDashboard extends javax.swing.JFrame {
         });
         panelTransaksi.add(btnKeluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 240, 50));
 
-        sidebar.add(panelTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 280, 140));
+        sidebar.add(panelTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 280, 140));
 
         panelProfile.setBackground(new java.awt.Color(255, 255, 255));
         panelProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -313,7 +288,7 @@ public final class formDashboard extends javax.swing.JFrame {
         });
         panelProfile.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 240, 50));
 
-        sidebar.add(panelProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 280, 120));
+        sidebar.add(panelProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 280, 120));
 
         panelLaporan.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -372,7 +347,7 @@ public final class formDashboard extends javax.swing.JFrame {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        sidebar.add(panelLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 280, 140));
+        sidebar.add(panelLaporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 280, 140));
 
         jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
         sidebar.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 280, 10));
@@ -385,54 +360,6 @@ public final class formDashboard extends javax.swing.JFrame {
         body.setLayout(new javax.swing.BoxLayout(body, javax.swing.BoxLayout.LINE_AXIS));
 
         home.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnToUser.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
-        btnToUser.setText("More Info");
-        btnToUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnToUser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnToUserMouseClicked(evt);
-            }
-        });
-
-        txtJumlahUser.setFont(new java.awt.Font("Century", 1, 24)); // NOI18N
-        txtJumlahUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        jLabel4.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Data User");
-
-        labelUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/id-card-solid_md.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(txtJumlahUser, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelUser, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(btnToUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtJumlahUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(labelUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(btnToUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
 
         labelBarang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelBarang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/box-solid_md.png"))); // NOI18N
@@ -462,7 +389,7 @@ public final class formDashboard extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtJumlahBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(labelBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -704,13 +631,9 @@ public final class formDashboard extends javax.swing.JFrame {
                         .addComponent(jLabel14))
                     .addGroup(homeLayout.createSequentialGroup()
                         .addGap(130, 130, 130)
-                        .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64)
-                        .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(homeLayout.createSequentialGroup()
                         .addGap(130, 130, 130)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -719,8 +642,13 @@ public final class formDashboard extends javax.swing.JFrame {
                 .addContainerGap(111, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homeLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel15)
-                .addGap(279, 279, 279))
+                .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homeLayout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(279, 279, 279))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homeLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(257, 257, 257))))
         );
         homeLayout.setVerticalGroup(
             homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -728,9 +656,7 @@ public final class formDashboard extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -772,37 +698,6 @@ public final class formDashboard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserMouseClicked
-        home.setVisible(false);
-        
-        stock.setVisible(false);
-        supplier.setVisible(false);
-        customer.setVisible(false);
-        user.setVisible(true);
-        
-        masuk.setVisible(false);
-        keluar.setVisible(false);
-        
-        laporanMasuk.setVisible(false);
-        laporanKeluar.setVisible(false);
-        
-        profil.setVisible(false);
-        
-        Font fontRegular = new Font("Century", Font.PLAIN, 14);
-        Font fontBold = new Font("Century", Font.BOLD, 14);
-        
-        btnUser.setFont(fontBold);
-        btnHome.setFont(fontRegular);
-        btnBarang.setFont(fontRegular);
-        btnCustomer.setFont(fontRegular);
-        btnSupplier.setFont(fontRegular);
-        btnMasuk.setFont(fontRegular);
-        btnKeluar.setFont(fontRegular);
-        btnMasukReport.setFont(fontRegular);
-        btnKeluarReport.setFont(fontRegular);
-        btnMyProfile.setFont(fontRegular);
-    }//GEN-LAST:event_btnUserMouseClicked
-
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
         objLogin.logoutUser();
         dispose();
@@ -811,7 +706,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierMouseClicked
         home.setVisible(false);
         
-        user.setVisible(false);
         stock.setVisible(false);
         supplier.setVisible(true);
         customer.setVisible(false);
@@ -827,7 +721,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontRegular);
         btnCustomer.setFont(fontRegular);
@@ -842,7 +735,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomerMouseClicked
         home.setVisible(false);
         
-        user.setVisible(false);
         stock.setVisible(false);
         supplier.setVisible(false);
         customer.setVisible(true);
@@ -858,7 +750,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontRegular);
         btnCustomer.setFont(fontBold);
@@ -873,7 +764,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBarangMouseClicked
         home.setVisible(false);
         
-        user.setVisible(false);
         stock.setVisible(true);
         supplier.setVisible(false);
         customer.setVisible(false);
@@ -891,7 +781,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontBold);
         btnCustomer.setFont(fontRegular);
@@ -909,7 +798,6 @@ public final class formDashboard extends javax.swing.JFrame {
         stock.setVisible(false);
         supplier.setVisible(false);
         customer.setVisible(false);
-        user.setVisible(false);
         
         masuk.setVisible(false);
         keluar.setVisible(false);
@@ -922,7 +810,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontRegular);
         btnCustomer.setFont(fontRegular);
@@ -937,7 +824,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukMouseClicked
         home.setVisible(false);
         
-        user.setVisible(false);
         supplier.setVisible(false);
         customer.setVisible(false);
         stock.setVisible(false);
@@ -953,7 +839,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontRegular);
         btnCustomer.setFont(fontRegular);
@@ -968,7 +853,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKeluarMouseClicked
         home.setVisible(false);
         
-        user.setVisible(false);
         stock.setVisible(false);
         customer.setVisible(false);
         supplier.setVisible(false);
@@ -984,7 +868,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontRegular);
         btnCustomer.setFont(fontRegular);
@@ -999,7 +882,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnMasukReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMasukReportMouseClicked
         home.setVisible(false);
         
-        user.setVisible(false);
         stock.setVisible(false);
         customer.setVisible(false);
         supplier.setVisible(false);
@@ -1015,7 +897,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontRegular);
         btnCustomer.setFont(fontRegular);
@@ -1030,7 +911,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnKeluarReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKeluarReportMouseClicked
         home.setVisible(false);
         
-        user.setVisible(false);
         stock.setVisible(false);
         customer.setVisible(false);
         supplier.setVisible(false);
@@ -1046,7 +926,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontRegular);
         btnCustomer.setFont(fontRegular);
@@ -1061,7 +940,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
         home.setVisible(true);
         
-        user.setVisible(false);
         stock.setVisible(false);
         customer.setVisible(false);
         supplier.setVisible(false);
@@ -1077,7 +955,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontBold);
         btnBarang.setFont(fontRegular);
         btnCustomer.setFont(fontRegular);
@@ -1089,41 +966,9 @@ public final class formDashboard extends javax.swing.JFrame {
         btnMyProfile.setFont(fontRegular);
     }//GEN-LAST:event_btnHomeMouseClicked
 
-    private void btnToUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToUserMouseClicked
-        home.setVisible(false);
-        
-        stock.setVisible(false);
-        supplier.setVisible(false);
-        customer.setVisible(false);
-        user.setVisible(true);
-        
-        masuk.setVisible(false);
-        keluar.setVisible(false);
-        
-        laporanMasuk.setVisible(false);
-        laporanKeluar.setVisible(false);
-        
-        profil.setVisible(false);
-        
-        Font fontRegular = new Font("Century", Font.PLAIN, 14);
-        Font fontBold = new Font("Century", Font.BOLD, 14);
-        
-        btnUser.setFont(fontBold);
-        btnHome.setFont(fontRegular);
-        btnBarang.setFont(fontRegular);
-        btnCustomer.setFont(fontRegular);
-        btnSupplier.setFont(fontRegular);
-        btnMasuk.setFont(fontRegular);
-        btnKeluar.setFont(fontRegular);
-        btnMasukReport.setFont(fontRegular);
-        btnKeluarReport.setFont(fontRegular);
-        btnMyProfile.setFont(fontRegular);
-    }//GEN-LAST:event_btnToUserMouseClicked
-
     private void btnToBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToBarangMouseClicked
         home.setVisible(false);
         
-        user.setVisible(false);
         stock.setVisible(true);
         supplier.setVisible(false);
         customer.setVisible(false);
@@ -1141,7 +986,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontBold);
         btnCustomer.setFont(fontRegular);
@@ -1156,7 +1000,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnToSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToSupplierMouseClicked
         home.setVisible(false);
         
-        user.setVisible(false);
         stock.setVisible(false);
         supplier.setVisible(true);
         customer.setVisible(false);
@@ -1172,7 +1015,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontRegular);
         btnCustomer.setFont(fontRegular);
@@ -1187,7 +1029,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnToCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToCustomerMouseClicked
         home.setVisible(false);
         
-        user.setVisible(false);
         stock.setVisible(false);
         supplier.setVisible(false);
         customer.setVisible(true);
@@ -1203,7 +1044,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontRegular);
         btnCustomer.setFont(fontBold);
@@ -1218,7 +1058,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnToMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToMasukMouseClicked
         home.setVisible(false);
         
-        user.setVisible(false);
         stock.setVisible(false);
         supplier.setVisible(false);
         customer.setVisible(false);
@@ -1234,7 +1073,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontRegular);
         btnCustomer.setFont(fontRegular);
@@ -1249,7 +1087,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private void btnToKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToKeluarMouseClicked
         home.setVisible(false);
         
-        user.setVisible(false);
         stock.setVisible(false);
         supplier.setVisible(false);
         customer.setVisible(false);
@@ -1265,7 +1102,6 @@ public final class formDashboard extends javax.swing.JFrame {
         Font fontRegular = new Font("Century", Font.PLAIN, 14);
         Font fontBold = new Font("Century", Font.BOLD, 14);
         
-        btnUser.setFont(fontRegular);
         btnHome.setFont(fontRegular);
         btnBarang.setFont(fontRegular);
         btnCustomer.setFont(fontRegular);
@@ -1280,7 +1116,7 @@ public final class formDashboard extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             try {
-                new formDashboard().setVisible(true);
+                new formDashboardAdmin().setVisible(true);
             } catch (Exception e){
             }
         });
@@ -1302,14 +1138,6 @@ public final class formDashboard extends javax.swing.JFrame {
     
     public void isiData(){
         try{
-            objUser.Access();
-            String sqlUser = "SELECT COUNT(id_user) AS qty_user FROM data_user";
-            Statement stateUser = objUser.conn.createStatement();
-            ResultSet resultUser = stateUser.executeQuery(sqlUser);
-            while(resultUser.next()){
-                txtJumlahUser.setText(resultUser.getString("qty_user"));
-            }
-            
             objStock.Access();
             String sqlStock = "SELECT COUNT(id_barang) AS qty_barang FROM data_stock";
             Statement stateStock = objStock.conn.createStatement();
@@ -1375,8 +1203,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnToKeluar;
     private javax.swing.JButton btnToMasuk;
     private javax.swing.JButton btnToSupplier;
-    private javax.swing.JButton btnToUser;
-    private javax.swing.JLabel btnUser;
     private javax.swing.JPanel header;
     private javax.swing.JPanel home;
     private javax.swing.JLabel jLabel13;
@@ -1384,10 +1210,8 @@ public final class formDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1408,7 +1232,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel labelMasuk;
     private javax.swing.JLabel labelSupplier;
     private javax.swing.JLabel labelTransaksi;
-    private javax.swing.JLabel labelUser;
     private javax.swing.JPanel panelHome;
     private javax.swing.JPanel panelLaporan;
     private javax.swing.JPanel panelMasterData;
@@ -1421,7 +1244,6 @@ public final class formDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel txtJumlahKeluar;
     private javax.swing.JLabel txtJumlahMasuk;
     private javax.swing.JLabel txtJumlahSupplier;
-    private javax.swing.JLabel txtJumlahUser;
     public javax.swing.JLabel txtNamaPengguna;
     private javax.swing.JLabel txtTime;
     // End of variables declaration//GEN-END:variables
