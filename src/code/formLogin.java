@@ -221,7 +221,7 @@ public class formLogin extends javax.swing.JFrame {
                     if(res.getString("tipe_akun").equalsIgnoreCase("Owner")){
                         txtEmail.setText("");
                         txtPassword.setText("");
-                        dashboardOwner.txtNamaPengguna.setText("Halo, " + (res.getString("nama_lengkap")));
+                        dashboardOwner.txtNamaPengguna.setText("Halo, " + (res.getString("nama_lengkap") + " (" + res.getString("tipe_akun") + ") "));
                         
                         dashboardOwner.setVisible(true);
                         dashboardAdmin.setVisible(false);
@@ -229,7 +229,7 @@ public class formLogin extends javax.swing.JFrame {
                     } else if(res.getString("tipe_akun").equalsIgnoreCase("Admin")){
                         txtEmail.setText("");
                         txtPassword.setText("");
-                        dashboardAdmin.txtNamaPengguna.setText("Halo, " + (res.getString("nama_lengkap")));
+                        dashboardAdmin.txtNamaPengguna.setText("Halo, " + (res.getString("nama_lengkap") + " (" + res.getString("tipe_akun") + ") "));
                         
                         dashboardOwner.setVisible(false);
                         dashboardAdmin.setVisible(true);
@@ -237,7 +237,7 @@ public class formLogin extends javax.swing.JFrame {
                     } else if(res.getString("tipe_akun").equalsIgnoreCase("User")){
                         txtEmail.setText("");
                         txtPassword.setText("");
-                        dashboardUser.txtNamaPengguna.setText("Halo, " + (res.getString("nama_lengkap")));
+                        dashboardUser.txtNamaPengguna.setText("Halo, " + (res.getString("nama_lengkap") + " (" + res.getString("tipe_akun") + ") "));
                         
                         dashboardOwner.setVisible(false);
                         dashboardAdmin.setVisible(false);
