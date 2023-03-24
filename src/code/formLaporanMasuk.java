@@ -486,8 +486,8 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
             
             switch (cboJenisTransaksi.getSelectedIndex()) {
                 case 0 ->{
-                       String sql = "SELECT id_masuk, tgl_masuk, nama_barang, nama_supplier, "
-                                + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
+                       String sql = "SELECT id_masuk AS 'ID Masuk', tgl_masuk AS 'Tgl Masuk', nama_barang AS 'Nama Barang', nama_supplier AS 'Nama Supplier', "
+                                + " m.harga_satuan AS 'Harga Satuan', qty_masuk AS 'QTY', m.total_harga AS 'Total Harga', keterangan AS 'Keterangan', jenis_transaksi AS 'Jenis Transaksi' FROM `data_barang_masuk` m,"
                                 + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang";
                         Statement state = objMasuk.conn.createStatement();
                         ResultSet result = state.executeQuery(sql);
@@ -495,9 +495,9 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
                     }
                 case 1 ->{
                         String jenis_transaksi = "pembelian";
-                        String sql = "SELECT id_masuk, tgl_masuk, nama_barang, nama_supplier, "
-                                + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
-                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang"
+                        String sql = "SELECT id_masuk AS 'ID Masuk', tgl_masuk AS 'Tgl Masuk', nama_barang AS 'Nama Barang', nama_supplier AS 'Nama Supplier', "
+                                + " m.harga_satuan AS 'Harga Satuan', qty_masuk AS 'QTY', m.total_harga AS 'Total Harga', keterangan AS 'Keterangan', jenis_transaksi AS 'Jenis Transaksi' FROM `data_barang_masuk` m,"
+                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang" 
                                 + " AND m.jenis_transaksi = '" + jenis_transaksi + "'";
                         Statement state = objMasuk.conn.createStatement();
                         ResultSet result = state.executeQuery(sql);    
@@ -506,20 +506,18 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
                 
                 case 2 ->{
                         String jenis_transaksi = "retur_pembelian";
-                        String sql = "SELECT id_masuk, tgl_masuk, nama_barang, nama_supplier, "
-                                + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
-                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang"
+                        String sql = "SELECT id_masuk AS 'ID Masuk', tgl_masuk AS 'Tgl Masuk', nama_barang AS 'Nama Barang', nama_supplier AS 'Nama Supplier', "
+                                + " m.harga_satuan AS 'Harga Satuan', qty_masuk AS 'QTY', m.total_harga AS 'Total Harga', keterangan AS 'Keterangan', jenis_transaksi AS 'Jenis Transaksi' FROM `data_barang_masuk` m,"
+                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang" 
                                 + " AND m.jenis_transaksi = '" + jenis_transaksi + "'";
                         Statement state = objMasuk.conn.createStatement();
                         ResultSet result = state.executeQuery(sql);     
                         tabelBarangMasuk.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(result));
                     }
                 default ->                     {
-                        String jenis_transaksi = "pembelian";
-                        String sql = "SELECT id_masuk, tgl_masuk, nama_barang, nama_supplier, "
-                                + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
-                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang"
-                                + " AND m.jenis_transaksi = '" + jenis_transaksi + "'";
+                        String sql = "SELECT id_masuk AS 'ID Masuk', tgl_masuk AS 'Tgl Masuk', nama_barang AS 'Nama Barang', nama_supplier AS 'Nama Supplier', "
+                                + " m.harga_satuan AS 'Harga Satuan', qty_masuk AS 'QTY', m.total_harga AS 'Total Harga', keterangan AS 'Keterangan', jenis_transaksi AS 'Jenis Transaksi' FROM `data_barang_masuk` m,"
+                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang";
                         Statement state = objMasuk.conn.createStatement();
                         ResultSet result = state.executeQuery(sql);       
                         tabelBarangMasuk.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(result));

@@ -476,10 +476,10 @@ public final class formLaporanKeluar extends javax.swing.JPanel {
             
             switch (cboJenisTransaksi.getSelectedIndex()) {
                 case 0 ->{
-                    String sql = "SELECT id_keluar, tgl_keluar, nama_barang, nama_customer, "
-                        + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
-                            + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
-                            + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang";
+                    String sql = "SELECT id_keluar AS 'ID Keluar', tgl_keluar AS 'Tgl Keluar', nama_barang AS 'Nama Barang', nama_customer AS 'Nama Customer', "
+                            + " k.harga_satuan AS 'Harga Satuan', qty_keluar AS 'QTY', k.total_harga AS 'Total Harga', keterangan AS 'Keterangan', jenis_transaksi AS 'Jenis Transaksi'"
+                            + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s"
+                            + " WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang";
                     Statement state = objKeluar.conn.createStatement();
                     ResultSet result = state.executeQuery(sql);
             
@@ -487,10 +487,10 @@ public final class formLaporanKeluar extends javax.swing.JPanel {
                 }
                 case 1 ->{
                     String jenis_transaksi = "penjualan";
-                    String sql = "SELECT id_keluar, tgl_keluar, nama_barang, nama_customer, "
-                            + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
-                            + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
-                            + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang"
+                    String sql = "SELECT id_keluar AS 'ID Keluar', tgl_keluar AS 'Tgl Keluar', nama_barang AS 'Nama Barang', nama_customer AS 'Nama Customer', "
+                            + " k.harga_satuan AS 'Harga Satuan', qty_keluar AS 'QTY', k.total_harga AS 'Total Harga', keterangan AS 'Keterangan', jenis_transaksi AS 'Jenis Transaksi'"
+                            + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s"
+                            + " WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang"
                             + " AND jenis_transaksi = '" + jenis_transaksi + "'";
                     Statement state = objKeluar.conn.createStatement();
                     ResultSet result = state.executeQuery(sql);
@@ -500,10 +500,10 @@ public final class formLaporanKeluar extends javax.swing.JPanel {
                 
                 case 2 ->{
                     String jenis_transaksi = "retur_penjualan";
-                    String sql = "SELECT id_keluar, tgl_keluar, nama_barang, nama_customer, "
-                            + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
-                            + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
-                            + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang"
+                    String sql = "SELECT id_keluar AS 'ID Keluar', tgl_keluar AS 'Tgl Keluar', nama_barang AS 'Nama Barang', nama_customer AS 'Nama Customer', "
+                            + " k.harga_satuan AS 'Harga Satuan', qty_keluar AS 'QTY', k.total_harga AS 'Total Harga', keterangan AS 'Keterangan', jenis_transaksi AS 'Jenis Transaksi'"
+                            + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s"
+                            + " WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang"
                             + " AND jenis_transaksi = '" + jenis_transaksi + "'";
                     Statement state = objKeluar.conn.createStatement();
                     ResultSet result = state.executeQuery(sql);
@@ -511,10 +511,10 @@ public final class formLaporanKeluar extends javax.swing.JPanel {
                     tabelBarangKeluar.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(result));
                 }
                 default ->{
-                    String sql = "SELECT id_keluar, tgl_keluar, nama_barang, nama_customer, "
-                        + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
-                            + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
-                            + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang";
+                    String sql = "SELECT id_keluar AS 'ID Keluar', tgl_keluar AS 'Tgl Keluar', nama_barang AS 'Nama Barang', nama_customer AS 'Nama Customer', "
+                            + " k.harga_satuan AS 'Harga Satuan', qty_keluar AS 'QTY', k.total_harga AS 'Total Harga', keterangan AS 'Keterangan', jenis_transaksi AS 'Jenis Transaksi'"
+                            + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s"
+                            + " WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang";
                     Statement state = objKeluar.conn.createStatement();
                     ResultSet result = state.executeQuery(sql);
             
