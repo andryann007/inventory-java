@@ -325,7 +325,7 @@ public final class formLaporanKeluar extends javax.swing.JPanel {
         add(panelBody, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 750, 430));
 
         btnPrint.setFont(new java.awt.Font("Century", 1, 18)); // NOI18N
-        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print-solid.png"))); // NOI18N
+        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print-solid_sm.png"))); // NOI18N
         btnPrint.setText("PRINT");
         btnPrint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPrint.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -348,6 +348,19 @@ public final class formLaporanKeluar extends javax.swing.JPanel {
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         String searchQuery = txtSearch.getText();
         searchQuery(searchQuery);
+        
+//        try {
+//            String searchQuery = txtSearch.getText();
+//            String sql = "SELECT id_keluar, tgl_keluar, nama_barang, nama_customer, "
+//                        + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
+//                        + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
+//                        + "WHERE tgl_keluar LIKE '%" + searchQuery + "&' OR jenis_transaksi LIKE '&" + searchQuery + "&'";
+//            Statement state = objKeluar.conn.createStatement();
+//            ResultSet result = state.executeQuery(sql);
+//            tabelBarangKeluar.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(result));
+//        } catch (SQLException ex) {
+//            Logger.getLogger(formLaporanKeluar.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void tabelBarangKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelBarangKeluarMouseClicked
@@ -463,25 +476,18 @@ public final class formLaporanKeluar extends javax.swing.JPanel {
             
             switch (cboJenisTransaksi.getSelectedIndex()) {
                 case 0 ->{
-                    String sql = "SELECT id_keluar, nama_barang, nama_customer, tgl_keluar,"
+                    String sql = "SELECT id_keluar, tgl_keluar, nama_barang, nama_customer, "
                         + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
                             + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
                             + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang";
                     Statement state = objKeluar.conn.createStatement();
                     ResultSet result = state.executeQuery(sql);
             
-                    while(result.next()){
-                        tabelDataKeluar.addRow(new Object[] {result.getString(1),
-                        result.getString(4), result.getString(2),
-                        result.getString(3), result.getString(5),
-                        result.getString(6), result.getString(7),
-                        result.getString(8), result.getString(9)});
-                    }
-                    tabelBarangKeluar.setModel(tabelDataKeluar);
+                    tabelBarangKeluar.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(result));
                 }
                 case 1 ->{
                     String jenis_transaksi = "penjualan";
-                    String sql = "SELECT id_keluar, nama_barang, nama_customer, tgl_keluar,"
+                    String sql = "SELECT id_keluar, tgl_keluar, nama_barang, nama_customer, "
                             + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
                             + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
                             + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang"
@@ -489,19 +495,12 @@ public final class formLaporanKeluar extends javax.swing.JPanel {
                     Statement state = objKeluar.conn.createStatement();
                     ResultSet result = state.executeQuery(sql);
             
-                    while(result.next()){
-                        tabelDataKeluar.addRow(new Object[] {result.getString(1),
-                        result.getString(4), result.getString(2),
-                        result.getString(3), result.getString(5),
-                        result.getString(6), result.getString(7),
-                        result.getString(8), result.getString(9)});
-                    }
-                    tabelBarangKeluar.setModel(tabelDataKeluar);
+                    tabelBarangKeluar.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(result));
                 }
                 
                 case 2 ->{
                     String jenis_transaksi = "retur_penjualan";
-                    String sql = "SELECT id_keluar, nama_barang, nama_customer, tgl_keluar,"
+                    String sql = "SELECT id_keluar, tgl_keluar, nama_barang, nama_customer, "
                             + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
                             + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
                             + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang"
@@ -509,31 +508,17 @@ public final class formLaporanKeluar extends javax.swing.JPanel {
                     Statement state = objKeluar.conn.createStatement();
                     ResultSet result = state.executeQuery(sql);
             
-                    while(result.next()){
-                        tabelDataKeluar.addRow(new Object[] {result.getString(1),
-                        result.getString(4), result.getString(2),
-                        result.getString(3), result.getString(5),
-                        result.getString(6), result.getString(7),
-                        result.getString(8), result.getString(9)});
-                    }
-                    tabelBarangKeluar.setModel(tabelDataKeluar);
+                    tabelBarangKeluar.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(result));
                 }
                 default ->{
-                    String sql = "SELECT id_keluar, nama_barang, nama_customer, tgl_keluar,"
+                    String sql = "SELECT id_keluar, tgl_keluar, nama_barang, nama_customer, "
                         + " k.harga_satuan, qty_keluar, k.total_harga, keterangan, jenis_transaksi"
                             + " FROM `data_barang_keluar` k, `data_customer` cs, `data_stock` s "
                             + "WHERE cs.id_customer = k.id_customer AND s.id_barang = k.id_barang";
                     Statement state = objKeluar.conn.createStatement();
                     ResultSet result = state.executeQuery(sql);
             
-                    while(result.next()){
-                        tabelDataKeluar.addRow(new Object[] {result.getString(1),
-                        result.getString(4), result.getString(2),
-                        result.getString(3), result.getString(5),
-                        result.getString(6), result.getString(7),
-                        result.getString(8), result.getString(9)});
-                    }
-                    tabelBarangKeluar.setModel(tabelDataKeluar);
+                    tabelBarangKeluar.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(result));
                 }
             }
             

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="89c6cc78-3bcd-4e52-8033-dc1dd16682d4">
-	<queryString language="SQL">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportMasuk" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="89c6cc78-3bcd-4e52-8033-dc1dd16682d4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
 		<![CDATA[SELECT id_masuk, nama_supplier, nama_barang, tgl_masuk, qty_masuk, m.harga_satuan, m.total_harga, keterangan FROM `data_barang_masuk` m, `data_stock` s, `data_supplier` sp WHERE m.id_barang = s.id_barang AND m.id_supplier = sp.id_supplier AND jenis_transaksi = 'pembelian']]>
 	</queryString>
 	<field name="id_masuk" class="java.lang.String">
@@ -31,22 +34,158 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="165" y="46" width="259" height="20" uuid="7315b27d-2396-4ed5-bec8-7a66064f553c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Kecamatan Cikarang, Kabupaten Bekasi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="0" width="125" height="26" uuid="bfade12b-f291-4a1c-b337-157c34802a38"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Toko Sukses]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="26" width="355" height="20" uuid="191461bc-096d-4d21-b238-bf26e7a694ac"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Jalan Yos Sudarso, Pasar Permai Cikarang, Karangasih]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="15" width="186" height="20" uuid="d9d9c8a7-d234-47da-a454-d3c04343c6b6"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Perihal : Laporan Barang Masuk]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-20" y="0" width="596" height="1" uuid="c95faac8-bc58-41e8-b1bc-b249aef0985b"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="41" width="79" height="20" uuid="6cbcfd46-8774-45b1-b8b7-c4da5b0065a2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tgl Masuk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="41" width="100" height="20" uuid="13c4d730-d271-4379-a854-7666c729a84f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="41" width="100" height="20" uuid="def7ff05-b5d6-466c-9e52-d53f164ff665"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Supplier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="41" width="85" height="20" uuid="f16af88b-ca11-4271-bd6f-c8cb0575153b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Harga Satuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="41" width="41" height="20" uuid="03cc61aa-a654-4575-9dc5-98a4da8611eb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="41" width="77" height="20" uuid="e1538ba9-6d44-47d3-9bb0-1ba874f2e629"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="482" y="41" width="73" height="20" uuid="c2cdd3a8-20cd-4f03-a207-5bbe97a98b68"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Keterangan]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="11" width="79" height="20" uuid="87c8560d-0494-49bd-8e56-80781c22c052"/>
+				<textFieldExpression><![CDATA[$F{tgl_masuk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="11" width="100" height="20" uuid="0e0ab097-ec68-4fba-8aee-ce280eb6fc17"/>
+				<textFieldExpression><![CDATA[$F{nama_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="11" width="100" height="20" uuid="e4c0e556-ce5a-4bec-a8e5-6dc24988f827"/>
+				<textFieldExpression><![CDATA[$F{nama_supplier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="11" width="85" height="20" uuid="5e153330-c91a-42b8-a0b6-d6fc9597bb91"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{harga_satuan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="11" width="41" height="20" uuid="3a105ad0-67fd-4f2f-9cef-3f22aefe3bc2"/>
+				<textFieldExpression><![CDATA[$F{qty_masuk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="11" width="77" height="20" uuid="5e501d6b-9f16-4c16-bf92-a171313876e5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{total_harga}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="11" width="73" height="20" uuid="83a2a574-4822-48d7-b71a-f4b69df3b02d"/>
+				<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="0" width="554" height="1" uuid="e44d1e6f-c103-44e2-af70-abd46245ceef"/>
+			</line>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="461" y="19" width="94" height="20" uuid="a744ca09-0f5f-41ff-a8d9-27e3e40bd3c2"/>
+				<text><![CDATA[Owner Toko Sukses]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="76" splitType="Stretch">
+			<line>
+				<reportElement x="460" y="55" width="94" height="1" uuid="75b7e731-2e16-41fe-b783-e353a40212f4"/>
+			</line>
+			<staticText>
+				<reportElement x="481" y="56" width="51" height="20" uuid="c128bbd1-f72c-45a1-9eed-096814610486"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fendy Jay]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

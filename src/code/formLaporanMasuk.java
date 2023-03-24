@@ -1,20 +1,27 @@
 package code;
 
-import java.awt.HeadlessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -24,6 +31,8 @@ import net.sf.jasperreports.view.JasperViewer;
 public final class formLaporanMasuk extends javax.swing.JPanel {
 
     clsMasuk objMasuk = new clsMasuk();
+    
+    Connection conn;
     
     public formLaporanMasuk() {
         initComponents();
@@ -312,7 +321,7 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
                             .addComponent(labelTglMasuk)
                             .addComponent(txtTglMasuk))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelNamaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNamaSupplier))
                         .addGap(18, 18, 18)
@@ -329,7 +338,7 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
         add(panelBody, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 750, 430));
 
         btnPrint.setFont(new java.awt.Font("Century", 1, 18)); // NOI18N
-        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print-solid.png"))); // NOI18N
+        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print-solid_sm.png"))); // NOI18N
         btnPrint.setText("PRINT");
         btnPrint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPrint.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -354,6 +363,14 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
         searchQuery(searchQuery);
     }//GEN-LAST:event_txtSearchKeyReleased
 
+    public void getConnection(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/database_inventory","root","");
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(formLaporanMasuk.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void tabelBarangMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelBarangMasukMouseClicked
         int baris = tabelBarangMasuk.getSelectedRow();
         String id = tabelBarangMasuk.getValueAt(baris, 0).toString();
@@ -402,34 +419,43 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrintMouseClicked
-        objMasuk.Access();
-
-        try{
-            DefaultTableModel model = (DefaultTableModel) tabelBarangMasuk.getModel();
+       try{
+           getConnection();
+           DefaultTableModel model = (DefaultTableModel) tabelBarangMasuk.getModel();
+           JRDataSource dataSource = new JRTableModelDataSource(model);           
+           HashMap<String, Object> param = new HashMap<>();
+           param.put("title", "");
+           JasperPrint jasperPrint = null;
             
             switch (cboJenisTransaksi.getSelectedIndex()) {
                 case 1 ->                     {
-                        JasperPrint jasperPrint = null;
                         JasperCompileManager.compileReportToFile("D:\\CODING\\JAVA\\Inventory\\Inventory\\src\\code\\reportMasuk.jrxml");
-                        jasperPrint = JasperFillManager.fillReport("D:\\CODING\\JAVA\\Inventory\\Inventory\\src\\code\\reportMasuk.jasper", null, new JRTableModelDataSource(model));
+                        jasperPrint = JasperFillManager.fillReport("D:\\CODING\\JAVA\\Inventory\\Inventory\\src\\code\\reportMasuk.jasper", param, dataSource);
                         JasperViewer.viewReport(jasperPrint, false);
                     }
                 case 2 ->                     {
-                        JasperPrint jasperPrint = null;
                         JasperCompileManager.compileReportToFile("D:\\CODING\\JAVA\\Inventory\\Inventory\\src\\code\\reportReturMasuk.jrxml");
-                        jasperPrint = JasperFillManager.fillReport("D:\\CODING\\JAVA\\Inventory\\Inventory\\src\\code\\reportReturMasuk.jasper", null, new JRTableModelDataSource(model));
+                        jasperPrint = JasperFillManager.fillReport("D:\\CODING\\JAVA\\Inventory\\Inventory\\src\\code\\reportReturMasuk.jasper", param, dataSource);
                         JasperViewer.viewReport(jasperPrint, false);
                     }
                 default ->                     {
-                        JasperPrint jasperPrint = null;
                         JasperCompileManager.compileReportToFile("D:\\CODING\\JAVA\\Inventory\\Inventory\\src\\code\\reportMasuk.jrxml");
-                        jasperPrint = JasperFillManager.fillReport("D:\\CODING\\JAVA\\Inventory\\Inventory\\src\\code\\reportMasuk.jasper", null, new JRTableModelDataSource(model));
+                        jasperPrint = JasperFillManager.fillReport("D:\\CODING\\JAVA\\Inventory\\Inventory\\src\\code\\reportMasuk.jasper", param, dataSource);
                         JasperViewer.viewReport(jasperPrint, false);
                     }
             }
-        }
-        catch (JRException ex) {
-            JOptionPane.showMessageDialog(null, ex);
+
+//                JasperDesign jasperDesign = JRXmlLoader.load("D:\\CODING\\JAVA\\Inventory\\Inventory\\src\\code\\reportMasuk.jrxml");
+//                String sql = "SELECT id_masuk, nama_supplier, nama_barang, tgl_masuk, qty_masuk, m.harga_satuan, m.total_harga, keterangan FROM `data_barang_masuk` m, `data_stock` s, `data_supplier` sp WHERE m.id_barang = s.id_barang AND m.id_supplier = sp.id_supplier AND jenis_transaksi = 'pembelian'";
+//                JRDesignQuery jasperQuery = new JRDesignQuery();
+//                jasperQuery.setText(sql);
+//                jasperDesign.setQuery(jasperQuery);
+//                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+//                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, conn);
+//                JasperViewer.viewReport(jasperPrint, false);
+                
+       } catch (JRException ex) {
+            Logger.getLogger(formLaporanMasuk.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnPrintMouseClicked
 
@@ -441,7 +467,6 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
         trs.setRowFilter(RowFilter.regexFilter("(?i)" + query));
     }
     
-   
     public void isiTabel(int index){
         DefaultTableModel tabelDataMasuk = new DefaultTableModel();
         
@@ -461,67 +486,43 @@ public final class formLaporanMasuk extends javax.swing.JPanel {
             
             switch (cboJenisTransaksi.getSelectedIndex()) {
                 case 0 ->{
-                        String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"
+                       String sql = "SELECT id_masuk, tgl_masuk, nama_barang, nama_supplier, "
                                 + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
                                 + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang";
                         Statement state = objMasuk.conn.createStatement();
                         ResultSet result = state.executeQuery(sql);
-                        while(result.next()){
-                            tabelDataMasuk.addRow(new Object[] {result.getString(1),
-                                result.getString(4), result.getString(2),
-                                result.getString(3), result.getString(5),
-                                result.getString(6), result.getString(7),
-                                result.getString(8), result.getString(9)});
-                        }      
-                        tabelBarangMasuk.setModel(tabelDataMasuk);
+                        tabelBarangMasuk.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(result));
                     }
                 case 1 ->{
                         String jenis_transaksi = "pembelian";
-                        String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"
+                        String sql = "SELECT id_masuk, tgl_masuk, nama_barang, nama_supplier, "
                                 + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
                                 + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang"
                                 + " AND m.jenis_transaksi = '" + jenis_transaksi + "'";
                         Statement state = objMasuk.conn.createStatement();
-                        ResultSet result = state.executeQuery(sql);
-                        while(result.next()){
-                            tabelDataMasuk.addRow(new Object[] {result.getString(1),
-                                result.getString(4), result.getString(2),
-                                result.getString(3), result.getString(5),
-                                result.getString(6), result.getString(7),
-                                result.getString(8), result.getString(9)});
-                        }       tabelBarangMasuk.setModel(tabelDataMasuk);
+                        ResultSet result = state.executeQuery(sql);    
+                        tabelBarangMasuk.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(result));
                     }
                 
                 case 2 ->{
                         String jenis_transaksi = "retur_pembelian";
-                        String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"
+                        String sql = "SELECT id_masuk, tgl_masuk, nama_barang, nama_supplier, "
                                 + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
                                 + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang"
                                 + " AND m.jenis_transaksi = '" + jenis_transaksi + "'";
                         Statement state = objMasuk.conn.createStatement();
-                        ResultSet result = state.executeQuery(sql);
-                        while(result.next()){
-                            tabelDataMasuk.addRow(new Object[] {result.getString(1),
-                                result.getString(4), result.getString(2),
-                                result.getString(3), result.getString(5),
-                                result.getString(6), result.getString(7),
-                                result.getString(8), result.getString(9)});
-                        }       tabelBarangMasuk.setModel(tabelDataMasuk);
+                        ResultSet result = state.executeQuery(sql);     
+                        tabelBarangMasuk.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(result));
                     }
                 default ->                     {
-                        String sql = "SELECT id_masuk, nama_barang, nama_supplier, tgl_masuk,"
+                        String jenis_transaksi = "pembelian";
+                        String sql = "SELECT id_masuk, tgl_masuk, nama_barang, nama_supplier, "
                                 + " m.harga_satuan, qty_masuk, m.total_harga, keterangan, jenis_transaksi FROM `data_barang_masuk` m,"
-                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang";
+                                + " `data_supplier` s, `data_stock` st WHERE s.id_supplier = m.id_supplier AND st.id_barang = m.id_barang"
+                                + " AND m.jenis_transaksi = '" + jenis_transaksi + "'";
                         Statement state = objMasuk.conn.createStatement();
-                        ResultSet result = state.executeQuery(sql);
-                        while(result.next()){
-                            tabelDataMasuk.addRow(new Object[] {result.getString(1),
-                                result.getString(4), result.getString(2),
-                                result.getString(3), result.getString(5),
-                                result.getString(6), result.getString(7),
-                                result.getString(8), result.getString(9)});
-                        }      
-                        tabelBarangMasuk.setModel(tabelDataMasuk);
+                        ResultSet result = state.executeQuery(sql);       
+                        tabelBarangMasuk.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(result));
                     }
             }
             
